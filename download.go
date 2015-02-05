@@ -10,21 +10,11 @@ import (
   // _ "github.com/go-sql-driver/mysql"
 )
 
-// import "net/http"
-// resp, err := http.Get("http://example.com/")
-// if err != nil {
-//   // handle error
-// }
-// defer resp.Body.Close()
-// body, err := ioutil.ReadAll(resp.Body)
-
-
 func download(targetUrl) Siegel {
   doc, err := goquery.NewDocument(fmt.Sprintf(tagetUrl, id))
   if err != nil {
     log.Fatal(err)
 }
-
 
   siegel := Siegel{
     id: id,

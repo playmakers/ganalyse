@@ -5,7 +5,6 @@ import (
   "fmt"
   "log"
   "os"
-  "io"
   "io/ioutil"
   "strings"
   "github.com/PuerkitoBio/goquery"
@@ -33,7 +32,7 @@ type Product struct{
   variants []Variant
 }
 
-func login(loginUrl, login string, password string) string {
+func login(loginUrl, login string, password string) (requrl string) {
   fmt.Printf("Open: %s\n with: %s \n", loginUrl, password)
 
   doc, err := goquery.NewDocument(loginUrl)
@@ -41,9 +40,9 @@ func login(loginUrl, login string, password string) string {
     log.Fatal(err)
   }
   action, _ := doc.Find("#LoginBox form").Attr("action")
-  fmt.Printf("Action: %s\n", action)
-  requrl, _ := doc.Find("body").Attr("requrl")
-  fmt.Printf("Url: %s\n", requrl)
+  // fmt.Printf("Action: %s\n", action)
+  requrl, _ = doc.Find("body").Attr("requrl")
+  // fmt.Printf("Url: %s\n", requrl)
 
   resp, err := http.PostForm(HOST + action, url.Values{
     "inpLoginUser": {login},
@@ -54,10 +53,10 @@ func login(loginUrl, login string, password string) string {
   }
   defer resp.Body.Close()
 
-  return requrl
+  return
 }
 
-func loadProductUrl(productUrl string, productId string) io.Reader {
+func loadProductUrl(productUrl string, productId string) []byte {
   productUrl = productUrl + "&monum=" + productId
   fmt.Printf("Open Product: %s\n", productUrl)
 
@@ -65,28 +64,30 @@ func loadProductUrl(productUrl string, productId string) io.Reader {
   if err != nil {
     log.Fatalf("unable to fetch: %v", err)
   }
-  // defer resp.Body.Close()
+  defer resp.Body.Close()
 
-  // body, _ := ioutil.ReadAll(resp.Body)
-  // return body
-
-  return resp.Body
+  body, _ := ioutil.ReadAll(resp.Body)
+  return body
 }
 
-func storeProductPage(productPage io.Reader, productId string) {
-  path := fmt.Sprintf("product%s.html", productId)
-  body, _ := ioutil.ReadAll(productPage)
-  ioutil.WriteFile(path, body, 0644)
+func fileFor(productId string) string {
+ return fmt.Sprintf("examples/product%s.html", productId)
 }
 
-func loadProductPage(productId string) io.Reader {
-  path := fmt.Sprintf("product%s.html", productId)
+func storeProductPage(productPage []byte, productId string) {
+  path := fileFor(productId)
+  ioutil.WriteFile(path, productPage, 0644)
+}
+
+func loadProductPage(productId string) []byte {
+  path := fileFor(productId)
   file, _ := ioutil.ReadFile(path)
-  return strings.NewReader(string(file))
+  return file
 }
 
-func inspectProduct(productPage io.Reader, productId string) Product {
-  doc, err := goquery.NewDocumentFromReader(productPage)
+func inspectProduct(productPage []byte, productId string) Product {
+  reader := strings.NewReader(string(productPage))
+  doc, err := goquery.NewDocumentFromReader(reader)
   if err != nil {
     log.Fatal(err)
   }
@@ -99,19 +100,20 @@ func inspectProduct(productPage io.Reader, productId string) Product {
 }
 
 func main() {
-  if len(os.Args) != 2 {
-    log.Fatalf("usage: %v pwd", os.Args[0])
+  var productPage []byte;
+
+  productId := os.Args[1]  // "X2-A", "EPIC", "F300"
+
+  if len(os.Args) != 3 {
+    productPage = loadProductPage(productId)
+  } else {
+    session := login(START_URL, LOGIN, os.Args[2])
+    fmt.Printf("Session: %s\n", session)
+    productPage = loadProductUrl(HOST + session, productId)
+    storeProductPage(productPage, productId)
   }
-  productId := "EPIC"
 
-  // session := login(START_URL, LOGIN, os.Args[1])
-  // fmt.Printf("Session: %s\n", session)
-  // productPage := loadProductUrl(HOST + session, productId)
-  // storeProductPage(productPage, productId)
-
-  productPage := loadProductPage(productId)
-
-  product     := inspectProduct(productPage, productId)
+  product := inspectProduct(productPage, productId)
 
   fmt.Printf("Product: %s\n", product)
 }
