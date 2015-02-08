@@ -6,7 +6,8 @@ import (
   "log"
   "os"
   "io/ioutil"
-  "strings"
+  s "strings"
+  "strconv"
   "github.com/PuerkitoBio/goquery"
   "net/url"
   "net/http"
@@ -22,8 +23,12 @@ const (
 type Variant struct {
   id int
   color, size, position string
-  price int
+  price float64
   availability int
+}
+
+func (v *Variant) String() string {
+  return fmt.Sprintf("id: %d\tcolor: %s\tsize: %s\tpos: %s\tavail: %d\tprice: %.2f", v.id, v.color, v.size, v.position, v.availability, v.price)
 }
 
 type Product struct{
@@ -86,13 +91,55 @@ func loadProductPage(productId string) []byte {
 }
 
 func inspectProduct(productPage []byte, productId string) Product {
-  reader := strings.NewReader(string(productPage))
+  availabilityMapping := map[string]int {
+    "inpQtyRed": 0,
+    "inpQtyYellow": 5,
+    "inpQtyGreen": 50,
+  }
+
+  sizeMapping := map[string]string {
+    "3": "S",
+    "4": "M",
+    "5": "L",
+    "6": "XL",
+  }
+
+  reader := s.NewReader(string(productPage))
   doc, err := goquery.NewDocumentFromReader(reader)
   if err != nil {
     log.Fatal(err)
   }
 
   title := doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text()
+
+  doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
+    color    := func(value string) string {
+      return string(value[0:3])
+    }(productSelection.Find("td b").Text())
+
+    priceStr := productSelection.Next().Find("b").Text()
+    price, _ := strconv.ParseFloat(priceStr, 32)
+
+    productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
+      size := func(value string, exists bool) string {
+        splitAry := s.Split(value, "_")
+        return sizeMapping[splitAry[len(splitAry)-1]]
+      }(variantSelection.Attr("name"))
+
+      availability := func(value string, exists bool) int {
+          return availabilityMapping[value]
+      }(variantSelection.Attr("class"))
+
+      v := Variant {
+        color: color,
+        size: size,
+        price: price,
+        availability: availability,
+      }
+
+      fmt.Printf("V: %v\n", v.String())
+    })
+  })
 
   return Product {
     name: title,
