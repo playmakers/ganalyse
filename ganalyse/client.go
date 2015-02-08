@@ -37,6 +37,14 @@ type Product struct{
   variants []Variant
 }
 
+func (p *Product) String() string {
+  out := fmt.Sprintf("id: %d\tame: %s\t variants:", p.id, p.name)
+  for i := range p.variants {
+    out = fmt.Sprintf("%s\n %v", out, p.variants[i].String())
+  }
+  return out
+}
+
 func login(loginUrl, login string, password string) (requrl string) {
   fmt.Printf("Open: %s\n with: %s \n", loginUrl, password)
 
@@ -45,17 +53,12 @@ func login(loginUrl, login string, password string) (requrl string) {
     log.Fatal(err)
   }
   action, _ := doc.Find("#LoginBox form").Attr("action")
-  // fmt.Printf("Action: %s\n", action)
   requrl, _ = doc.Find("body").Attr("requrl")
-  // fmt.Printf("Url: %s\n", requrl)
 
-  resp, err := http.PostForm(HOST + action, url.Values{
+  resp, _ := http.PostForm(HOST + action, url.Values{
     "inpLoginUser": {login},
     "inpLoginPass": {password},
   })
-  if err != nil {
-    log.Fatalf("unable to fetch: %v", err)
-  }
   defer resp.Body.Close()
 
   return
@@ -65,10 +68,7 @@ func loadProductUrl(productUrl string, productId string) []byte {
   productUrl = productUrl + "&monum=" + productId
   fmt.Printf("Open Product: %s\n", productUrl)
 
-  resp, err := http.Get(productUrl)
-  if err != nil {
-    log.Fatalf("unable to fetch: %v", err)
-  }
+  resp, _ := http.Get(productUrl)
   defer resp.Body.Close()
 
   body, _ := ioutil.ReadAll(resp.Body)
@@ -102,23 +102,31 @@ func inspectProduct(productPage []byte, productId string) Product {
     "4": "M",
     "5": "L",
     "6": "XL",
+    "7": "XXL",
+    "8": "3XL",
+    "9": "4XL",
   }
 
   reader := s.NewReader(string(productPage))
-  doc, err := goquery.NewDocumentFromReader(reader)
-  if err != nil {
-    log.Fatal(err)
+  doc, _ := goquery.NewDocumentFromReader(reader)
+
+  product := Product {
+    name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
   }
 
-  title := doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text()
-
   doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
-    color    := func(value string) string {
-      return string(value[0:3])
+    color := func(value string) string {
+      if len(value) >= 3 {
+        return string(value[0:3])
+      } else {
+        return ""
+      }
     }(productSelection.Find("td b").Text())
 
-    priceStr := productSelection.Next().Find("b").Text()
-    price, _ := strconv.ParseFloat(priceStr, 32)
+    price := func(value string) float64 {
+      p, _ := strconv.ParseFloat(value, 32)
+      return p
+    }(productSelection.Next().Find("b").Text())
 
     productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
       size := func(value string, exists bool) string {
@@ -127,23 +135,21 @@ func inspectProduct(productPage []byte, productId string) Product {
       }(variantSelection.Attr("name"))
 
       availability := func(value string, exists bool) int {
-          return availabilityMapping[value]
+        return availabilityMapping[value]
       }(variantSelection.Attr("class"))
 
-      v := Variant {
+      variant := Variant {
         color: color,
         size: size,
         price: price,
         availability: availability,
       }
 
-      fmt.Printf("V: %v\n", v.String())
+      product.variants = append(product.variants, variant)
     })
   })
 
-  return Product {
-    name: title,
-  }
+  return product
 }
 
 func main() {
@@ -162,5 +168,5 @@ func main() {
 
   product := inspectProduct(productPage, productId)
 
-  fmt.Printf("Product: %s\n", product)
+  fmt.Printf("Product: %v\n", product.String())
 }
