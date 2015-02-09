@@ -1,172 +1,148 @@
-// curl is a simple cURL replacement.
-package main
+package ganalyse
 
-import (
-  "fmt"
-  "log"
-  "os"
-  "io/ioutil"
-  s "strings"
-  "strconv"
-  "github.com/PuerkitoBio/goquery"
-  "net/url"
-  "net/http"
-)
+// import (
+//   "fmt"
+//   "os"
+//   // "io/ioutil"
+//   s "strings"
+//   "strconv"
+//   "github.com/PuerkitoBio/goquery"
+//   "net/url"
+//   "net/http"
+// )
 
-const (
-  HOST      = "http://www.dfshop.com/"
-  BASE_PATH = "/dfshop/wsDfShop.wsc"
-  START_URL = HOST + BASE_PATH + "/pDfStart.p?href=dqbg4p735uvb12kccosjqb6"
-  LOGIN     = "PMBE6R47"
-)
+// const (
+//   HOST      = "http://www.dfshop.com/"
+//   BASE_PATH = "/dfshop/wsDfShop.wsc"
+//   START_URL = HOST + BASE_PATH + "/pDfStart.p?href=dqbg4p735uvb12kccosjqb6"
+//   LOGIN     = "PMBE6R47"
+// )
 
-type Variant struct {
-  id int
-  color, size, position string
-  price float64
-  availability int
-}
+// type Variant struct {
+//   id int
+//   color, size, position string
+//   price float64
+//   availability int
+// }
 
-func (v *Variant) String() string {
-  return fmt.Sprintf("id: %d\tcolor: %s\tsize: %s\tpos: %s\tavail: %d\tprice: %.2f", v.id, v.color, v.size, v.position, v.availability, v.price)
-}
+// func (v *Variant) String() string {
+//   return fmt.Sprintf("id: %d\tcolor: %s\tsize: %s\tpos: %s\tavail: %d\tprice: %.2f", v.id, v.color, v.size, v.position, v.availability, v.price)
+// }
 
-type Product struct{
-  id int
-  name string
-  variants []Variant
-}
+// type Product struct{
+//   id int
+//   name string
+//   variants []Variant
+// }
 
-func (p *Product) String() string {
-  out := fmt.Sprintf("id: %d\tame: %s\t variants:", p.id, p.name)
-  for i := range p.variants {
-    out = fmt.Sprintf("%s\n %v", out, p.variants[i].String())
-  }
-  return out
-}
+// func (p *Product) String() string {
+//   out := fmt.Sprintf("id: %d\tame: %s\t variants:", p.id, p.name)
+//   for i := range p.variants {
+//     out = fmt.Sprintf("%s\n %v", out, p.variants[i].String())
+//   }
+//   return out
+// }
 
-func login(loginUrl, login string, password string) (requrl string) {
-  fmt.Printf("Open: %s\n with: %s \n", loginUrl, password)
+// func login(loginUrl, login string, password string) (requrl string) {
+//   fmt.Printf("Open: %s\n with: %s \n", loginUrl, password)
 
-  doc, err := goquery.NewDocument(loginUrl)
-  if err != nil {
-    log.Fatal(err)
-  }
-  action, _ := doc.Find("#LoginBox form").Attr("action")
-  requrl, _ = doc.Find("body").Attr("requrl")
+//   doc, _ := goquery.NewDocument(loginUrl)
+//   action, _ := doc.Find("#LoginBox form").Attr("action")
+//   requrl, _ = doc.Find("body").Attr("requrl")
 
-  resp, _ := http.PostForm(HOST + action, url.Values{
-    "inpLoginUser": {login},
-    "inpLoginPass": {password},
-  })
-  defer resp.Body.Close()
+//   resp, _ := http.PostForm(HOST + action, url.Values{
+//     "inpLoginUser": {login},
+//     "inpLoginPass": {password},
+//   })
+//   defer resp.Body.Close()
 
-  return
-}
+//   return
+// }
 
-func loadProductUrl(productUrl string, productId string) []byte {
-  productUrl = productUrl + "&monum=" + productId
-  fmt.Printf("Open Product: %s\n", productUrl)
+// func loadProductUrl(productUrl string, productId string) []byte {
+//   productUrl = productUrl + "&monum=" + productId
+//   fmt.Printf("Open Product: %s\n", productUrl)
+//   return loadUrl(productUrl)
+// }
 
-  resp, _ := http.Get(productUrl)
-  defer resp.Body.Close()
 
-  body, _ := ioutil.ReadAll(resp.Body)
-  return body
-}
+// func inspectProduct(productPage []byte, productId string) Product {
+//   availabilityMapping := map[string]int {
+//     "inpQtyRed": 0,
+//     "inpQtyYellow": 5,
+//     "inpQtyGreen": 50,
+//   }
 
-func fileFor(productId string) string {
- return fmt.Sprintf("examples/product%s.html", productId)
-}
+//   sizeMapping := map[string]string {
+//     "3": "S",
+//     "4": "M",
+//     "5": "L",
+//     "6": "XL",
+//     "7": "XXL",
+//     "8": "3XL",
+//     "9": "4XL",
+//   }
 
-func storeProductPage(productPage []byte, productId string) {
-  path := fileFor(productId)
-  ioutil.WriteFile(path, productPage, 0644)
-}
+//   reader := s.NewReader(string(productPage))
+//   doc, _ := goquery.NewDocumentFromReader(reader)
 
-func loadProductPage(productId string) []byte {
-  path := fileFor(productId)
-  file, _ := ioutil.ReadFile(path)
-  return file
-}
+//   product := Product {
+//     name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
+//   }
 
-func inspectProduct(productPage []byte, productId string) Product {
-  availabilityMapping := map[string]int {
-    "inpQtyRed": 0,
-    "inpQtyYellow": 5,
-    "inpQtyGreen": 50,
-  }
+//   doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
+//     color := func(value string) string {
+//       if len(value) >= 3 {
+//         return string(value[0:3])
+//       } else {
+//         return ""
+//       }
+//     }(productSelection.Find("td b").Text())
 
-  sizeMapping := map[string]string {
-    "3": "S",
-    "4": "M",
-    "5": "L",
-    "6": "XL",
-    "7": "XXL",
-    "8": "3XL",
-    "9": "4XL",
-  }
+//     price := func(value string) float64 {
+//       p, _ := strconv.ParseFloat(value, 32)
+//       return p
+//     }(productSelection.Next().Find("b").Text())
 
-  reader := s.NewReader(string(productPage))
-  doc, _ := goquery.NewDocumentFromReader(reader)
+//     productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
+//       size := func(value string, exists bool) string {
+//         splitAry := s.Split(value, "_")
+//         return sizeMapping[splitAry[len(splitAry)-1]]
+//       }(variantSelection.Attr("name"))
 
-  product := Product {
-    name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
-  }
+//       availability := func(value string, exists bool) int {
+//         return availabilityMapping[value]
+//       }(variantSelection.Attr("class"))
 
-  doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
-    color := func(value string) string {
-      if len(value) >= 3 {
-        return string(value[0:3])
-      } else {
-        return ""
-      }
-    }(productSelection.Find("td b").Text())
+//       variant := Variant {
+//         color: color,
+//         size: size,
+//         price: price,
+//         availability: availability,
+//       }
 
-    price := func(value string) float64 {
-      p, _ := strconv.ParseFloat(value, 32)
-      return p
-    }(productSelection.Next().Find("b").Text())
+//       product.variants = append(product.variants, variant)
+//     })
+//   })
 
-    productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
-      size := func(value string, exists bool) string {
-        splitAry := s.Split(value, "_")
-        return sizeMapping[splitAry[len(splitAry)-1]]
-      }(variantSelection.Attr("name"))
+//   return product
+// }
 
-      availability := func(value string, exists bool) int {
-        return availabilityMapping[value]
-      }(variantSelection.Attr("class"))
+// func main() {
+//   var productPage []byte;
 
-      variant := Variant {
-        color: color,
-        size: size,
-        price: price,
-        availability: availability,
-      }
+//   productId := os.Args[1]  // "X2-A", "EPIC", "F300"
 
-      product.variants = append(product.variants, variant)
-    })
-  })
+//   if len(os.Args) != 3 {
+//     productPage = loadProductPage(productId)
+//   } else {
+//     session := login(START_URL, LOGIN, os.Args[2])
+//     fmt.Printf("Session: %s\n", session)
+//     productPage = loadProductUrl(HOST + session, productId)
+//     storeProductPage(productPage, productId)
+//   }
 
-  return product
-}
+//   product := inspectProduct(productPage, productId)
 
-func main() {
-  var productPage []byte;
-
-  productId := os.Args[1]  // "X2-A", "EPIC", "F300"
-
-  if len(os.Args) != 3 {
-    productPage = loadProductPage(productId)
-  } else {
-    session := login(START_URL, LOGIN, os.Args[2])
-    fmt.Printf("Session: %s\n", session)
-    productPage = loadProductUrl(HOST + session, productId)
-    storeProductPage(productPage, productId)
-  }
-
-  product := inspectProduct(productPage, productId)
-
-  fmt.Printf("Product: %v\n", product.String())
-}
+//   fmt.Printf("Product: %v\n", product.String())
+// }

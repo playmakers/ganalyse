@@ -1,19 +1,37 @@
 # Ganalyse
 Google Analytics Rocks
 
-go
+## Algo
 
-Prepare:
+### Prepare:
+
 - google sheet with product/variant id, status
 
-Process
+
+### Process
+
 - read file/google doc
 - get data from given urls
 - send to ga with custom dimensions/value
 - update google doc with values & status
 
 
-// HELP:
-// https://gobyexample.com/channels
-// https://golang.org/doc/effective_go.html
-// https://github.com/go-sql-driver/mysql/wiki/Examples
+## Execute
+
+```
+go run main.go
+
+```
+
+## Todo
+
+* udpate source to have PM column in first place
+* remember column/row and write back
+* store to DB?
+
+
+## Help
+
+* https://gobyexample.com/channels
+* https://golang.org/doc/effective_go.html
+* https://github.com/go-sql-driver/mysql/wiki/Examples

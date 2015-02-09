@@ -2,38 +2,46 @@ package main
 
 import (
   "./ganalyse"
-)
-
-const (
-  ENDPOINT string = 'http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfStart.p?href=dqbg4p735uvb12kccosjqb6'
-  LOGIN string = 'PMBE6R47'
-  PASSWORD string = 'IFKW2BDS'
+  "sync"
+  "fmt"
+  // "os/exec"
 )
 
 func main() {
-  if len(os.Args) != 1 {
-    log.Fatalf("usage: %v $URL", os.Args[0])
-  }
+  // if len(os.Args) != 1 {
+  //   log.Fatalf("usage: %v $URL", os.Args[0])
+  // }
   // if _, err := http.Get(os.Stdout, os.Args[1]); err != nil {
   //   log.Fatalf("unable to fetch %q: %v", os.Args[1], err)
   // }
 
-resp, err := http.PostForm("http://example.com/form",
-  url.Values{"key": {"Value"}, "id": {"123"}})
+  // TODO execute speadsheet downloader
 
-  // read file/google doc
-  // ganalyse.Read("data.csv")
+  var wg sync.WaitGroup
+
+  //*** read file/google doc
+  entries := ganalyse.ParseCsv("examples/data.csv")
+
+  //*** get data from given urls
+  for _, entry := range entries {
+    for shop, url := range entry.Shops {
+      //*** download(targetUrl)
+      wg.Add(1)
+      func(shop string, name string, url string){
+        defer wg.Done()
+        fmt.Printf("%s %s %s\n", shop, name, url)
+        ganalyse.StoreUrl(shop, entry.Name, url)
+      }(shop, entry.Name, url)
+    }
+  }
+
+  wg.Wait()
+
+  //*** map to pageobject, analyse content
 
 
-  // get data from given urls
-
-  // download(targetUrl)
-
-  // map to pageobject, analyse content
+  //*** send to ga with custom dimensions/value
 
 
-  // send to ga with custom dimensions/value
-
-
-  // update google doc with values & status
+  //*** update google doc with values & status
 }
