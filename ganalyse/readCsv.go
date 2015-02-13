@@ -42,7 +42,7 @@ func loadUrl(url string) []byte {
   return body
 }
 
-func loadFile(path string) []byte {
+func LoadFile(path string) []byte {
   file, _ := ioutil.ReadFile(path)
   return file
 }
@@ -60,21 +60,19 @@ func storeFile(fileName string, content []byte) {
 func readCsv(fileName string) (records [][]string) {
   csvFile, _ := os.Open(fileName)
   defer csvFile.Close()
-
   reader := csv.NewReader(csvFile)
-  // reader.FieldsPerRecord = -1
-
   records, _ = reader.ReadAll()
   return
 }
 
 // ------------------------------------------
-func StoreUrl(shop string, productId string, url string) {
-  filename := filepath.Join(pathFor(shop), fileFor(productId))
+func StoreUrl(shop string, productId string, url string) (filename string) {
+  filename = filepath.Join(pathFor(shop), fileFor(productId))
   if _, err := os.Stat(filename); os.IsNotExist(err) {
     fmt.Printf("Processing: %s, %s\n", filename, url)
     storeFile(filename, loadUrl(url))
   }
+  return
 }
 
 func ParseCsv(fileName string) (entries []Entry) {
