@@ -1,6 +1,7 @@
-package ganalyse
+package vendors
 
 import (
+  "../ganalyse"
   "fmt"
   s "strings"
   "github.com/PuerkitoBio/goquery"
@@ -38,7 +39,7 @@ func login(loginUrl, login string, password string) (requrl string) {
 // }
 
 
-func InspectMeyer(productPage []byte) Product {
+func InspectMeyer(productPage []byte) *ganalyse.Product {
   availabilityMapping := map[string]int {
     "inpQtyRed": 0,
     "inpQtyYellow": 5,
@@ -55,16 +56,15 @@ func InspectMeyer(productPage []byte) Product {
     "9": "4XL",
   }
 
-  reader := s.NewReader(string(productPage))
-  doc, _ := goquery.NewDocumentFromReader(reader)
+  doc := ganalyse.Parse(productPage, "utf-8")
 
   productId := func(value string, exists bool) string {
     splitAry := s.Split(value, "=")
     return splitAry[len(splitAry)-1]
   }(doc.Find("meta[property='og:url']").Attr("content"))
 
-  product := Product {
-    name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
+  product := ganalyse.Product {
+    Name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
   }
 
   doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
@@ -76,7 +76,7 @@ func InspectMeyer(productPage []byte) Product {
       }
     }(productSelection.Find("td b").Text())
 
-    price := normPrice(productSelection.Next().Find("b").Text())
+    price := ganalyse.NormPrice(productSelection.Next().Find("b").Text())
 
     productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
       size := func(value string, exists bool) string {
@@ -88,18 +88,18 @@ func InspectMeyer(productPage []byte) Product {
         return availabilityMapping[value]
       }(variantSelection.Attr("class"))
 
-      variant := Variant {
-        color: color,
-        size: size,
-        price: price,
-        availability: availability,
+      variant := ganalyse.Variant {
+        Color: color,
+        Size: size,
+        Price: price,
+        Availability: availability,
       }
 
-      product.variants = append(product.variants, variant)
+      product.Add(variant)
     })
   })
 
-  return product
+  return &product
 }
 
 // func main() {

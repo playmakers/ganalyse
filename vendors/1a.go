@@ -1,10 +1,10 @@
-package ganalyse
+package vendors
 
 import (
   // "fmt"
+  "../ganalyse"
   s "strings"
   "regexp"
-  "github.com/djimenez/iconv-go"
   "github.com/PuerkitoBio/goquery"
 )
 
@@ -14,7 +14,7 @@ func findOption(haystack *goquery.Selection, needle string) *goquery.Selection {
   }).Find("option")
 }
 
-func Inspect1A(productPage []byte) Product {
+func Inspect1A(productPage []byte) *ganalyse.Product {
   // sizeMapping := map[string]string {
   //   // "XS":  "XS",
   //   "S":   "S",
@@ -26,17 +26,13 @@ func Inspect1A(productPage []byte) Product {
   //   // "39": "4XL",
   // }
 
-  doc := func(data []byte) *goquery.Document {
-    reader, _ := iconv.NewReader(s.NewReader(string(data)), "iso-8859-1", "utf-8")
-    doc, _ := goquery.NewDocumentFromReader(reader)
-    return doc
-  }(productPage)
+  doc := ganalyse.Parse(productPage, "iso-8859-1")
 
-  product := Product {
-    name: doc.Find("h1").Text(),
+  product := ganalyse.Product {
+    Name: doc.Find("h1").Text(),
   }
 
-  price := normPrice(doc.Find("#price").Text())
+  price := ganalyse.NormPrice(doc.Find("#price").Text())
 
   findOption(doc.Find("select"), "Größe").Each(func(i int, sizeSelection *goquery.Selection) {
     size, extraPrice := func(value string) (size string, extraPrice float64) {
@@ -44,7 +40,7 @@ func Inspect1A(productPage []byte) Product {
       r := regMatcher.FindAllStringSubmatch(value, -1)
       if len(r) > 0 {
         size = r[0][1]
-        extraPrice = normPrice(r[0][3])
+        extraPrice = ganalyse.NormPrice(r[0][3])
       }
       return
     }(sizeSelection.Text())
@@ -56,19 +52,19 @@ func Inspect1A(productPage []byte) Product {
             return s.TrimSpace(value)
           }(colorSelection.Text())
 
-          variant := Variant {
-            color: color,
-            size: size,
-            price: price + extraPrice,
-            availability: 0,
+          variant := ganalyse.Variant {
+            Color: color,
+            Size: size,
+            Price: price + extraPrice,
+            Availability: 0,
           }
 
-          product.variants = append(product.variants, variant)
+          product.Add(variant)
         }
       })
     }
   })
 
-  return product
+  return &product
 }
 

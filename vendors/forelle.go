@@ -1,11 +1,11 @@
-package ganalyse
+package vendors
 
 import (
-  s "strings"
+  "../ganalyse"
   "github.com/PuerkitoBio/goquery"
 )
 
-func InspectForelle(productPage []byte) Product {
+func InspectForelle(productPage []byte) *ganalyse.Product {
   sizeMapping := map[string]string {
     "76": "XS",
     "35": "S",
@@ -17,14 +17,13 @@ func InspectForelle(productPage []byte) Product {
     // "39": "4XL",
   }
 
-  reader := s.NewReader(string(productPage))
-  doc, _ := goquery.NewDocumentFromReader(reader)
+  doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := Product {
-    name: doc.Find("h1").Text(),
+  product := ganalyse.Product {
+    Name: doc.Find("h1").First().Text(),
   }
 
-  price := normPrice(doc.Find(".art-price").Text())
+  price := ganalyse.NormPrice(doc.Find(".art-price").Text())
 
   doc.Find(".sizes input").Each(func(i int, sizeSelection *goquery.Selection) {
     size := func(value string, exists bool) string {
@@ -34,17 +33,17 @@ func InspectForelle(productPage []byte) Product {
     doc.Find(".colors input").Each(func(i int, colorSelection *goquery.Selection) {
       color, _ := colorSelection.Attr("value")
 
-      variant := Variant {
-        color: color,
-        size: size,
-        price: price,
-        availability: 0,
+      variant := ganalyse.Variant {
+        Color: color,
+        Size: size,
+        Price: price,
+        Availability: 0,
       }
 
-      product.variants = append(product.variants, variant)
+      product.Add(variant)
     })
   })
 
-  return product
+  return &product
 }
 

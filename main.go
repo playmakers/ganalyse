@@ -2,59 +2,49 @@ package main
 
 import (
   "./ganalyse"
+  "./vendors"
   "sync"
   "fmt"
   // "os/exec"
 )
 
-func parse(shop string, data []byte) {
+func parse(shop string, data []byte) *ganalyse.Product {
   switch shop {
     case "1A": {
-      // product := ganalyse.Inspect1A(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.Inspect1A(data)
     }
     case "Boss Hogg": {
-      // product := ganalyse.InspectBossHogg(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectBossHogg(data)
     }
     case "DocA": {
-      product := ganalyse.InspectBossDocA(data)
-      fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectDocA(data)
     }
     case "First Down": {
-      // product := ganalyse.Inspect1A(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectFirstDown(data)
     }
     case "Forelle": {
-      ganalyse.InspectForelle(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectForelle(data)
     }
     case "Futspo": {
-      ganalyse.InspectFutspo(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectFutspo(data)
     }
     case "Meyer": {
-      ganalyse.InspectMeyer(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectMeyer(data)
     }
-    case "Playmakers": {
-      ganalyse.InspectPotsdam(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
-    }
+    // case "Playmakers": {
+    //   return vendors.InspectPotsdam(data)
+    // }
     case "Potsdam": {
-      ganalyse.InspectPotsdam(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectPotsdam(data)
     }
     case "Sports and Cheer": {
-      // product := ganalyse.Inspect1A(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectSportsAndCheer(data)
     }
     case "US Sportshop": {
-      // product := ganalyse.Inspect1A(data)
-      // fmt.Printf(" --> Product: %v\n", product.String())
+      return vendors.InspectUsSportshop(data)
     }
     default: {
-      fmt.Printf(" -> %s\n", shop)
+      return nil
     }
   }
 }
@@ -76,7 +66,7 @@ func main() {
 
   //*** get data from given urls
   for _, entry := range entries {
-    fmt.Printf("%s\n", entry.Name)
+    fmt.Printf("\n\n%s\n", entry.Name)
     for shop, url := range entry.Shops {
       //*** download(targetUrl)
       wg.Add(1)
@@ -84,7 +74,10 @@ func main() {
         defer wg.Done()
         filename := ganalyse.StoreUrl(shop, entry.Name, url)
         data := ganalyse.LoadFile(filename)
-        parse(shop, data)
+        product := parse(shop, data)
+        if product != nil {
+          fmt.Printf(" --> %s: %v\n", shop, product.String())
+        }
       }(shop, entry.Name, url)
     }
   }

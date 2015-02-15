@@ -1,27 +1,23 @@
-package ganalyse
+package vendors
 
 import (
+  "../ganalyse"
   s "strings"
   "regexp"
   "encoding/csv"
-  "github.com/PuerkitoBio/goquery"
 )
 
-func InspectFutspo(productPage []byte) Product {
+func InspectFutspo(productPage []byte) *ganalyse.Product {
   availabilityMapping := map[string]int {
     "rot": 0,
     "gelb": 5,
     "gruen": 50,
   }
 
-  doc := func(data []byte) *goquery.Document {
-    reader := s.NewReader(string(data))
-    doc, _ := goquery.NewDocumentFromReader(reader)
-    return doc
-  }(productPage)
+  doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := Product {
-    name: doc.Find("span.product").Text(),
+  product := ganalyse.Product {
+    Name: doc.Find("span.product").Text(),
   }
 
   variants := doc.Find(".var-ebene script").Last().Text()
@@ -40,25 +36,25 @@ func InspectFutspo(productPage []byte) Product {
         return value
       }(records[1])
 
-      price := normPrice(records[4])
+      price := ganalyse.NormPrice(records[4])
 
       availability := func(value string) int {
         return availabilityMapping[value]
       }(records[6])
 
-      variant := Variant {
-        color: color,
-        size: records[2],
-        price: price,
-        availability: availability,
+      variant := ganalyse.Variant {
+        Color: color,
+        Size: records[2],
+        Price: price,
+        Availability: availability,
       }
 
-      product.variants = append(product.variants, variant)
+      product.Add(variant)
     }
   }
 
 
-  return product
+  return &product
 }
 
 

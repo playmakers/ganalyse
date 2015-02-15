@@ -1,12 +1,12 @@
-package ganalyse
+package vendors
 
 import (
+  "../ganalyse"
   // "fmt"
-  s "strings"
-  "github.com/PuerkitoBio/goquery"
+  // "github.com/PuerkitoBio/goquery"
 )
 
-func InspectBossHogg(productPage []byte) Product {
+func InspectBossHogg(productPage []byte) *ganalyse.Product {
   // sizeMapping := map[string]string {
   //   // "76": "XS",
   //   "1": "S",
@@ -18,23 +18,22 @@ func InspectBossHogg(productPage []byte) Product {
   //   // "39": "4XL",
   // }
 
-  reader := s.NewReader(string(productPage))
-  doc, _ := goquery.NewDocumentFromReader(reader)
+  doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := Product {
-    name: doc.Find("h1").Text(),
+  product := ganalyse.Product {
+    Name: doc.Find("h1").Text(),
   }
 
-  price := normPrice(doc.Find(".PricesalesPrice").Text())
+  price := ganalyse.NormPrice(doc.Find(".PricesalesPrice").Text())
 
-  variant := Variant {
-    color: "schwarz",
-    size: "L",
-    price: price,
-    availability: 0,
+  variant := ganalyse.Variant {
+    Color: "schwarz",
+    Size: "L",
+    Price: price,
+    Availability: 0,
   }
 
-  product.variants = append(product.variants, variant)
+  product.Add(variant)
 
   // doc.Find("select option").Each(func(i int, sizeSelection *goquery.Selection) { // TODO loop at least once!
   //   // size := func(value string, exists bool) string {
@@ -55,6 +54,6 @@ func InspectBossHogg(productPage []byte) Product {
   //   })
   // })
 
-  return product
+  return &product
 }
 
