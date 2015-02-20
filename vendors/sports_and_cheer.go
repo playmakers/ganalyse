@@ -1,11 +1,18 @@
 package vendors
 
 import (
-  // "fmt"
   "../ganalyse"
   s "strings"
   "github.com/PuerkitoBio/goquery"
 )
+
+func dropFirst(selection *goquery.Selection) *goquery.Selection {
+  if selection.Size() > 0 {
+    return selection.Slice(1, -1)
+  } else {
+    return selection.Remove()
+  }
+}
 
 func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
   doc := ganalyse.Parse(productPage, "iso-8859-1")
@@ -18,30 +25,33 @@ func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
     return ganalyse.NormPrice(value)
   }(doc.Find("input[name=\"vk_brutto\"]").Attr("value"))
 
-  doc.Find("select[name=\"a_groesse\"] option").Each(func(i int, sizeSelection *goquery.Selection) { // TODO loop at least once!
-    if(i < 2) { return }
+  sizes := getValues(
+    dropFirst(doc.Find("select[name=\"a_groesse\"] option")),
+    "L",
+    func(value string) string {
+      return value
+    },
+  )
 
-    size := func(value string, exists bool) string {
-        return s.TrimSpace(value)
-    }(sizeSelection.Attr("value"))
+  colors := getValues(
+    dropFirst(doc.Find("select[name=\"a_farbe\"] option")),
+    "schwarz",
+    func(value string) string {
+      return value
+    },
+  )
 
-    doc.Find("select[name=\"a_farbe\"] option").Each(func(i int, colorSelection *goquery.Selection) {
-      if(i < 2) { return }
+  for _, size := range sizes {
+    for _, color := range colors {
 
-      color :=func(value string, exists bool) string {
-        return s.TrimSpace(value)
-      }(colorSelection.Attr("value"))
-
-      variant := ganalyse.Variant {
+      product.Add(ganalyse.Variant {
         Color: color,
         Size: size,
         Price: price,
         Availability: 0,
-      }
-
-      product.Add(variant)
-    })
-  })
+      })
+    }
+  }
 
   return &product
 }

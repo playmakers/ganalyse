@@ -30,7 +30,7 @@ type Product struct{
 
 func (p *Product) String() string {
   // out := fmt.Sprintf("id: %d\tname: %s\t variants:", p.id, p.name)
-  out := fmt.Sprintf("%s\t variants:", p.Name)
+  out := fmt.Sprintf("%s\t variants: %d", p.Name, len(p.Variants))
   // for i := range p.Variants {
   //   out = fmt.Sprintf("%s\n %v", out, p.Variants[i].String())
   // }

@@ -9,7 +9,7 @@ import (
 )
 
 var _ = Describe("./Vendors/FirstDown", func() {
-  const EXAMPLE_FILE = "firstdown/nikesuperbad3.0.html"
+  const EXAMPLE_FILE = "firstdown/bikextremelite.html"
 
   var subject ganalyse.Product
 
@@ -18,11 +18,11 @@ var _ = Describe("./Vendors/FirstDown", func() {
   })
 
   It("Extracts title", func() {
-    Expect(subject.Name).To(Equal("Nike Super Bad 3.0"))
+    Expect(subject.Name).To(Equal("Bike Xtreme Lite 73"))
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("S"))
+    Expect(subject.Variants[0].Size).To(Equal("M"))
   })
 
   It("Extracts vendor Color", func() {
@@ -30,7 +30,8 @@ var _ = Describe("./Vendors/FirstDown", func() {
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(58.0))
+    Expect(subject.Variants[0].Price).To(Equal(170.0))
   })
 
 })
+

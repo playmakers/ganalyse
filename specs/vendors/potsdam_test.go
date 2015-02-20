@@ -48,16 +48,16 @@ var _ = Describe("./Vendors/Potsdam", func() {
       Expect(subject.Name).To(Equal("Nike Super Bad 3.0 schwarz"))
     })
 
-    PIt("Extracts vendor Size", func() {
-      Expect(subject.Variants[0].Size).To(Equal("S"))
+    It("Extracts vendor Size", func() {
+      Expect(subject.Variants[0].Size).To(Equal("M"))
     })
 
-    PIt("Extracts vendor Color", func() {
-      Expect(subject.Variants[0].Color).To(Equal("BLK"))
+    It("Extracts vendor Color", func() {
+      Expect(subject.Variants[0].Color).To(Equal("schwarz"))
     })
 
-    PIt("Extracts vendor Price", func() {
-      Expect(subject.Variants[0].Price).To(Equal(340.0))
+    It("Extracts vendor Price", func() {
+      Expect(subject.Variants[0].Price).To(Equal(69.95))
     })
   })
 

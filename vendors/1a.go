@@ -8,24 +8,68 @@ import (
   "github.com/PuerkitoBio/goquery"
 )
 
+type sizeWithPrice struct {
+  size string
+  price float64
+}
+
+type mapping func(string) string
+
+func getValues(selection *goquery.Selection, defaultValue string, mapping mapping) (values []string) {
+  selection.Each(func(i int, valueSelection *goquery.Selection) {
+    value := func(value string, exists bool) string {
+      return mapping(s.TrimSpace(value))
+    }(valueSelection.Attr("value"))
+
+    values = append(values, value)
+  })
+  if len(values) < 1 {
+    values = append(values, defaultValue)
+  }
+  return
+}
+
 func findOption(haystack *goquery.Selection, needle string) *goquery.Selection {
   return haystack.FilterFunction(func(i int, selection *goquery.Selection) bool {
     return selection.Parent().Prev().Text() == needle
   }).Find("option")
 }
 
-func Inspect1A(productPage []byte) *ganalyse.Product {
-  // sizeMapping := map[string]string {
-  //   // "XS":  "XS",
-  //   "S":   "S",
-  //   "M":   "M",
-  //   "L":   "L",
-  //   "XL":  "XL",
-  //   "XXL": "XXL",
-  //   "3XL": "3XL",
-  //   // "39": "4XL",
-  // }
+func getSizes(selection *goquery.Selection, regMatcher *regexp.Regexp) (sizes []sizeWithPrice) {
+  selection.Each(func(i int, sizeSelection *goquery.Selection) {
+    sizeString := sizeSelection.Text()
+    r := regMatcher.FindAllStringSubmatch(sizeString, -1)
+    if len(r) > 0 {
+      sizes = append(sizes, sizeWithPrice {
+        size: r[0][1],
+        price: ganalyse.NormPrice(r[0][3]),
+      })
+    }
+  })
+  if(len(sizes) < 1) {
+    sizes = append(sizes, sizeWithPrice {
+      size: "L",
+      price: 0,
+    })
+  }
+  return
+}
 
+func getColors(selection *goquery.Selection) (colors []string) {
+  selection.Each(func(i int, colorSelection *goquery.Selection) {
+    if i > 0 {
+      colors = append(colors, func(value string) string {
+        return s.TrimSpace(value)
+      }(colorSelection.Text()))
+    }
+  })
+  if(len(colors) < 1) {
+    colors = append(colors, "schwarz")
+  }
+  return
+}
+
+func Inspect1A(productPage []byte) *ganalyse.Product {
   doc := ganalyse.Parse(productPage, "iso-8859-1")
 
   product := ganalyse.Product {
@@ -34,36 +78,25 @@ func Inspect1A(productPage []byte) *ganalyse.Product {
 
   price := ganalyse.NormPrice(doc.Find("#price").Text())
 
-  findOption(doc.Find("select"), "Größe").Each(func(i int, sizeSelection *goquery.Selection) {
-    size, extraPrice := func(value string) (size string, extraPrice float64) {
-      regMatcher := regexp.MustCompile(`(S|M|L|\d?X?XL)[^+]*(\+ ([\d,]+))?`)
-      r := regMatcher.FindAllStringSubmatch(value, -1)
-      if len(r) > 0 {
-        size = r[0][1]
-        extraPrice = ganalyse.NormPrice(r[0][3])
-      }
-      return
-    }(sizeSelection.Text())
+  sizes  := getSizes(
+    findOption(doc.Find("select"), "Größe"),
+    regexp.MustCompile(`(S|M|L|\d?X?XL)[^+]*(\+ ([\d,]+))?`),
+  )
+  colors := getColors(
+    findOption(doc.Find("select"), "Farbe"),
+  )
 
-    if len(size) > 0 {
-      findOption(doc.Find("select"), "Farbe").Each(func(i int, colorSelection *goquery.Selection) {
-        if i > 0 {
-          color := func(value string) string {
-            return s.TrimSpace(value)
-          }(colorSelection.Text())
+  for _, sizeAndPrice := range sizes {
+    for _, color := range colors {
 
-          variant := ganalyse.Variant {
-            Color: color,
-            Size: size,
-            Price: price + extraPrice,
-            Availability: 0,
-          }
-
-          product.Add(variant)
-        }
+      product.Add(ganalyse.Variant {
+        Color: color,
+        Size: sizeAndPrice.size,
+        Price: price + sizeAndPrice.price,
+        Availability: 0,
       })
     }
-  })
+  }
 
   return &product
 }

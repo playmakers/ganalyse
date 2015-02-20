@@ -21,6 +21,18 @@ var _ = Describe("./Vendors/1a", func() {
     It("Extracts title", func() {
       Expect(subject.Name).To(Equal("X-treme Lite RB/DB"))
     })
+
+    It("Extracts vendor Size", func() {
+      Expect(subject.Variants[0].Size).To(Equal("M"))
+    })
+
+    It("Extracts vendor Color", func() {
+      Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+    })
+
+    It("Extracts vendor Price", func() {
+      Expect(subject.Variants[0].Price).To(Equal(169.5))
+    })
   })
 
   Context("when Variants are available", func() {

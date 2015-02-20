@@ -22,11 +22,11 @@ var _ = Describe("./Vendors/SportsAndCheer", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("M"))
+    Expect(subject.Variants[0].Size).To(Equal("S"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("Navy-Blau"))
+    Expect(subject.Variants[0].Color).To(Equal("Schwarz"))
   })
 
   It("Extracts vendor Price", func() {
