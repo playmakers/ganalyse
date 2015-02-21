@@ -49,6 +49,26 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
     "9": "4XL",
   }
 
+  colorMapping := map[string]string {
+    "BLK": "Schwarz",
+    "BOR": "",
+    "CRD": "",
+    "DGR": "",
+    "GLD": "",
+    "GRE": "",
+    "KEL": "",
+    "MAR": "",
+    "NAV": "",
+    "OGO": "",
+    "PUR": "",
+    "ROY": "",
+    "SBG": "",
+    "SCA": "",
+    "SIL": "",
+    "VGO": "",
+    "WHI": "",
+  }
+
   doc := ganalyse.Parse(productPage, "utf-8")
 
   productId := func(value string, exists bool) string {
@@ -63,7 +83,7 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
   doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
     color := func(value string) string {
       if len(value) >= 3 {
-        return string(value[0:3])
+        return colorMapping[string(value[0:3])]
       } else {
         return ""
       }
@@ -81,14 +101,7 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
         return availabilityMapping[value]
       }(variantSelection.Attr("class"))
 
-      variant := ganalyse.Variant {
-        Color: color,
-        Size: size,
-        Price: price,
-        Availability: availability,
-      }
-
-      product.Add(variant)
+      product.AddVariant(size, color, price, availability)
     })
   })
 

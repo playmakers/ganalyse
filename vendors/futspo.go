@@ -42,14 +42,7 @@ func InspectFutspo(productPage []byte) *ganalyse.Product {
         return availabilityMapping[value]
       }(records[6])
 
-      variant := ganalyse.Variant {
-        Color: color,
-        Size: records[2],
-        Price: price,
-        Availability: availability,
-      }
-
-      product.Add(variant)
+      product.AddVariant(records[2], color, price, availability)
     }
   }
 

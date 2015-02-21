@@ -21,18 +21,12 @@ func InspectFirstDown(productPage []byte) *ganalyse.Product {
     regexp.MustCompile(`(S|M|L|X?X?XL|\dX)[^+]*(\+([\d,.]+))?`),
   )
   colors := getColors(
-    findOption(doc.Find("select"), "Farbe: "),
+    dropFirst(findOption(doc.Find("select"), "Farbe: ")),
   )
 
   for _, sizeAndPrice := range sizes {
     for _, color := range colors {
-
-      product.Add(ganalyse.Variant {
-        Color: color,
-        Size: sizeAndPrice.size,
-        Price: price + sizeAndPrice.price,
-        Availability: 0,
-      })
+      product.AddVariant(sizeAndPrice.size, color, price + sizeAndPrice.price, DEFAULT_AVAILABILITY)
     }
   }
 

@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/DocA", func() {
-  const EXAMPLE_FILE = "doca/nikesuperbad3.0.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectDocA(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectDocA(load(EXAMPLE_FILE))
+    exampleFile = "doca/nikesuperbad3.0.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/DocA", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("L"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+    Expect(variant.Color).To(Equal("Schwarz"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(59.90))
+    Expect(variant.Price).To(Equal(59.90))
   })
 
 })

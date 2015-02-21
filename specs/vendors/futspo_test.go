@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/Futspo", func() {
-  const EXAMPLE_FILE = "futspo/cutters60.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectFutspo(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectFutspo(load(EXAMPLE_FILE))
+    exampleFile = "futspo/cutters60.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/Futspo", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("XL"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+    Expect(variant.Color).To(Equal("charcoal/grey"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(59.95))
+    Expect(variant.Price).To(Equal(59.95))
   })
 
 })

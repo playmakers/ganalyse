@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/BossHogg", func() {
-  const EXAMPLE_FILE = "bosshogg/riddell360m-l.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectBossHogg(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectBossHogg(load(EXAMPLE_FILE))
+    exampleFile = "bosshogg/riddell360m-l.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/BossHogg", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("L"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+    Expect(variant.Color).To(Equal("Schwarz"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(385.0))
+    Expect(variant.Price).To(Equal(385.0))
   })
 
 })

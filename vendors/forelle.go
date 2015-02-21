@@ -34,21 +34,24 @@ func InspectForelle(productPage []byte) *ganalyse.Product {
     DEFAULT_COLOR,
     func(value string) string {
       return value
+      return map[string]string {
+        "1": "Royal",
+        "2": "Orange",
+        "4": "White",
+        "8": "Navy",
+        "13": "Forest",
+        "15": "Yellow",
+        "16": "Maroon",
+        "18": "Purple",
+      }[value]
     },
   )
 
   for _, size := range sizes {
     for _, color := range colors {
-
-      product.Add(ganalyse.Variant {
-        Color: color,
-        Size: size,
-        Price: price,
-        Availability: 0,
-      })
+      product.AddVariant(size, color, price, DEFAULT_AVAILABILITY)
     }
   }
 
   return &product
 }
-

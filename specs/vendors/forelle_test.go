@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/Forelle", func() {
-  const EXAMPLE_FILE = "forelle/nikesuperbad3.0.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectForelle(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectForelle(load(EXAMPLE_FILE))
+    exampleFile = "forelle/nikesuperbad3.0.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/Forelle", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("S"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("18"))
+    Expect(variant.Color).To(Equal("1"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(79.0))
+    Expect(variant.Price).To(Equal(79.0))
   })
 
 })

@@ -9,13 +9,18 @@ import (
 )
 
 var _ = Describe("./Vendors/Potsdam", func() {
+  var exampleFile string
+  var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectPotsdam(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
+
   Context("when no color given", func() {
-    const EXAMPLE_FILE = "potsdam/riddellrevospeedm-l.html"
-
-    var subject ganalyse.Product
-
     BeforeEach(func() {
-      subject = *vendors.InspectPotsdam(load(EXAMPLE_FILE))
+      exampleFile = "potsdam/riddellrevospeedm-l.html"
     })
 
     It("Extracts title", func() {
@@ -23,25 +28,21 @@ var _ = Describe("./Vendors/Potsdam", func() {
     })
 
     It("Extracts vendor Size", func() {
-      Expect(subject.Variants[0].Size).To(Equal("XL"))
+      Expect(variant.Size).To(Equal("L"))
     })
 
     It("Extracts vendor Color", func() {
-      Expect(subject.Variants[0].Color).To(Equal("51"))
+      Expect(variant.Color).To(Equal("Schwarz"))
     })
 
     It("Extracts vendor Price", func() {
-      Expect(subject.Variants[0].Price).To(Equal(289.95))
+      Expect(variant.Price).To(Equal(289.95))
     })
   })
 
   Context("when no color given", func() {
-    const EXAMPLE_FILE = "potsdam/nikesuperbad3.0.html"
-
-    var subject ganalyse.Product
-
     BeforeEach(func() {
-      subject = *vendors.InspectPotsdam(load(EXAMPLE_FILE))
+      exampleFile = "potsdam/nikesuperbad3.0.html"
     })
 
     It("Extracts title", func() {
@@ -49,15 +50,15 @@ var _ = Describe("./Vendors/Potsdam", func() {
     })
 
     It("Extracts vendor Size", func() {
-      Expect(subject.Variants[0].Size).To(Equal("M"))
+      Expect(variant.Size).To(Equal("L"))
     })
 
     It("Extracts vendor Color", func() {
-      Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+      Expect(variant.Color).To(Equal("Schwarz"))
     })
 
     It("Extracts vendor Price", func() {
-      Expect(subject.Variants[0].Price).To(Equal(69.95))
+      Expect(variant.Price).To(Equal(69.95))
     })
   })
 

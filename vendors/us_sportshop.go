@@ -42,19 +42,32 @@ func InspectUsSportshop(productPage []byte) *ganalyse.Product {
     doc.Find("select[name=\"id[1]\"] option"),
     DEFAULT_COLOR,
     func(value string) string {
-      return value
+      return map[string]string {
+        "GLD": "",
+        "SCA": "",
+        "BOR": "",
+        "NAV": "",
+        "MAR": "",
+        "PUR": "",
+        "GRE": "",
+        "BLK": "Schwarz",
+        "ROY": "",
+        "SIL": "",
+        "DGR": "",
+        "OGO": "",
+        "WHI": "",
+        "KEL": "",
+        "VGO": "",
+        "CRD": "",
+        "SBG": "",
+        "24": "Navy",
+      }[value]
     },
   )
 
   for _, size := range sizes {
     for _, color := range colors {
-
-      product.Add(ganalyse.Variant {
-        Color: color,
-        Size: size,
-        Price: price,
-        Availability: 0,
-      })
+      product.AddVariant(size, color, price, DEFAULT_AVAILABILITY)
     }
   }
 

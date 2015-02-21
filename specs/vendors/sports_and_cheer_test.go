@@ -1,6 +1,7 @@
 package vendors_test
 
 import (
+"fmt"
   "../../vendors"
   "../../ganalyse"
 
@@ -9,28 +10,34 @@ import (
 )
 
 var _ = Describe("./Vendors/SportsAndCheer", func() {
-  const EXAMPLE_FILE = "sportsandcheer/cutters60.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectSportsAndCheer(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectSportsAndCheer(load(EXAMPLE_FILE))
+    exampleFile = "sportsandcheer/cutters60.html"
   })
 
   It("Extracts title", func() {
+    fmt.Println(exampleFile)
     Expect(subject.Name).To(Equal("Cutters The Gamer Football Handschuhe"))
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("S"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("Schwarz"))
+    Expect(variant.Color).To(Equal("Schwarz"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(55.0))
+    Expect(variant.Price).To(Equal(55.0))
   })
 
 })

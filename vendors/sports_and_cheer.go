@@ -3,16 +3,7 @@ package vendors
 import (
   "../ganalyse"
   s "strings"
-  "github.com/PuerkitoBio/goquery"
 )
-
-func dropFirst(selection *goquery.Selection) *goquery.Selection {
-  if selection.Size() > 0 {
-    return selection.Slice(1, -1)
-  } else {
-    return selection.Remove()
-  }
-}
 
 func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
   doc := ganalyse.Parse(productPage, "iso-8859-1")
@@ -43,13 +34,7 @@ func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
 
   for _, size := range sizes {
     for _, color := range colors {
-
-      product.Add(ganalyse.Variant {
-        Color: color,
-        Size: size,
-        Price: price,
-        Availability: 0,
-      })
+      product.AddVariant(size, color, price, DEFAULT_AVAILABILITY)
     }
   }
 

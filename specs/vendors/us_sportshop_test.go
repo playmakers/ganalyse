@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/UsSportshop", func() {
-  const EXAMPLE_FILE = "ussportshop/nikesuperbad3.0.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectUsSportshop(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectUsSportshop(load(EXAMPLE_FILE))
+    exampleFile = "ussportshop/nikesuperbad3.0.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/UsSportshop", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("S"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("24"))
+    Expect(variant.Color).To(Equal("Navy"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(69.9))
+    Expect(variant.Price).To(Equal(69.9))
   })
 
 })

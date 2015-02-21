@@ -9,12 +9,17 @@ import (
 )
 
 var _ = Describe("./Vendors/FirstDown", func() {
-  const EXAMPLE_FILE = "firstdown/bikextremelite.html"
-
+  var exampleFile string
   var subject ganalyse.Product
+  var variant ganalyse.Variant
+
+  JustBeforeEach(func() {
+    subject = *vendors.InspectFirstDown(load(exampleFile))
+    variant = *subject.DefaultVariant()
+  })
 
   BeforeEach(func() {
-    subject = *vendors.InspectFirstDown(load(EXAMPLE_FILE))
+    exampleFile = "firstdown/bikextremelite.html"
   })
 
   It("Extracts title", func() {
@@ -22,15 +27,15 @@ var _ = Describe("./Vendors/FirstDown", func() {
   })
 
   It("Extracts vendor Size", func() {
-    Expect(subject.Variants[0].Size).To(Equal("M"))
+    Expect(variant.Size).To(Equal("L"))
   })
 
   It("Extracts vendor Color", func() {
-    Expect(subject.Variants[0].Color).To(Equal("schwarz"))
+    Expect(variant.Color).To(Equal("Schwarz"))
   })
 
   It("Extracts vendor Price", func() {
-    Expect(subject.Variants[0].Price).To(Equal(170.0))
+    Expect(variant.Price).To(Equal(170.0))
   })
 
 })

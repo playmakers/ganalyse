@@ -30,19 +30,22 @@ func InspectPotsdam(productPage []byte) *ganalyse.Product {
     doc.Find("select[name=\"id[1]\"] option"),
     DEFAULT_COLOR,
     func(value string) string {
-      return value
+      return map[string]string {
+        "7": "Schwarz",
+        "10": "Rot",
+        "48": "",
+        "164": "",
+        "51": "",
+        "177": "Weiss",
+        "217": "navy-blau",
+        "223": "silber metallic",
+      }[value]
     },
   )
 
   for _, size := range sizes {
     for _, color := range colors {
-
-      product.Add(ganalyse.Variant {
-        Color: color,
-        Size: size,
-        Price: price,
-        Availability: 0,
-      })
+      product.AddVariant(size, color, price, DEFAULT_AVAILABILITY)
     }
   }
 

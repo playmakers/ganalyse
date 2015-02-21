@@ -26,14 +26,7 @@ func InspectBossHogg(productPage []byte) *ganalyse.Product {
 
   price := ganalyse.NormPrice(doc.Find(".PricesalesPrice").Text())
 
-  variant := ganalyse.Variant {
-    Color: DEFAULT_COLOR,
-    Size: DEFAULT_SIZE,
-    Price: price,
-    Availability: 0,
-  }
-
-  product.Add(variant)
+  product.AddVariant(DEFAULT_SIZE, DEFAULT_COLOR, price, 0)
 
   // doc.Find("select option").Each(func(i int, sizeSelection *goquery.Selection) { // TODO loop at least once!
   //   // size := func(value string, exists bool) string {
