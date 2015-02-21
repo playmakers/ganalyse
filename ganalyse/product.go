@@ -25,22 +25,38 @@ func (v *Variant) String() string {
 type Product struct{
   id int
   Name string
-  Variants []Variant
+  Variants map[string]Variant
 }
 
-func (p *Product) String() string {
-  // out := fmt.Sprintf("id: %d\tname: %s\t variants:", p.id, p.name)
-  out := fmt.Sprintf("%s\t variants: %d", p.Name, len(p.Variants))
-  // for i := range p.Variants {
-  //   out = fmt.Sprintf("%s\n %v", out, p.Variants[i].String())
-  // }
-  return out
+func (p *Product) String() (out string) {
+  variant := p.Get("l-schwarz")
+  if variant != nil {
+    out = fmt.Sprintf("%s\t variant: %v", p.Name, variant.String())
+  } else {
+    out = "Coudn't find mapping"
+    for _, value := range p.Variants {
+      out = fmt.Sprintf("%s\n %v", out, value.String())
+    }
+  }
+  return
 }
 
 func (p *Product) Add(variant Variant) {
-  p.Variants = append(p.Variants, variant)
+  if p.Variants == nil {
+    p.Variants = make(map[string]Variant)
+  }
+  key := fmt.Sprintf("%s-%s", variant.Size, variant.Color)
+  p.Variants[key] = variant
 }
 
+func (p *Product) Get(key string) *Variant {
+  if p.Variants != nil {
+    if val, ok := p.Variants[key]; ok {
+      return &val
+    }
+  }
+  return nil
+}
 
 // -----------------------------
 

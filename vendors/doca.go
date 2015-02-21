@@ -27,8 +27,8 @@ func InspectDocA(productPage []byte) *ganalyse.Product {
   price := ganalyse.NormPrice(doc.Find(".article_details_price strong").Text())
 
   variant := ganalyse.Variant {
-    Color: "schwarz",
-    Size: "L",
+    Color: DEFAULT_COLOR,
+    Size: DEFAULT_SIZE,
     Price: price,
     Availability: 0,
   }

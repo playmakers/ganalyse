@@ -15,10 +15,14 @@ type sizeWithPrice struct {
 
 type mapping func(string) string
 
+const (
+  DEFAULT_SIZE  = "l"
+  DEFAULT_COLOR = "schwarz"
+)
 func getValues(selection *goquery.Selection, defaultValue string, mapping mapping) (values []string) {
   selection.Each(func(i int, valueSelection *goquery.Selection) {
     value := func(value string, exists bool) string {
-      return mapping(s.TrimSpace(value))
+      return mapping(s.ToLower(s.TrimSpace(value)))
     }(valueSelection.Attr("value"))
 
     values = append(values, value)
@@ -41,14 +45,14 @@ func getSizes(selection *goquery.Selection, regMatcher *regexp.Regexp) (sizes []
     r := regMatcher.FindAllStringSubmatch(sizeString, -1)
     if len(r) > 0 {
       sizes = append(sizes, sizeWithPrice {
-        size: r[0][1],
+        size: s.ToLower(r[0][1]),
         price: ganalyse.NormPrice(r[0][3]),
       })
     }
   })
   if(len(sizes) < 1) {
     sizes = append(sizes, sizeWithPrice {
-      size: "L",
+      size: DEFAULT_SIZE,
       price: 0,
     })
   }
@@ -59,12 +63,12 @@ func getColors(selection *goquery.Selection) (colors []string) {
   selection.Each(func(i int, colorSelection *goquery.Selection) {
     if i > 0 {
       colors = append(colors, func(value string) string {
-        return s.TrimSpace(value)
+        return s.ToLower(s.TrimSpace(value))
       }(colorSelection.Text()))
     }
   })
   if(len(colors) < 1) {
-    colors = append(colors, "schwarz")
+    colors = append(colors, DEFAULT_COLOR)
   }
   return
 }

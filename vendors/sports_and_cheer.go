@@ -27,7 +27,7 @@ func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
 
   sizes := getValues(
     dropFirst(doc.Find("select[name=\"a_groesse\"] option")),
-    "L",
+    DEFAULT_SIZE,
     func(value string) string {
       return value
     },
@@ -35,7 +35,7 @@ func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
 
   colors := getValues(
     dropFirst(doc.Find("select[name=\"a_farbe\"] option")),
-    "schwarz",
+    DEFAULT_COLOR,
     func(value string) string {
       return value
     },

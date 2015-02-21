@@ -32,13 +32,6 @@ func login(loginUrl, login string, password string) (requrl string) {
   return
 }
 
-// func loadProductUrl(productUrl string, productId string) []byte {
-//   productUrl = productUrl + "&monum=" + productId
-//   fmt.Printf("Open Product: %s\n", productUrl)
-//   return loadUrl(productUrl)
-// }
-
-
 func InspectMeyer(productPage []byte) *ganalyse.Product {
   availabilityMapping := map[string]int {
     "inpQtyRed": 0,
@@ -101,22 +94,3 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
 
   return &product
 }
-
-// func main() {
-//   var productPage []byte;
-
-//   productId := os.Args[1]  // "X2-A", "EPIC", "F300"
-
-//   if len(os.Args) != 3 {
-//     productPage = loadProductPage(productId)
-//   } else {
-//     session := login(START_URL, LOGIN, os.Args[2])
-//     fmt.Printf("Session: %s\n", session)
-//     productPage = loadProductUrl(HOST + session, productId)
-//     storeProductPage(productPage, productId)
-//   }
-
-//   product := inspectProduct(productPage, productId)
-
-//   fmt.Printf("Product: %v\n", product.String())
-// }

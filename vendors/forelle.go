@@ -15,7 +15,7 @@ func InspectForelle(productPage []byte) *ganalyse.Product {
 
   sizes := getValues(
     doc.Find(".sizes input"),
-    "L",
+    DEFAULT_SIZE,
     func(value string) string {
       return map[string]string {
         "76": "XS",
@@ -31,7 +31,7 @@ func InspectForelle(productPage []byte) *ganalyse.Product {
 
   colors := getValues(
     doc.Find(".colors input"),
-    "schwarz",
+    DEFAULT_COLOR,
     func(value string) string {
       return value
     },

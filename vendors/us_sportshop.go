@@ -24,7 +24,7 @@ func InspectUsSportshop(productPage []byte) *ganalyse.Product {
 
   sizes := getValues(
     doc.Find("select[name=\"id[2]\"] option"),
-    "L",
+    DEFAULT_SIZE,
     func(value string) string {
       return map[string]string {
         "14": "S",
@@ -40,7 +40,7 @@ func InspectUsSportshop(productPage []byte) *ganalyse.Product {
 
   colors := getValues(
     doc.Find("select[name=\"id[1]\"] option"),
-    "schwarz",
+    DEFAULT_COLOR,
     func(value string) string {
       return value
     },

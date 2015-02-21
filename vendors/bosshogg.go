@@ -27,8 +27,8 @@ func InspectBossHogg(productPage []byte) *ganalyse.Product {
   price := ganalyse.NormPrice(doc.Find(".PricesalesPrice").Text())
 
   variant := ganalyse.Variant {
-    Color: "schwarz",
-    Size: "L",
+    Color: DEFAULT_COLOR,
+    Size: DEFAULT_SIZE,
     Price: price,
     Availability: 0,
   }
