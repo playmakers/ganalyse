@@ -1,8 +1,9 @@
 package main
 
 import (
-  "./ganalyse"
-  "./vendors"
+  "./lib/ganalyse"
+  "./lib/tracker"
+  "./lib/vendors"
   "sync"
   "fmt"
   // "os/exec"

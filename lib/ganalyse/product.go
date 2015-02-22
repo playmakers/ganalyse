@@ -29,15 +29,7 @@ type Product struct{
 }
 
 func (p *Product) String() (out string) {
-  variant := p.Get("l-schwarz")
-  if variant != nil {
-    out = fmt.Sprintf("%s\t variant: %v", p.Name, variant.String())
-  } else {
-    out = "Coudn't find mapping"
-    for _, value := range p.Variants {
-      out = fmt.Sprintf("%s\n %v", out, value.String())
-    }
-  }
+  out = fmt.Sprintf("%s\t variant: %v", p.Name, p.DefaultVariant().String())
   return
 }
 

@@ -1,10 +1,10 @@
 package vendors_test
 
 import (
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
+  "../../lib/ganalyse"
 
-  "../../ganalyse"
+  . "github.com/onsi/ginkgo"
+  . "github.com/onsi/gomega"
 	"testing"
 )
 

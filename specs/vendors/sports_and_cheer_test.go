@@ -1,9 +1,8 @@
 package vendors_test
 
 import (
-"fmt"
-  "../../vendors"
-  "../../ganalyse"
+  "../../lib/vendors"
+  "../../lib/ganalyse"
 
   . "github.com/onsi/ginkgo"
   . "github.com/onsi/gomega"
@@ -24,7 +23,6 @@ var _ = Describe("./Vendors/SportsAndCheer", func() {
   })
 
   It("Extracts title", func() {
-    fmt.Println(exampleFile)
     Expect(subject.Name).To(Equal("Cutters The Gamer Football Handschuhe"))
   })
 
