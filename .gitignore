@@ -24,3 +24,4 @@ _testmain.go
 *.prof
 config/client.p12
 examples/data.csv
+spreadsheet/vendor

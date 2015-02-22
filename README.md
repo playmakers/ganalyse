@@ -35,3 +35,8 @@ go run main.go
 * https://gobyexample.com/channels
 * https://golang.org/doc/effective_go.html
 * https://github.com/go-sql-driver/mysql/wiki/Examples
+
+
+```
+  bundle install --path vendor/bundle
+```

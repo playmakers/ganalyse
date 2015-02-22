@@ -57,6 +57,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.0)
       multi_json (~> 1.10)
+    staccato (0.1.1)
     thread_safe (0.3.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -67,3 +68,4 @@ PLATFORMS
 DEPENDENCIES
   google-api-client
   google_drive
+  staccato
