@@ -1,6 +1,13 @@
-#!/usr/bin/env rails runner
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
 
 require 'staccato'
+require 'time'
+
+require 'webmock'
+include WebMock::API
 
 @tracker = Staccato.tracker('UA-45979504-2')
 
@@ -23,27 +30,27 @@ end
 # puts hit('Forelle', 'Helm', 'Riddell', '360', 'L', 'Schwarz', nil, 8, nil)
 # .group("DATE(created_at), HOUR(created_at)")
 
-date = Time.parse('2014-04-12').utc
-range = date...(date+12.hours)
-query = WholesalerVariantQuantity.where(:created_at => range).includes(:wholesaler_variant => :product)
+# date = Time.parse('2014-04-12').utc
+# range = date...(date+12.hours)
+# query = WholesalerVariantQuantity.where(:created_at => range).includes(:wholesaler_variant => :product)
 
-query.all.each do |q|
-  puts  q.wholesaler_variant.product.title
+# query.all.each do |q|
+#   puts  q.wholesaler_variant.product.title
 
-  hit('Forelle',
-    q.wholesaler_variant.product.type,
-    q.wholesaler_variant.product.vendor,
-    q.wholesaler_variant.product.title,
-    q.wholesaler_variant.size || '-',
-    q.wholesaler_variant.color || '-',
-    q.wholesaler_variant.other || '-',
-    q.wholesaler_variant.product_id,
-    q.wholesaler_variant.variant_id,
-    q.quantity
-  )
-
-  sleep(0.05)
-end
+  # hit('Forelle',
+  #   q.wholesaler_variant.product.type,
+  #   q.wholesaler_variant.product.vendor,
+  #   q.wholesaler_variant.product.title,
+  #   q.wholesaler_variant.size || '-',
+  #   q.wholesaler_variant.color || '-',
+  #   q.wholesaler_variant.other || '-',
+  #   q.wholesaler_variant.product_id,
+  #   q.wholesaler_variant.variant_id,
+  #   q.quantity
+  # )
+#
+#   sleep(0.05)
+# end
 
 # tracker.event(non_interactive: true, campaign_source: 'Forelle', category: 'Helm', action: 'Riddell 360',  label: 'Schwarz-XL', value: 10)
 # tracker.event(non_interactive: true, campaign_source: 'Forelle', category: 'Helm', action: 'Riddell 3601', label: 'Schwarz-XL', value: 12)
@@ -72,3 +79,15 @@ end
 #   currency: 'EUR'
 # })
 
+hit(
+  'Forelle',
+  'Handschuh',
+  'Test',
+  'Superbad 3.0',
+  'L',
+  'schwarz',
+  '-',
+  1,
+  1,
+  10
+)

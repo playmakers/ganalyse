@@ -6,3 +6,5 @@ ruby "2.0.0"
 gem "google-api-client"
 gem "google_drive"
 gem "staccato"
+
+gem "webmock"

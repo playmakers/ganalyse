@@ -62,7 +62,7 @@ func main() {
 
   var wg sync.WaitGroup
 
-  //*** read file/google doc
+  // //*** read file/google doc
   entries := ganalyse.ParseCsv("examples/data.csv")
 
   //*** get data from given urls
@@ -71,25 +71,47 @@ func main() {
     for shop, url := range entry.Shops {
       //*** download(targetUrl)
       wg.Add(1)
-      func(shop string, name string, url string){
+      func(shop string, name string, productType string, url string){
         defer wg.Done()
         filename := ganalyse.StoreUrl(shop, entry.Name, url)
         data := ganalyse.LoadFile(filename)
         product := parse(shop, data)
         if product != nil {
           fmt.Printf(" --> %s: %v\n", shop, product.String())
+          tracker.Track(
+            shop,
+            productType,
+            product,
+            product.DefaultVariant(),
+          )
         }
-      }(shop, entry.Name, url)
+      }(shop, entry.Name, entry.Category, url)
     }
   }
 
-  wg.Wait()
+  // wg.Wait()
 
   //*** map to pageobject, analyse content
 
 
   //*** send to ga with custom dimensions/value
 
+  // tracker.Track(
+  //   "Forelle",
+  //   "Handschuh",
+  //   ganalyse.Product {
+  //     // Id = 1,
+  //     // Vendor: "Test",
+  //     Name: "Superbad 3.0",
+  //   },
+  //   ganalyse.Variant {
+  //     // Id = 1,
+  //     Size: "L",
+  //     Color: "schwarz",
+  //     Price: 12.13,
+  //     Availability: 10,
+  //   },
+  // )
 
   //*** update google doc with values & status
 }

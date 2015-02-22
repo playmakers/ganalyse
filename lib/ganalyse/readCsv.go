@@ -11,7 +11,7 @@ import (
 )
 
 type Entry struct {
-  Name string
+  Category, Name string
   id, variantId int
   Shops map[string]string
 }
@@ -79,6 +79,7 @@ func ParseCsv(fileName string) (entries []Entry) {
   records := readCsv(fileName)
   for _, each := range records[1:len(records)] {
     entry := Entry{}
+    entry.Category = each[0]
     entry.Name = each[1]
     entry.Shops = make(map[string]string)
 
