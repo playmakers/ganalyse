@@ -40,3 +40,9 @@ go run main.go
 ```
   bundle install --path vendor/bundle
 ```
+
+
+
+  // DEFAULT_SIZE  = "L"
+  // DEFAULT_COLOR = "Schwarz"
+  // DEFAULT_POS   = "???"

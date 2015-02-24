@@ -4,8 +4,11 @@ import (
   "fmt"
   "net/http"
   "net/url"
-  "strings"
+  s "strings"
+  "time"
+  "strconv"
   "../ganalyse"
+
 )
 
 const (
@@ -25,30 +28,30 @@ func send1(url string, values url.Values) {
 
 func send2(url string, values url.Values) {
   client := &http.Client{}
-  req, _ := http.NewRequest("POST", url, strings.NewReader(values.Encode()))
+  req, _ := http.NewRequest("POST", url, s.NewReader(values.Encode()))
   req.Header.Add("User-Agent", "myClient")
   resp, _ := client.Do(req)
   defer resp.Body.Close()
 }
 
-func Track(shop string, productType string, product *ganalyse.Product, variant *ganalyse.Variant) {
+func Track(shop string, productId int, variantId int, product *ganalyse.Product, variant *ganalyse.Variant) {
   vals := make(url.Values, 0)
   vals.Add("v", "1")
   vals.Add("tid", NUMBER)
   vals.Add("cid", "31fe906c-2aac-4821-a1ee-d0a9a09c2e0b")
   vals.Add("t", "pageview")
-  vals.Add("dp", "/")
+  vals.Add("dp", fmt.Sprintf("/%d", time.Now().Unix()))
   vals.Add("cd1", shop)
-  vals.Add("cd2", productType)
-  vals.Add("cd3", product.Name)
-  vals.Add("cd4", variant.Size)
-  vals.Add("cd5", variant.Color)
+  // vals.Add("cd2", productType)
+  // vals.Add("cd3", product.Name)
+  // vals.Add("cd4", variant.Size)
+  // vals.Add("cd5", variant.Color)
   // vals.Add("cd6", variant.Pos)
-  // vals.Add("cd7", product.Vendor)
-  // vals.Add("cd8", product.Id)
-  // vals.Add("cd9", variant.Id)
+  vals.Add("cd7", strconv.Itoa(productId))
+  vals.Add("cd8", strconv.Itoa(variantId))
+  // vals.Add("cd9", product.Vendor)
   vals.Add("cm1", fmt.Sprintf("%.2f", variant.Price))
-  vals.Add("cm2", fmt.Sprintf("%d", variant.Availability))
+  vals.Add("cm2", strconv.Itoa(variant.Availability))
 
   send2(URL, vals)
 }

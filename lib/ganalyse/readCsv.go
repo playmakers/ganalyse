@@ -3,6 +3,7 @@ package ganalyse
 import (
   s "strings"
   "fmt"
+  "strconv"
   "net/http"
   "io/ioutil"
   "os"
@@ -12,7 +13,7 @@ import (
 
 type Entry struct {
   Category, Name string
-  id, variantId int
+  Id, VariantId int
   Shops map[string]string
 }
 
@@ -78,13 +79,15 @@ func StoreUrl(shop string, productId string, url string) (filename string) {
 func ParseCsv(fileName string) (entries []Entry) {
   records := readCsv(fileName)
   for _, each := range records[1:len(records)] {
-    entry := Entry{}
-    entry.Category = each[0]
-    entry.Name = each[1]
-    entry.Shops = make(map[string]string)
-
+    entry := Entry{
+      Category: each[0],
+      Name: each[1],
+      Id:        func() (v int) { v, _ = strconv.Atoi(each[2]); return}() ,
+      VariantId: func() (v int) { v, _ = strconv.Atoi(each[3]); return}() ,
+      Shops: make(map[string]string),
+    }
     for i, url := range each[4:len(each)] {
-      if url != "-" && url != "???" && !s.Contains(url, "keine") {
+      if url != "-" && !s.Contains(url, "keine") {
         entry.Shops[records[0][i+4]] = url
       }
     }

@@ -23,5 +23,6 @@ _testmain.go
 *.test
 *.prof
 config/client.p12
-examples/data.csv
+examples/*.csv
 spreadsheet/vendor
+config/default.json

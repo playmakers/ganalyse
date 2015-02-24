@@ -69,23 +69,25 @@ func main() {
   for _, entry := range entries {
     fmt.Printf("\n\n%s\n", entry.Name)
     for shop, url := range entry.Shops {
+
       //*** download(targetUrl)
       wg.Add(1)
-      func(shop string, name string, productType string, url string){
+      func(productShop string, productId int, variantId int, productName string, productUrl string){
         defer wg.Done()
-        filename := ganalyse.StoreUrl(shop, entry.Name, url)
+        filename := ganalyse.StoreUrl(productShop, productName, productUrl)
         data := ganalyse.LoadFile(filename)
-        product := parse(shop, data)
+        product := parse(productShop, data)
         if product != nil {
-          fmt.Printf(" --> %s: %v\n", shop, product.String())
+          fmt.Printf(" --> %s: %v\n", productShop, product.String())
           tracker.Track(
-            shop,
-            productType,
+            productShop,
+            productId,
+            variantId,
             product,
             product.DefaultVariant(),
           )
         }
-      }(shop, entry.Name, entry.Category, url)
+      }(shop, entry.Id, entry.VariantId, entry.Name, url)
     }
   }
 
