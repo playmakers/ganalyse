@@ -8,3 +8,6 @@ gem "google_drive"
 gem "staccato"
 
 gem "webmock"
+
+gem "shopify_api"
+gem "pry"
