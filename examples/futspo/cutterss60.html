@@ -1,0 +1,1130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="robots" content="index,follow,noodp">
+<title>Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) | CUTTERS Football Gloves | Football Handschuhe | American Football Shop</title>
+<meta name="keywords" content="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ), Gamer, S60, LB/, RB, Gloves, Cutters, Shockskin, Model, , Gamer S60, Gamer S60 LB/, Gamer S60 LB/ RB, Gamer S60 LB/ RB Gloves, Gamer S60 LB/ RB Gloves Cutters, Gamer S60 LB/ RB Gloves Cutters Shockskin, Gamer S60 LB/ RB Gloves Cutters Shockskin Model, S60 LB/, S60 LB/ RB, S60 LB/ RB Gloves">
+<meta name="description" content="Cutters The Gamer&nbsp;Shock Skin&nbsp;Football Gloves are the ultimate streamlined padded glove. The Gamer is designed for players looking for padding along with the feel, grip, and dexterity of a high performance receiver glove. Ventilated palm, superior finger flexion and a form fitting design. These glove">
+<base href="http://www.futspo.de/">
+<link rel="canonical" href="http://www.futspo.de/American-Football-Shop/Football-Handschuhe/leicht-gepolsterte-Handschuhe/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-.htm?SessionId=&a=article&ProdNr=FBCG&p=61">
+<meta name="google-site-verification" content="l2UQLQLh1uKOPrvAqaZjbmq-ogI4dgsRjslqASuIMFo" />
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<meta name="language" content="de">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<META Http-Equiv="Cache-Control" Content="no-cache"/>
+<META Http-Equiv="Pragma" Content="no-cache"/>
+<META Http-Equiv="Expires" Content="0"/>
+<script type="text/javascript">
+  var isDesktop = false, isMobile = false;
+  var name = "e-vendo_desktop=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+      var c = ca[i].trim();
+      if (c.indexOf(name) == 0) {
+          isDesktop = true;
+          break;
+      }
+  }
+  if (isDesktop)
+    document.write('<meta id="viewport" name="viewport" content="width=1024,initial-scale=1.0">');
+  else
+    document.write('<meta id="viewport" name="viewport" content="device-width,initial-scale=1.0">');
+</script>
+<link rel="shortcut icon" type="image/x-icon" href="futuresport/nav/favicon.ico">
+<link type="text/css" href="futuresport/js/jquery/css/jquery.ui.base.css" rel="stylesheet">
+<script src="futuresport/js/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="futuresport/js/jquery/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="futuresport/js/jquery/collection.js" type="text/javascript"></script>
+<script type="text/javascript" src="futuresport/js/slideElements.js"></script>
+<link rel="stylesheet" type="text/css" href="futuresport/css/styles.css?myCss=0525x3b6f2aaf12de3785d067625f3cf721f0-">
+<!--[if gte IE 9]> <style type="text/css"> /*.gradient { filter: none; } */ </style> <![endif]-->
+<!--[if lt IE 9]> <script src="futuresport/js/jquery/css3-mediaqueries.js"></script> <![endif]-->
+<style type="text/css">
+.table{ behavior: url(futuresport/css/display-table.htc);}
+</style>
+<script src="futuresport/js/e-vendo.js" type="text/javascript"></script>
+<script type="text/javascript"><!--
+if (isPrintVersion()) document.writeln('<link rel="stylesheet" type="text/css" href="futuresport/css/styles_p.css">');
+
+//all the awesome things we need to know
+var smallWindow;
+var bigScreen;
+var nativePositions = new Array();
+var bigEnoughForDesktop = true;
+var isMobileDevice = checkMobile().any() ? true : false;
+var mobileAlreadyBuild = false;
+
+//Wörter für die evendo.js
+var commonUsedWords = {
+  "cartPanelTriggerTitel" : "Details anzeigen",
+  "wishlistPanelTriggerTitel" : "Details anzeigen",
+  "URL" : "e-vendo.php?SessionId=&a=",
+  "closeButtonText" : "Schlie&szlig;en",
+  "article" : "Artikel",
+  "merkzettelPositionen" : "@@@merkzettel_positionen@@@"
+}
+
+jQuery(document).ready(function($) {
+
+  updateData();
+  initElements();
+
+  $(".load_by_command").unveil(200);
+
+  $("#SearchStr").inputLabel();
+  $(document).ajaxStart(function(){ $("#ajaxBusy").show(); }).ajaxStop(function(){ $("#ajaxBusy").hide(); });
+  //if ($.trim($("#main_right").html()) == "") {
+  if (($.trim($("#main_right").html()) == "") || ($("#main_right > #teaser:only-child").html() == "")) {
+    $("#main_right").hide();
+    $("#main_middle").removeClass("containershop_middle");
+    $("#main_middle").addClass("containershop_middle_right");
+    $("#main_middle").addClass("container_last");
+  }
+});
+
+//now everything on the screen changes - or not
+$(window).resize(function(){
+  updateData();
+
+  //ermitteln, ob sich etwas ändern muss
+  var temp = bigEnoughForDesktop; //saving old state
+  bigEnoughForDesktop = (isMobile && bigEnoughForDesktop) ? false : (isMobile ? false : true);
+
+  if(!bigEnoughForDesktop && temp){ //Wechsel zu mobil, da beide unterschiedlich und nicht mehr genug Platz
+    changeToMobile();
+  }
+  else if(bigEnoughForDesktop && !temp){ //Wechsel zu Desktop, da beide unterschiedlich und genug Platz
+    if(isDesktop || (isMobileDevice && !isMobile)){ //Desktop-Cookie ist gesetzt: Nur auf Mobilgeräten möglich - Oder großes Tablet
+       changeToDesktop(true);
+    }
+    else{
+      changeToDesktop(false);
+    }
+  }
+});
+//--></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2051612-1']);
+  _gaq.push(['_anonymizeIp']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<meta property="og:image" content="http://www.futspo.de/futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_0.JPG" />
+
+<script src="futuresport/js/jquery/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript"><!--
+var VariantenSeite = false, bAbgeschickt = false;
+function checkBestellfelder()
+{
+  var bReturn;
+
+  if (bAbgeschickt)
+    return false;
+  bReturn = true;
+  if (VariantenSeite)
+    bReturn = checkVariantenSeite();
+  if (bReturn)
+    bAbgeschickt = true;
+
+  return bReturn;
+}
+function siteonload()
+{
+  document.eingabe.reset();
+  if (VariantenSeite) { selDefaultVarianten(); bVariantenSeiteFertig = true; }
+  bAbgeschickt = false;
+}
+function showBewertung()
+{
+  $("#productdetails").tabs("option", "active", $("#productdetails > ul").index($("#productdetails-bew")));
+  $.scrollTo("#productdetails");
+}
+
+$(document).ready(function($) {
+  siteonload();
+  if (!isPrintVersion() & !isMobile) {
+    // #-Links fuer die Tabs mit der eigenen URL ergaenzen
+    $.fn.__tabs = $.fn.tabs;
+    $.fn.tabs = function (a, b, c, d, e, f) {
+      var base = location.href.replace(/#.*$/, '');
+      $('ul>li>a[href^="#"]', this).each(function () {
+        var href = $(this).attr('href');
+        $(this).attr('href', base + href);
+      });
+      $(this).__tabs(a, b, c, d, e, f);
+    };
+    $("#productdetails").tabs();
+
+    makePrintLink('futuresport');
+  }
+
+  $("#tabproductdetails-csr").click(function(){
+    $(".load_by_command").trigger("unveil");
+  });
+});
+//--></script>
+<script type="text/javascript" src="futuresport/js/chilltip.js"></script>
+</head>
+<body class="language_de" itemscope itemtype="http://schema.org/WebPage">
+<div id="close">&larr;</div>
+<a href="American-Football-Shop/Football-Handschuhe/leicht-gepolsterte-Handschuhe/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-.htm?SessionId=&a=article&ProdNr=FBCG&p=63#header"><div class="ev-icon" id="toTopButton"></div></a>
+<div id="header">
+  <div id="header_balloon"></div>
+  <div id="header_content" style="background-image:url(futuresport/prodpic/_shopintern_logo.JPG);">
+    <div id="header_options" class="slideleft">
+      
+      
+      <div id="login" class="option login"><a href="e-vendo.php?SessionId=&a=login" title="Login und Registrierung" rel="nofollow">Anmelden</a></div>
+      <div class="clear"></div>
+    </div>
+    <div id="logo"><a href="e-vendo.php?SessionId=" title="futspo.de - Home"></a></div>
+    <div id="mobileNavigationBox">
+      <div>
+        <div class="navigationList floatleft">
+          <span id="mobileNavigationTrigger" class="mobileNavTrigger floatleft mobile_button"><span class="fontawesome">&#xf0c9;</span><span style="margin-left:10px; font-size:0.6em; height:1.5em; vertical-align:15%; ">Men&uuml;</span></span><!--mobile Navigation-->
+          <span class="fontawesome button_mobile_home mobile_button floatleft"><a class="nodecoration" href="e-vendo.php?SessionId=" title="Home">&#xf015;</a></span>
+          <div class="clear"></div>
+          <div id="mobileNavigation" class="slideleft">
+            <ul>
+              <li>&larr;</li>
+              <li id="mainmenu-mobile"><span>Kategorien</span></li><!--Trigger Topnav-->
+            </ul>
+          </div>
+        </div>
+        <div id="header_options_mobile" class="floatright">
+          <span class="button_mobile_options button_mobile_last mobile_button"></span>
+          <span class="button_mobile_cart"><span class="bmc_bg"><span class="incart_"></span></span></span>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div id="search">
+      <form name="suche_klein" action="e-vendo.php?SessionId=&a=search" method="get" onsubmit="return checkSuche_Klein()"><span id="searchi"><input type="hidden" name="shop" value="futuresport"><input type="hidden" name="SessionId" value=""><input type="hidden" name="a" value="search"><label for="SearchStr" class="hidden">Suchbegriff oder Artikel-Nr. ...</label><input type="text" maxlength="30" name="SearchStr" id="SearchStr" autocomplete="off"><input type="submit" class="button_search" rel="nofollow" value="" alt="Suche starten" title="Suche starten"><input type="submit" class="button_search_mobile ev-button b-ui-state-default b-ui-corner-all" value="Suchen" alt="Suche starten" title="Suche starten"></span></form>
+      <div id="searchlinks"><a href="e-vendo.php?SessionId=&a=themen" title="Stichw&ouml;rter von A-Z"><span class="raquo">&raquo;</span> Stichw&ouml;rter von A-Z</a></div>
+    </div>
+    <div id="cartsmall" class="cartsmall">
+      <div id="cartsmall-empty" class="cartsmall-empty">
+        <a href="e-vendo.php?SessionId=&a=cart" title="Zu Ihrem Warenkorb" rel="nofollow" class="button_cartsmall_empty"></a>
+        <div class="content">Ihr Warenkorb ist noch leer.</div>
+      </div>
+      <div id="cartsmall-filled" class="cartsmall-filled">
+        <a href="e-vendo.php?SessionId=&a=cart" title="Zu Ihrem Warenkorb / Zur Kasse" rel="nofollow" class="ev-buttonspan b-cart-ui-corner-all"><span class="ev-button ev-buttonsmall b-high-ui-state-default b-small-ui-corner-all b-cart-ui-corner-all"><span class="button_cartsmall"></span></span></a>
+        <div class="content">
+          <div class="line1"> Artikel</div>
+          <div class="line2"> &euro;</div>
+        </div>
+        <div class="footer">
+          <a href="e-vendo.php?SessionId=&a=cart" title="Zu Ihrem Warenkorb / Zur Kasse" rel="nofollow"><span class="raquo">&raquo;</span> Zum Warenkorb / Zur Kasse</a>
+          <div id="cartsmall_panel" class="slidepanel"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div id="topnav" class="slideleft"><div id="topnav_content" ><ul class="h_menu"><li class="level0" id="Home"><a href="e-vendo.php?SessionId=" title="Home" class="level0"><span>Home</span></a></li>
+	<li class="level0"><a href="Unsere-Filialen-und-Partner.htm?SessionId=&a=catalog&p=665" title="UNSERE FILIALEN & PARTNER" class="level0"><span>UNSERE FILIALEN &amp; PARTNER</span></a></li>
+	<li class="level0"><a href="Über-Uns.htm?SessionId=&a=catalog&p=1016" title="ÜBER UNS" class="level0"><span>&Uuml;BER UNS</span></a></li>
+<li class="level0" id="Sonderangebote"><a href="e-vendo.php?SessionId=&a=offer" title="Sonderangebote Football Baseball - Online Football Baseball Sonderangebote | Futspo.de" class="level0"><span>Sonderangebote</span></a></li><li class="level0" id="marken"><a href="e-vendo.php?SessionId=&a=marken" title="Marken, Hersteller" class="level0"><span>Marken</span></a></li></ul></div></div>
+
+<div class="main" id="main_breadcrumb">
+  <div class="main_content">
+    <div class="container containershop">
+      <div class="container_grid container_first containershop_left"><form action="" id="manufacturerchoice"><select size="1" name="markenauswahl" onchange="goSelectOption(this)" class="manufacturerchoice">
+<option value="-" selected="selected">--- Markenauswahl ---</option>
+<option value="Adams-USA.htm?SessionId=&a=marke&Hersteller=959">Adams USA</option>
+<option value="Adidas.htm?SessionId=&a=marke&Hersteller=25388">Adidas</option>
+<option value="Bike-Athletic.htm?SessionId=&a=marke&Hersteller=26452">Bike Athletic</option>
+<option value="Champro-Sports.htm?SessionId=&a=marke&Hersteller=5761">Champro Sports</option>
+<option value="Cutters.htm?SessionId=&a=marke&Hersteller=25389">Cutters</option>
+<option value="DeMarini.htm?SessionId=&a=marke&Hersteller=25875">DeMarini</option>
+<option value="DOUGLAS.htm?SessionId=&a=marke&Hersteller=36440">DOUGLAS</option>
+<option value="EASTON.htm?SessionId=&a=marke&Hersteller=32905">EASTON</option>
+<option value="FS-Pro-US.htm?SessionId=&a=marke&Hersteller=25965">FS Pro US</option>
+<option value="Jaybird-Mais.htm?SessionId=&a=marke&Hersteller=1221">Jaybird &amp; Mais</option>
+<option value="Kenko.htm?SessionId=&a=marke&Hersteller=25383">Kenko</option>
+<option value="MARKWORT.htm?SessionId=&a=marke&Hersteller=10529">MARKWORT</option>
+<option value="McDavid.htm?SessionId=&a=marke&Hersteller=28900">McDavid</option>
+<option value="MIZUNO.htm?SessionId=&a=marke&Hersteller=34365">MIZUNO</option>
+<option value="NIKE.htm?SessionId=&a=marke&Hersteller=28899">NIKE</option>
+<option value="Rawlings.htm?SessionId=&a=marke&Hersteller=25785">Rawlings</option>
+<option value="Reebok.htm?SessionId=&a=marke&Hersteller=25382">Reebok</option>
+<option value="Riddell.htm?SessionId=&a=marke&Hersteller=1245">Riddell</option>
+<option value="Rogers-Athletic-Company.htm?SessionId=&a=marke&Hersteller=9782">Rogers Athletic Company</option>
+<option value="http-www-futspo-de-Schutt-m25384-htm-shop-futuresport-SessionId-a-marke-Hersteller-25384.htm?SessionId=&a=marke&Hersteller=25384">Schutt</option>
+<option value="Shock-Doctor.htm?SessionId=&a=marke&Hersteller=30430">Shock Doctor</option>
+<option value="Under-Armour.htm?SessionId=&a=marke&Hersteller=26325">Under Armour</option>
+<option value="Wilson.htm?SessionId=&a=marke&Hersteller=25381">Wilson</option>
+<option value="WORTH.htm?SessionId=&a=marke&Hersteller=26675">WORTH</option>
+<option value="X-tech-m38766.htm?SessionId=&a=marke&Hersteller=38766">X-tech</option>
+<option value="XENITH.htm?SessionId=&a=marke&Hersteller=26562">XENITH</option>
+
+</select></form></div>
+      <div class="container_grid container_last containershop_middle_right">
+        <div id="breadcrumb" itemprop="breadcrumb">
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="e-vendo.php?SessionId=" title="Home" itemprop="url"><span itemprop="title">Home</span></a><span class="raquo" style="white-space:normal;"> &raquo; </span></div><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="American-Football-Shop.htm?SessionId=&a=catalog&p=3" title="American Football Shop" itemprop="url"><span itemprop="title">American Football Shop</span></a><span class="raquo" style="white-space:normal;"> &raquo; </span></div><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="Football-Handschuhe.htm?SessionId=&a=catalog&p=29" title="Football Handschuhe" itemprop="url"><span itemprop="title">Football Handschuhe</span></a><span class="raquo" style="white-space:normal;"> &raquo; </span></div><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="Cutters-Football-Gloves.htm?SessionId=&a=catalog&p=63" title="CUTTERS Football Gloves" itemprop="url"><span itemprop="title">CUTTERS Football Gloves</span></a><span class="raquo" style="white-space:normal;"> &raquo; </span></div>Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model )
+        </div>
+      </div>
+      <div class="container_clear"></div>
+    </div>
+  </div>
+</div>
+<div class="main" id="main_content">
+  <div class="main_content">
+    <div class="containershop">
+      <div class="container_grid container_first containershop_left" id="main_left">
+        <ul id="naviPos0" class="v_menu slideleft">
+	<li class="level0 inpath children"><a href="American-Football-Shop.htm?SessionId=&a=catalog&p=3" title="American Football Shop" class="level0"><span>American Football Shop</span></a>
+		<ul class="level1">
+			<li class="level1 level1Columns_"><a href="Football-Helme.htm?SessionId=&a=catalog&p=6" title="Football Helme" class="level1"><span>Football Helme</span></a></li>
+			<li class="level1 level1Columns_"><a href="Shoulder-Pads.htm?SessionId=&a=catalog&p=8" title="Shoulder Pads" class="level1"><span>Shoulder Pads</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Starter-Kit.htm?SessionId=&a=catalog&p=79" title="Football Starter Kit" class="level1"><span>Football Starter Kit</span></a></li>
+			<li class="level1 level1Columns_ inpath children"><a href="Football-Handschuhe.htm?SessionId=&a=catalog&p=29" title="Football Handschuhe" class="level1"><span>Football Handschuhe</span></a>
+			<ul class="level2">
+					<li class="level2"><a href="Receiver-Gloves-ungepolsterte-Handschuhe.htm?SessionId=&a=catalog&p=60" title="Receiver Gloves / ungepolsterte Handschuhe" class="level2"><span>- Receiver Gloves / ungepolsterte Handschuhe</span></a></li>
+					<li class="level2"><a href="leicht-gepolsterte-Handschuhe.htm?SessionId=&a=catalog&p=61" title="leicht gepolsterte Handschuhe" class="level2"><span>- leicht gepolsterte Handschuhe</span></a></li>
+					<li class="level2"><a href="Linemen-Gloves-gepolsterte-Handschuhe.htm?SessionId=&a=catalog&p=62" title="Linemen Gloves / gepolsterte Hanschuhe" class="level2"><span>- Linemen Gloves / gepolsterte Hanschuhe</span></a></li>
+					<li class="level2"><a href="Football-Gloves-Preiskracher.htm?SessionId=&a=catalog&p=1489" title="Footballgloves Preiskracher" class="level2"><span>- Footballgloves Preiskracher</span></a></li>
+					<li class="level2 inpath active"><a href="Cutters-Football-Gloves.htm?SessionId=&a=catalog&p=63" title="CUTTERS Football Gloves" class="level2"><span>- CUTTERS Football Gloves</span></a></li>
+					<li class="level2"><a href="Reebok-Football-Gloves.htm?SessionId=&a=catalog&p=64" title="REEBOK Football Gloves" class="level2"><span>- REEBOK Football Gloves</span></a></li>
+					<li class="level2"><a href="Adidas-Football-Gloves.htm?SessionId=&a=catalog&p=65" title="ADIDAS Football Gloves" class="level2"><span>- ADIDAS Football Gloves</span></a></li>
+					<li class="level2"><a href="Neumann-Football-Gloves.htm?SessionId=&a=catalog&p=66" title="NEUMANN Football Gloves" class="level2"><span>- NEUMANN Football Gloves</span></a></li>
+					<li class="level2"><a href="FS-Pro-Football-Gloves.htm?SessionId=&a=catalog&p=67" title="FS PRO Football Gloves" class="level2"><span>- FS PRO Football Gloves</span></a></li>
+					<li class="level2"><a href="Football-Gloves-für-Kids.htm?SessionId=&a=catalog&p=2210" title="Football Gloves für Kids" class="level2"><span>- Football Gloves f&uuml;r Kids</span></a></li>
+			</ul>
+		</li>
+			<li class="level1 level1Columns_"><a href="Football-Schuhe.htm?SessionId=&a=catalog&p=70" title="Football Schuhe" class="level1"><span>Football Schuhe</span></a></li>
+			<li class="level1 level1Columns_"><a href="Footballs.htm?SessionId=&a=catalog&p=81" title="Footballs" class="level1"><span>Footballs</span></a></li>
+			<li class="level1 level1Columns_"><a href="Mouthguard.htm?SessionId=&a=catalog&p=53" title="Mouthguard" class="level1"><span>Mouthguard</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Kleidung.htm?SessionId=&a=catalog&p=71" title="Football Kleidung" class="level1"><span>Football Kleidung</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Pads.htm?SessionId=&a=catalog&p=28" title="Football Pads" class="level1"><span>Football Pads</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Taschen.htm?SessionId=&a=catalog&p=86" title="Football Taschen" class="level1"><span>Football Taschen</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Game-Day-Equipment.htm?SessionId=&a=catalog&p=80" title="Football Game Day - Field Equipment" class="level1"><span>Football Game Day - Field Equipment</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Zubehör.htm?SessionId=&a=catalog&p=72" title="Football Zubehör" class="level1"><span>Football Zubeh&ouml;r</span></a></li>
+			<li class="level1 level1Columns_"><a href="Kicking-Tees.htm?SessionId=&a=catalog&p=85" title="Kicking Tees" class="level1"><span>Kicking Tees</span></a></li>
+			<li class="level1 level1Columns_"><a href="Flag-Football.htm?SessionId=&a=catalog&p=90" title="Flag Football" class="level1"><span>Flag Football</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Training-Equipment.htm?SessionId=&a=catalog&p=7" title="Football Training Equipment" class="level1"><span>Football Training Equipment</span></a></li>
+			<li class="level1 level1Columns_"><a href="Extra-Schutz-Padding.htm?SessionId=&a=catalog&p=1698" title="Extra-Schutz / padding" class="level1"><span>Extra-Schutz / padding</span></a></li>
+			<li class="level1 level1Columns_"><a href="Football-Referee.htm?SessionId=&a=catalog&p=91" title="Football Referee" class="level1"><span>Football Referee</span></a></li>
+		</ul>
+	</li>
+	<li class="level0"><a href="Baseball-Shop.htm?SessionId=&a=catalog&p=4" title="Baseball Shop" class="level0"><span>Baseball Shop</span></a></li>
+	<li class="level0"><a href="Softball-Shop.htm?SessionId=&a=catalog&p=5" title="Softball Shop" class="level0"><span>Softball Shop</span></a></li>
+	<li class="level0"><a href="YAYA-Bats.htm?SessionId=&a=catalog&p=995" title="YAYA Bats" class="level0"><span>YAYA Bats</span></a></li>
+	<li class="level0"><a href="Under-Armour.htm?SessionId=&a=catalog&p=784" title="Sport Bekleidung" class="level0"><span>Sport Bekleidung</span></a></li>
+	<li class="level0"><a href="Sport-Medizin.htm?SessionId=&a=catalog&p=840" title="Sport Medizin" class="level0"><span>Sport Medizin</span></a></li>
+	<li class="level0"><a href="Team-Uniformen.htm?SessionId=&a=catalog&p=93" title="Team Uniformen" class="level0"><span>Team Uniformen</span></a></li>
+	<li class="level0"><a href="Ballwurfmaschinen.htm?SessionId=&a=catalog&p=92" title="Ball Wurfmaschinen" class="level0"><span>Ball Wurfmaschinen</span></a></li>
+</ul><script type="text/javascript">$("#mobileNavigation > ul").append("<li id='navi0' class='v_menu_mobile'><span>Navigation</span></li>");</script>
+        
+        <div class="sidebox" id="newitems">
+  <div class="caption">Neu in unserem Shop</div>
+  <div class="content slide">
+    <ul class="show4">
+      <li><div class="pic td vamiddle"><a href="American-Football-Shop/Shoulder-Pads/X-Tech-Shoulder-Pads/Backplate-X-tech.htm?SessionId=&a=article&ProdNr=FSXPLATE&p=2342" title="Backplate, X-tech"><img src="futuresport/prodpic/Backplate-X-tech-FSXPLATE_s_0.JPG" alt="Backplate, X-tech"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Shoulder-Pads/X-Tech-Shoulder-Pads/Backplate-X-tech.htm?SessionId=&a=article&ProdNr=FSXPLATE&p=2342" title="Backplate, X-tech">Backplate, X-tech</a></div></li>
+<li><div class="pic td vamiddle"><a href="American-Football-Shop/Football-Handschuhe/Receiver-Gloves-ungepolsterte-Handschuhe/ADIZERO-Receiver-Gloves-Adidas-Footballhandschuhe.htm?SessionId=&a=article&ProdNr=FBADIZ&p=60" title="ADIZERO Receiver Gloves Adidas Footballhandschuhe"><img src="futuresport/prodpic/ADIZERO-Receiver-Gloves-Adidas-Footballhandschuhe-FBADIZ_s_0.JPG" alt="ADIZERO Receiver Gloves Adidas Footballhandschuhe"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Football-Handschuhe/Receiver-Gloves-ungepolsterte-Handschuhe/ADIZERO-Receiver-Gloves-Adidas-Footballhandschuhe.htm?SessionId=&a=article&ProdNr=FBADIZ&p=60" title="ADIZERO Receiver Gloves Adidas Footballhandschuhe">ADIZERO Receiver Gloves Adidas Footballhandschuhe</a></div></li>
+<li><div class="pic td vamiddle">&nbsp;</div><div class="td vamiddle"><a href="S243-Pro-Maple-Composite-Bat-DeMarini.htm?SessionId=&a=article&ProdNr=BDXS243" title="S243 Pro Maple Composite Bat DeMarini">S243 Pro Maple Composite Bat DeMarini</a></div></li>
+<li><div class="pic td vamiddle"><a href="American-Football-Shop/Footballs/Tackified-Footballs/F1715-TDS-Football-Wilson-Premium-Composite-Leather-6-Pack.htm?SessionId=&a=article&ProdNr=BALLTDSCOM6&p=83" title="F1715 TDS Football Wilson Premium Composite Leather 6-Pack"><img src="futuresport/prodpic/F1715-TDS-Football-Wilson-Premium-Composite-Leather-6-Pack-BALLTDSCOM6_s_0.JPG" alt="F1715 TDS Football Wilson Premium Composite Leather 6-Pack"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Footballs/Tackified-Footballs/F1715-TDS-Football-Wilson-Premium-Composite-Leather-6-Pack.htm?SessionId=&a=article&ProdNr=BALLTDSCOM6&p=83" title="F1715 TDS Football Wilson Premium Composite Leather 6-Pack">F1715 TDS Football Wilson Premium Composite Leather 6-Pack</a></div></li>
+<li><div class="pic td vamiddle"><a href="Football-Starter-Set-950.htm?SessionId=&a=article&ProdNr=FSS950" title="Football Starter Set 950"><img src="futuresport/prodpic/Football-Starter-Set-950-FSS950_s_0.JPG" alt="Football Starter Set 950"></a></div><div class="td vamiddle"><a href="Football-Starter-Set-950.htm?SessionId=&a=article&ProdNr=FSS950" title="Football Starter Set 950">Football Starter Set 950</a></div></li>
+
+    </ul>
+  <div class="mt-m acenter">Hier finden Sie alle Artikel, die neu in unserem Shop sind.<br><a href="e-vendo.php?SessionId=&a=news" class="lightlink"><span class="raquo">&raquo;</span> Zu den Neuheiten</a></div>
+  </div>
+</div>
+        <div class="sidebox" id="bestseller">
+  <div class="caption">Unsere Bestseller</div>
+  <div class="content slide">
+    <ul class="show4 notableborder">
+      <li><div class="pic td vamiddle"><a href="American-Football-Shop/Footballs/Leather-Leder-Footballs/F1000GER-AFVD-Official-AFVD-Game-Football-Germany.htm?SessionId=&a=article&ProdNr=BALLNFLGER&p=82" title="F1000GER AFVD , Official AFVD Game Football Germany"><img src="futuresport/prodpic/F1000GER-AFVD-Official-AFVD-Game-Football-Germany-BALLNFLGER_s_0.JPG" alt="F1000GER AFVD , Official AFVD Game Football Germany"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Footballs/Leather-Leder-Footballs/F1000GER-AFVD-Official-AFVD-Game-Football-Germany.htm?SessionId=&a=article&ProdNr=BALLNFLGER&p=82" title="F1000GER AFVD , Official AFVD Game Football Germany">F1000GER AFVD , Official AFVD Game Football Germany</a></div></li>
+<li><div class="pic td vamiddle"><a href="American-Football-Shop/Footballs/Tackified-Footballs/F1825-Duke-NFL-Replika-Football-Wilson-Professional-Composite.htm?SessionId=&a=article&ProdNr=BALLNFLDCOM&p=83" title="F1825 Duke NFL Replika Football Wilson Professional Composite"><img src="futuresport/prodpic/F1825-Duke-NFL-Replika-Football-Wilson-Professional-Composite-BALLNFLDCOM_s_0.JPG" alt="F1825 Duke NFL Replika Football Wilson Professional Composite"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Footballs/Tackified-Footballs/F1825-Duke-NFL-Replika-Football-Wilson-Professional-Composite.htm?SessionId=&a=article&ProdNr=BALLNFLDCOM&p=83" title="F1825 Duke NFL Replika Football Wilson Professional Composite">F1825 Duke NFL Replika Football Wilson Professional Composite</a></div></li>
+<li><div class="pic td vamiddle"><a href="XP_PRO_FOOTBALLHELM_SCHUTT.htm?SessionId=&a=article&ProdNr=FHXP&VariantenNr=1170&p=12" title="Air XP Pro , Schutt Footballhelm (wei&szlig;/L)"><img src="futuresport/prodpic/Air-XP-Pro-Schutt-Footballhelm-FHXP_s_0.JPG" alt="Air XP Pro , Schutt Footballhelm (wei&szlig;/L)"></a></div><div class="td vamiddle"><a href="XP_PRO_FOOTBALLHELM_SCHUTT.htm?SessionId=&a=article&ProdNr=FHXP&VariantenNr=1170&p=12" title="Air XP Pro , Schutt Footballhelm (wei&szlig;/L)">Air XP Pro , Schutt Footballhelm (wei&szlig;/L)</a></div></li>
+<li><div class="pic td vamiddle"><a href="American-Football-Shop/Shoulder-Pads/Schutt-Shoulder-Pads/XV-Flex-Pad-Skill-800317.htm?SessionId=&a=article&ProdNr=FS800317&VariantenNr=1556&p=49" title="XV Flex Pad Skill 800317 (M)"><img src="futuresport/prodpic/XV-Flex-Pad-Skill-800317-FS800317_s_0.JPG" alt="XV Flex Pad Skill 800317 (M)"></a></div><div class="td vamiddle"><a href="American-Football-Shop/Shoulder-Pads/Schutt-Shoulder-Pads/XV-Flex-Pad-Skill-800317.htm?SessionId=&a=article&ProdNr=FS800317&VariantenNr=1556&p=49" title="XV Flex Pad Skill 800317 (M)">XV Flex Pad Skill 800317 (M)</a></div></li>
+<li><div class="pic td vamiddle"><a href="Baseball-Shop/Baseball-Kleidung/Baseball-Hosen/Baseballguertel.htm?SessionId=&a=article&ProdNr=BASEG&VariantenNr=149&p=138" title="Baseballg&uuml;rtel (schwarz)"><img src="futuresport/prodpic/Baseballguertel-BASEG_s_0.JPG" alt="Baseballg&uuml;rtel (schwarz)"></a></div><div class="td vamiddle"><a href="Baseball-Shop/Baseball-Kleidung/Baseball-Hosen/Baseballguertel.htm?SessionId=&a=article&ProdNr=BASEG&VariantenNr=149&p=138" title="Baseballg&uuml;rtel (schwarz)">Baseballg&uuml;rtel (schwarz)</a></div></li>
+
+    </ul>
+  </div>
+</div>
+        
+        <div id="idmztarget"></div>
+      </div>
+      <div class="container_grid containershop_middle" id="main_middle">
+        <div class="headline"><h1><a href="American-Football-Shop/Football-Handschuhe/leicht-gepolsterte-Handschuhe/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-.htm?SessionId=&a=article&ProdNr=FBCG&p=63"><strong>
+<span class="product">Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model )</span>
+        </strong></a></h1></div>
+        <div class="mb-m">
+
+<!-- *** Seiteninhalt *** -->
+<div itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="name" content="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model )">
+  <div class="product">
+    <div class="productnr floatleft">Artikel-Nr.:&nbsp;&nbsp;<span itemprop="productID">FBCG</span></div>
+    
+    <div class="clearleft"></div>
+    
+  </div>
+  <form name="eingabe" action="e-vendo.php?SessionId=&a=articlecartadd&ProdNr=FBCG&p=63" method="post" onSubmit="return checkBestellfelder();">
+    <div class="product">
+      <div class="container containermiddle mt-m">
+        <div class="container_grid container_alpha container_2_grid_1">
+
+          <div class="pics">
+            <div class="apics"><span class="noempty"></span><script type="text/javascript" src="futuresport/js/elevatezoom/jquery.elevateZoom-3.0.8_e-vendo.min.js"></script>
+<script type="text/javascript"><!--
+jQuery(document).ready(function($) {
+  $(".elevatezoom_detail").elevateZoom({
+    zoomType: "inner"
+    , cursor: "crosshair"
+    , responsive: true
+  });
+});
+function showVarPic(selPicContainer, urlPic, picid, keyvalue, name)
+{
+  $(selPicContainer).html('<img src="' + urlPic  + '" id="' + picid + '" alt="' + name + '">');
+  $("#" + picid).elevateZoom({
+    zoomType: "inner"
+    , cursor: "crosshair"
+    , responsive: true
+  });
+}
+//--></script>
+
+<script type="text/javascript"><!--
+  var count_slidepic = 0;
+  var width_slidepic = 0;
+//--></script>
+<div id="detailimage"><div class="pic"><div id="detailimagea_1" class="detailimage detailimagea_h"><img id="detailimageaimg_1" itemprop="image" class="invisible elevatezoom_detail" data-zoom-image="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_0.JPG" src="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_0.JPG" alt="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 1"></div>
+<div id="detailimagea_2" class="detailimage detailimagea_h"><img id="detailimageaimg_2" itemprop="image" class="invisible elevatezoom_detail" data-zoom-image="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_1.JPG" src="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_1.JPG" alt="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 2"></div>
+</div></div>
+<div id="slider"><div class="slidebar">
+  <div class="sliderright"><a onmouseover="setSlideLeft()" onmouseout="stopSlide()" id="rightslide_a"><span id="rightslide" class="slightarrow_full"></span></a></div>
+  <div class="sliderleft"><a onmouseover="setSlideRight();" onmouseout="stopSlide()" id="leftslide_a"><span id="leftslide" class="slightarrow_full"></span></a></div>
+  <div class="slider"><div id="slidebar"><a href="javascript:imageSlide('1')" onmouseover="imageSlide('1')" title="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 1"><img src="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_0.JPG" alt="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 1"  width="63"  height="50" /></a>
+<script type="text/javascript"><!--
+  count_slidepic++;
+  width_slidepic += 63;
+//--></script>
+<a href="javascript:imageSlide('2')" onmouseover="imageSlide('2')" title="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 2"><img src="futuresport/prodpic/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-FBCG_b_1.JPG" alt="Gamer S60 LB/ RB Gloves Cutters ( Shockskin Model ) - Bild 2"  width="67"  height="50" /></a>
+<script type="text/javascript"><!--
+  count_slidepic++;
+  width_slidepic += 67;
+//--></script>
+</div></div><div class="clear"></div>
+</div></div>
+<script type="text/javascript"><!--
+  var barposition = 0;
+  var barspeed = 4;
+  var bardiff;
+  var slidebar = document.getElementById('slidebar');
+  var barmin = 0;
+  var barmax;
+  var lastidnr = '';
+  var barwidth = width_slidepic + (count_slidepic - 1) * 2 + count_slidepic * 2;
+  var aktiv;
+jQuery(document).ready(function($) {
+  bardiff = $("#slider").width() - $("#slider .sliderleft").width() - $("#slider .sliderright").width();
+  barmax = bardiff;
+  endArrow('leftslide');
+  if (barwidth < barmax) {
+    $("#rightslide_a").hide();
+    $("#leftslide_a").hide();
+  }
+  $("#detailimagea_1").removeClass("detailimagea_h");
+  $("#detailimagea_1").addClass("detailimagea_v");
+  $("#detailimageaimg_1").css("visibility", "visible");
+});
+lastidnr = '1';
+//--></script></div>
+          </div>
+          
+        </div>
+        <div class="container_grid container_omega container_2_grid_2">
+          <div class="details">
+            
+            <div class="inside">
+              <div class="manufacturer mt-s" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+  <div class="floatleft">
+    <div>Hersteller: <span itemprop="name">Cutters</span></div>
+    <div class="more"><a href="Cutters.htm?SessionId=&a=marke&Hersteller=25389" title="Weitere Artikel von Cutters" class="lightlink small"><span class="raquo">&raquo</span> weitere Artikel von Cutters</a></div>
+  </div>
+  <div class="floatright"><img src="futuresport/e-vendo/sys/Cutters_25389.JPG" alt="Cutters" itemprop="logo"></div>
+  <div class="clear"></div>
+</div>
+              <script type="text/javascript"><!--
+VariantenSeite = true;
+var bVariantenSeiteFertig;
+bVariantenSeiteFertig = false;
+
+var iKeyValue = 0;
+var iKeyProVarBez = 1;
+var iKeyProVarBezunter = 2;
+var iKeyParentID = 3;
+var iKeyProVarPreis = 4;
+var iKeyProVarPreisZusatz = 5;
+var iKeyProVarLiefergrafik = 6;
+var iKeyLast = 7;
+var iKeyPunkte = 8;
+var iKeyPunkteKaufMoeglich = 9;
+var iKeyPunkteFehlen = 10;
+var iKeyProVarBasePrice = 11;
+var iKeySonderbonus = 12;
+var iKeySonderbonusEinheit = 13;
+var iKeyProVarLieferzeittext = 14;
+var iKeyProVarStandardPrice = 15;
+var iKeyAnzahlLager = 16;
+var iKeyDSD = 17;
+var iKeyNotSellBecauseStock = 18;
+var iKeyPic = 19;
+var iKeyHasChilds = 20;
+var iKeyAktion = 21;
+
+var bPunkteKaufAllgemeinMoeglich = false;
+var bPunkteAnzeige = false;
+var bBasePriceAnzeige = false;
+var bPreisAnfragen = false;
+var bSonderbonus = false;
+var bStandardpreis = false;
+var bZusatzpreis = false;
+var bAuslaufartikel = false;
+var bDSD = false;
+
+var arrV = new Array();
+var arrSelV = new Array();
+var arrChilds = new Array();
+var arrZARabatt = new Array();
+
+function emptyVarListbox(listfield)
+{
+  var iCount;
+
+  for (iCount = listfield.length - 1; iCount >= 0; iCount--)
+    listfield.options[iCount] = null;
+}
+
+function fillVarListbox(ebene, listfield, vararray, kennung)
+{
+  var iCount;
+
+  if (kennung) {
+    listfield.options[0] = new Option('... bitte wählen Sie ...', -1);
+    listfield.options[0].selected = true;
+
+    for (iCount = 0; iCount < vararray.length; iCount++) {
+      if (kennung == vararray[iCount][iKeyParentID]) {
+        listfield.options[listfield.length] =
+          new Option(vararray[iCount][ebene == 1 ? iKeyProVarBez : iKeyProVarBezunter], vararray[iCount][iKeyValue]);
+      }
+    }
+  }
+
+  changeVarAuswahl(ebene);
+}
+
+function emptyAndfillVarListbox(ebene, listfield, vararray, kennung, auswahltext)
+{
+  emptyVarListbox(listfield);
+  fillVarListbox(ebene, listfield, vararray, kennung);
+}
+
+function getSelValueFromVarListbox(listfield)
+{
+  var iCount, selValue;
+
+  selValue = -1;
+  // Wert des selektierten Eintrags ermitteln
+  for (iCount = 0; iCount < listfield.length; iCount++) {
+    if (listfield.options[iCount].selected) {
+      selValue = listfield.options[iCount].value;
+      break;
+    }
+  }
+  return selValue;
+}
+
+function changeVarAuswahl(ebene)
+{
+  var iCount, selValue, iSel, listfield, childhtml, iChild, arrChild;
+
+  listfield = document.eingabe.elements["var_ebene_" + ebene];
+  selValue = getSelValueFromVarListbox(listfield);
+
+  if (selValue > 0) {
+    // von dem selektierten Eintrag nun die weiteren Informationen raussuchen
+    iSel = -1;
+    for (iCount = 0; iCount < arrV[ebene].length; iCount++) {
+      if (arrV[ebene][iCount][iKeyValue] == selValue) {
+        iSel = iCount;
+        break;
+      }
+    }
+
+    if (iSel > -1) {
+      // Grafik zuweisen
+
+      if (arrV[ebene][iSel][iKeyPic] != "") {
+        var name = arrV[ebene][iSel][iKeyProVarBezunter];
+        if (name == "")
+          name = arrV[ebene][iSel][iKeyProVarBez];
+        name = name.replace(/"/, '&quot;');
+        if (typeof showVarPic == 'function') {
+          showVarPic('#VarPic_' + ebene, arrV[ebene][iSel][iKeyPic], "var_pic_" + arrV[ebene][iSel][iKeyValue], arrV[ebene][iSel][iKeyValue], name);
+        } else {
+          $('#VarPic_' + ebene).html('<img src="' + arrV[ebene][iSel][iKeyPic] + '" alt="' + name + '">');
+        }
+      } else {
+	$('#VarPic_' + ebene).html('');
+      }
+      // ist es evtl. bereits der tiefste Eintrag?
+      if (arrV[ebene][iSel][iKeyLast] == 1) {
+        // obwohl es bereits der tiefste Eintrag dieses Zweiges ist,
+        // gibt es evtl. aber noch eine tiefere Listbox?
+        if (ebene != 2) {
+          // dann muessen wir die tiefer liegende Listbox noch leeren
+          emptyVarListbox(document.eingabe.elements["var_ebene_" + (ebene + 1)]);
+        }
+
+        if (!bPreisAnfragen) {
+	  // Gibt es Childartikel?
+	  if (arrV[ebene][iSel][iKeyHasChilds] != "") {
+	    // Schleife ueber alle Childartikel und diese nun anzeigen
+	    childhtml = '<div class="table">';
+	    arrChild = arrChilds[arrV[ebene][iSel][iKeyValue]];
+	    for (iChild = 0; iChild < arrChild.length; ++iChild)
+	      childhtml += arrChild[iChild];
+	    childhtml += '</div>';
+	    $("#pChildArtikeli").html(childhtml);
+	    $("#pChildArtikel").show();
+	  } else {
+	    $("#pChildArtikeli").html('');
+	    $("#pChildArtikel").hide();
+	  }
+
+	  // Gibt es einen Zahlartrabatt?
+	  if (arrZARabatt[arrV[ebene][iSel][iKeyValue]]) {
+	    $("#p_varop_zahlartrabatti").html(arrZARabatt[arrV[ebene][iSel][iKeyValue]]);
+	    $("#p_varop_zahlartrabatt").show();
+	  } else {
+	    $("#p_varop_zahlartrabatti").html('');
+	    $("#p_varop_zahlartrabatt").hide();
+	  }
+
+          // nun sollte noch angezeigt werden, wie die aktuelle Auswahl gerade ist
+          if (arrV[ebene][iSel][iKeyProVarPreis] != '') {
+            $("#preis").html(arrV[ebene][iSel][iKeyProVarPreis] + ' &euro;');
+            $("#pmwst").show();
+          } else {
+            $("#preis").html("");
+            $("#pmwst").hide();
+          }
+
+          if (bZusatzpreis) {
+       	    $('#preiszusatz').html('(' + arrV[ebene][iSel][iKeyProVarPreisZusatz] + ' ' + ')');
+          }
+
+          // ist der Standardpreis geliefert? (dann liegt eine Aktion vor und wir zeigen den
+          // durchgestrichenen Standardpreis an
+          if (bStandardpreis)
+            if (arrV[ebene][iSel][iKeyProVarStandardPrice] != '') {
+              $('#standardpreis').html('<span class="value">' +
+                arrV[ebene][iSel][iKeyProVarStandardPrice] + ' &euro;</span><span class="label"><a href="American-Football-Shop/Football-Handschuhe/leicht-gepolsterte-Handschuhe/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-.htm?SessionId=&a=article&ProdNr=FBCG&p=63#oldprice">1)</a></span>');
+            } else {
+              $('#standardpreis').html('');
+            }
+
+	  if (arrV[ebene][iSel][iKeyAktion] != '') {
+	    $('#p_varop_aktion').html(arrV[ebene][iSel][iKeyAktion]);
+	    $('#p_varop_aktion').show();
+	  } else {
+	    $('#p_varop_aktion').html('');
+	    $('#p_varop_aktion').hide();
+	  }
+        }
+        // Grundpreis
+        if (!bPreisAnfragen && bBasePriceAnzeige) {
+          if (arrV[ebene][iSel][iKeyProVarBasePrice] != '') {
+            $("#basepreis").html('[' + arrV[ebene][iSel][iKeyProVarBasePrice] + '&euro;' +
+              '/' + '' + ']');
+          } else {
+            // es gibt keinen Baseprice fuer die Variante
+            $("#basepreis").html('');
+          }
+        }
+
+	if (bDSD) {
+	  if (arrV[ebene][iSel][iKeyDSD] == '0,00') {
+	    $("#dsd").html('keine Serviceverpackung');
+	  } else {
+	    $("#dsd").html(arrV[ebene][iSel][iKeyDSD] + '&euro;');
+	  }
+	}
+
+        $('#liefergraphic').attr('class', 'icon icon_' + arrV[ebene][iSel][iKeyProVarLiefergrafik]);
+        $('#liefertext').html('Lieferzeit: ' + arrV[ebene][iSel][iKeyProVarLieferzeittext]);
+
+        if (bAuslaufartikel) {
+          $('#VarAuslaufartikel').html('Noch vorhanden: ' +
+            arrV[ebene][iSel][iKeyAnzahlLager] + ' Paar');
+        }
+
+        if (bSonderbonus) {
+          if (arrV[ebene][iSel][iKeySonderbonus] == "") {
+            $('#pro_sonderbonus').html('');
+          } else {
+            $('#pro_sonderbonus').html('Preisvorteil durch Sonderbonus: ' +
+              arrV[ebene][iSel][iKeySonderbonus] + ' ' +
+              arrV[ebene][iSel][iKeySonderbonusEinheit]);
+          }
+        }
+
+        if (bPunkteAnzeige) {
+          // Punktewerte leeren
+          if (arrV[ebene][iSel][iKeyPunkte] == "0,00")
+            $('#pro_punkte').html('');
+          else
+            $('#pro_punkte').html(arrV[ebene][iSel][iKeyPunkte]);
+
+          // Punktekauf u.U. ermoeglichen
+          if (bPunkteKaufAllgemeinMoeglich) {
+            // reichen die Punkte des Kunden fuer den Kauf dieser Variante?
+            if (arrV[ebene][iSel][iKeyPunkteKaufMoeglich] == "1") {
+              document.eingabe.punktekauf.value = 1;
+              $('#punkte_moeglich').html('ja');
+	      $("#pPunkteKauf").show();
+            } else {
+              document.eingabe.punktekauf.value = 0;
+              document.eingabe.punktekauf.checked = false;
+              $('#punkte_moeglich').html('nein');
+	      $("#pPunkteKauf").hide();
+            }
+          } else {
+            if (("0" != "0") && ("0" != ""))
+              $('#punkte_moeglich').html('nein');
+	      $("#pPunkteKauf").hide();
+          }
+          if (("0" != "0") && ("0" != "")) {
+	    if (arrV[ebene][iSel][iKeyPunkte] == "0,00") {
+              $('#punkte_fehlen').html('');
+	    } else {
+	      if (arrV[ebene][iSel][iKeyPunkteFehlen] == "0,00")
+      	        $('#punkte_fehlen').html('0');
+	      else
+	        $('#punkte_fehlen').html(arrV[ebene][iSel][iKeyPunkteFehlen]);
+	    }
+          }
+        }
+
+        // Varianten-LfdNr vorbereiten
+        document.eingabe.Var.value = arrV[ebene][iSel][iKeyValue];
+
+	// Kaufbereich sichtbar machen
+	if (arrV[ebene][iSel][iKeyNotSellBecauseStock] == "x") {
+	  $("#purch").hide();
+	  $("#nopurch").show();
+	} else {
+	  $("#purch").show();
+	  $("#nopurch").hide();
+	}
+     } else {
+        // es ist  noch nicht der tiefste Eintrag
+        emptyAndfillVarListbox(ebene + 1, document.eingabe.elements["var_ebene_" + (ebene + 1)],
+          arrV[ebene+1], selValue,
+          (ebene == 1) ? arrV[ebene][iSel][iKeyProVarBez] : arrV[ebene][iSel][iKeyProVarBezunter]);
+      }
+    }
+  } else {
+    // es wurde der erste Eintrag ausgewaehlt, der ja gar kein richtiger ist
+    document.getElementById('VarPic_' + ebene).innerHTML = '';
+    $('#p_varop_aktion').hide();
+    $("#pChildArtikel").hide();
+    $("#p_varop_zahlartrabatt").hide();
+    if (ebene == 2) {
+      // wir sind in der untersten Ebene, also die Daten fuer die ausgewaehlte Variante
+      // wieder loeschen
+      if (!bPreisAnfragen) {
+        $("#preis").html("");
+        $("#pmwst").hide();
+        if (bZusatzpreis)
+	  $('#preiszusatz').html('');
+        if (bStandardpreis)
+          $('#standardpreis').html('');
+      }
+      if (bDSD)
+	$('#dsd').html('');
+      $('#liefergraphic').attr('class', 'icon icon_');
+      $('#liefertext').html('');
+      document.eingabe.Var.value = '0';
+
+      if (bAuslaufartikel)
+        $('#VarAuslaufartikel').html('');
+
+      if (!bPreisAnfragen && bBasePriceAnzeige)
+        $('#basepreis').html('');
+
+      if (bPunkteAnzeige) {
+        // Punktewerte leeren
+        $('#pro_punkte').html("");
+	$("#pPunkteKauf").hide();
+
+        // Punktekauf disablen
+        if (bPunkteKaufAllgemeinMoeglich) {
+          document.eingabe.punktekauf.value = 0;
+          document.eingabe.punktekauf.checked = false;
+        }
+        if (("0" != "0") && ("0" != "")) {
+          $('#punkte_fehlen').html('');
+          $('#punkte_moeglich').html('');
+        }
+      }
+
+      if (bSonderbonus)
+        $('#pro_sonderbonus').html('');
+
+    } else {
+      // die tieferliegende Listbox auch leeren
+      emptyAndfillVarListbox(ebene + 1, document.eingabe.elements["var_ebene_" + (ebene + 1)],
+          arrV[ebene+1], 0, '');
+    }
+    $("#purch").hide();
+    $("#nopurch").hide();
+  }
+}
+function IsGewaehlt()
+{
+  bReturn = true;
+  if ((document.eingabe.Var.value == '') || (document.eingabe.Var.value == '0')) {
+    bReturn = false;
+
+    alert('Bitte wählen Sie zunächst die von Ihnen gewünschte Variante aus!');
+
+    for (i = 1; i <= 2; i++) {
+      listfield = document.eingabe.elements["var_ebene_" + i];
+      selValue = getSelValueFromVarListbox(listfield);
+
+      if (selValue < 1) {
+        listfield.focus();
+        break;
+      }
+    }
+  }
+  return bReturn;
+}
+function merken(url)
+{
+  if (IsGewaehlt()) {
+    // an die URL nun noch die Variantennr. anhaengen
+    document.getElementById("idmztarget").src = url + '&VariantenNr=' + document.eingabe.Var.value;
+  }
+}
+function checkVariantenSeite()
+{
+  var i;
+  var selValue;
+  var listfield;
+  var bReturn;
+  bReturn = IsGewaehlt();
+  if (bReturn) {
+    if (bPunkteKaufAllgemeinMoeglich) {
+      if (document.eingabe.punktekauf.checked) {
+        // kann diese Variante ueberhaupt fuer Punkte gekauft werden?
+        if ($('#punkte_fehlen').html() != "0") {
+          document.eingabe.punktekauf.checked = false;
+        }
+      }
+    }
+  }
+  return bReturn;
+}
+function SelectVarInListbox(ebene, ToSelValue)
+{
+  var listfield;
+  var iCount;
+
+  if (ToSelValue > 0) {
+    listfield = document.eingabe.elements["var_ebene_" + ebene];
+
+    for (iCount = 0; iCount < listfield.length; iCount++) {
+      if (listfield.options[iCount].value == ToSelValue) {
+	listfield.options.selectedIndex = iCount;
+        changeVarAuswahl(ebene);
+	break;
+      }
+    }
+  }
+}
+//--></script>
+<div class="product varop">
+  <input type="hidden" name="Var" value="0">
+  <div class="h1 mt-s">W&auml;hlen Sie jetzt die gew&uuml;nschte Variante:</div>
+  <div class="var-ebene mt-s"><select name="var_ebene_1" size="1" onChange="changeVarAuswahl(1)"></select><div id="VarPic_1" class="varpic"></div><div class="clear"></div><script type="text/javascript"><!--
+arrV[1] = new Array();
+arrSelV[1] = 700;
+
+arrV[1][0] = new Array(700, "schwarz", "YL", 1, "", "", "", 0, "0", "", "0", "", "", "", "", "", "0", "", "", "", "", ""); 
+
+
+//--></script></div><div class="var-ebene mt-s"><select name="var_ebene_2" size="1" onChange="changeVarAuswahl(2)"></select><div id="VarPic_2" class="varpic"></div><div class="clear"></div><script type="text/javascript"><!--
+arrV[2] = new Array();
+arrSelV[2] = 703;
+
+arrV[2][0] = new Array(703, "schwarz", "XL", 700, "59,95", "", "gruen", 1, "0", "", "0", "", "", "", "1-2 Tage", "", "1", "", "", "", "", ""); 
+arrV[2][1] = new Array(704, "schwarz", "XXL", 700, "59,95", "", "gruen", 1, "0", "", "0", "", "", "", "1-2 Tage", "", "1", "", "", "", "", ""); 
+arrV[2][2] = new Array(5528, "charcoal/grey", "L", 5527, "59,95", "", "rot", 1, "0", "", "0", "", "", "", "auf Anfrage", "", "0", "", "x", "", "", ""); 
+
+
+//--></script></div>
+  <div class="availability mt-s">Verf&uuml;gbarkeit:<span class="icon icon_" title="Lieferzeit: " id="liefergraphic"></span><span id="liefertext" class="text"></span></div>
+  <div class="discontinuedline mt-s"><span class="highlight">Solange Vorrat reicht!</span> <span id="VarAuslaufartikel"></span></div><script type="text/javascript"> bAuslaufartikel = true; </script>
+  
+  <div class="priceandmore mt-m">
+    
+    <div class="offer-info mt-s" id="p_varop_aktion"></div>
+    <div class="table_more400 pricescart w100p mt-m">
+      <div class="tbody">
+                  <div class="price"><div class="itemprice" id="preis"></div><div class="mwst" id="pmwst">inkl. MwSt. und zzgl. <a href="e-vendo.php?SessionId=&a=shippingcosts">Versand</a></div></div>
+          <div class="purch vamiddle acenter"><div id="purch" class="purch_">          <span class="c_cartfield"><span class="unit">Paar</span><input type="text" class="cartfield" name="Menge" maxlength="3" onblur="check_eingabe(this,999);" onfocus="oldvalue=this.value"></span>
+          <span class="c_cartbutton"><span class="ev-buttonspan b-cart-ui-corner-all"><span class="ev-button ev-buttonsmall b-high-ui-state-default b-small-ui-corner-all b-cart-ui-corner-all"><input type="image" src="futuresport/nav/pixel.gif" class="button_put2cart_p" value="submit" name="CartB" alt="Produkt in den Warenkorb legen ..."></span></span></span></div><div id="nopurch" class="nopurch_">zu Zeit nicht lieferbar</div></div>
+      </div>
+    </div>
+  </div>
+  <div id="p_varop_zahlartrabatt" class="paymentdiscount mt-s"><div id="p_varop_zahlartrabatti"></div><div class="mwst">inkl. MwSt. und zzgl. <a href="e-vendo.php?SessionId=&a=shippingcosts">Versand</a></div></div>
+  <div id="pChildArtikel" class="childdetails mt-s"><div class="caption">Zusatzkosten:</div><div id="pChildArtikeli"></div></div>
+</div>
+<script type="text/javascript"><!--
+fillVarListbox(1, document.eingabe.var_ebene_1, arrV[1], 1);
+
+// bereits eine Variante vorselektieren, falls erforderlich
+function selDefaultVarianten()
+{
+  if (arrSelV[1]) {
+    SelectVarInListbox(1, arrSelV[1]);
+    if ((arrSelV.length > 1) && arrSelV[2])
+      SelectVarInListbox(2, arrSelV[2]);
+    if ((arrSelV.length > 2) && arrSelV[3])
+      SelectVarInListbox(3, arrSelV[3]);
+    if ((arrSelV.length > 3) && arrSelV[4])
+      SelectVarInListbox(4, arrSelV[4]);
+  }
+}
+//--></script>
+              
+            </div>
+          </div>
+          <div id="detailimage_zoom"></div>
+        </div>
+        <div class="container_clear"></div>
+      </div>
+      <div id="box" class="box mt-m">
+        <div class="boxi"></div>
+      </div>
+    </div>
+    
+    <div id="productdetails" class="mt-m">
+      <ul>
+        <li><a href="#productdetails-text" data-localid="productdetails-text" rel="nofollow">Beschreibung</a></li>
+        <li id="tabproductdetails-dat" style="display:none;"><a href="#productdetails-dat" data-localid="productdetails-dat" rel="nofollow">Produktdaten</a></li>
+        
+        <li id="tabproductdetails-csr" style="display:none;"><a href="#productdetails-csr" data-localid="productdetails-csr" rel="nofollow">Zubeh&ouml;r usw.</a></li>
+        <li id="tabproductdetails-brand" style="display:none;"><a href="#productdetails-brand" data-localid="productdetails-brand" rel="nofollow">Cutters</a></li>
+        <li id="tabproductdetails-bew" style="display:none;"><a href="#productdetails-bew" data-localid="productdetails-bew" rel="nofollow">Bewertungen</a></li>
+      </ul>
+      <div id="productdetails-text" class="product">
+        <div class="partikeltexte" itemprop="description">
+          <div><div>
+      <p>Cutters The Gamer&nbsp;Shock Skin&nbsp;Football Gloves are the ultimate streamlined padded glove. The Gamer is designed for players looking for padding along with the feel, grip, and dexterity of a high performance receiver glove. Ventilated palm, superior finger flexion and a form fitting design. These gloves are ideal for any position on the field: Receiver, Running Back, Tight End, Offensive Lineman, Defensive Lineman, Linebacker or Defensive Back.</p>
+      <ul>
+        <li value="0">Meets NFHS/NCAA Specifications </li>
+        <li value="0">Performs in All Weather Conditions </li>
+        <li value="0">Machine Washable and Dryable </li>
+      </ul>
+      <p>Zugelassen im Spielbetrieb des AFVD.</p>
+    </div></div>
+          <div></div>
+        </div>
+      </div>
+      <div id="productdetails-dat" class="product">
+        
+      </div>
+      
+      <div id="productdetails-csr">
+        
+      </div>
+      <div id="productdetails-brand">
+        
+      </div>
+      <div id="productdetails-bew" class="product">
+        
+        
+      </div>
+    </div>
+  </form>
+</div>
+
+          <div class="mt-m">
+            <div id="rde_box1" class="rde"></div>
+            <div id="rde_box2" class="rde"></div>
+            <div id="rde_box3" class="rde"></div>
+            <div id="rde_box4" class="rde"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container_grid containershop_right container_last" id="main_right">
+        
+        <div id="teaser" class="appendToNavigation"><div class="sidebox">
+  <div class="caption">Weitere Infos</div>
+  <div class="content"><div class="teaser"><div>      <p align="center">        <font color="#000000" face="Verdana">          <font size="1">            <strong>Wir sind offizieller Ausr&uuml;ster der Landesverb&auml;nde und Auswahlmannschaften&nbsp;von Berlin-Brandenburg, Schleswig-Holstein</strong> </font>&nbsp;</font>&nbsp;</p>      <p align="center">        <a href="http://afcvbb.de/">          <img src="futuresport/prodpic/galerie/afcvbb.jpg" width="87" height="58" />        </a>&nbsp;</p>      <p align="center">        <a href="http://www.afvsh.de/">          <img src="futuresport/prodpic/galerie/afvsh_pin2.jpg" width="59" height="55" />        </a>&nbsp;<font face="Verdana"> <font color="#000000">            <font size="3">              <font size="4">                <strong>&nbsp;</strong> </font>            </font>          </font>        </font>      </p>      <p align="center">        <a href="http://www.afcvn.de/site/">          <img src="futuresport/prodpic/galerie/logo_afcvn.jpg" width="125" height="74" /> </a>      </p>      <p align="center">        <font size="4">          <font size="3">            <font face="Verdana">              <font color="#000000">                <font size="1">                  <strong>und des Landesverband f&uuml;r American Football und Cheerleading in Niedersachsen.</strong> </font>&nbsp;<br />              </font>              <font color="#000000">                <strong>________________________________________________</strong> </font>            </font>          </font>        </font>      </p>    </div></div>
+<div class="teaser"><div>      <p align="center">        <font color="#000000">          <font face="Verdana">&nbsp;</font> <font size="1" face="Verdana">Die Mahlow Eagles starten auch 2015 wieder den </font>        </font>      </p>      <p align="center">        <font color="#000000">          <font size="1" face="Verdana">FUTURE SPORT CUP</font> </font>      </p>      <p align="center">        <a href="http://www.mahlow-eagles.de/">          <img src="futuresport/prodpic/galerie/eagleslogo.jpg" width="133" height="105" /> </a>      </p>      <p align="center">        <font color="#000000">          <font size="1" face="Verdana">Es finden mehrere Veranstaltungen statt!</font> </font>      </p>      <p align="center">        <font color="#000000" size="1" face="Verdana">Unter folgendem Link k&ouml;nnt ihr eure Teams anmelden </font>      </p>      <p align="center">        <font color="#000000">          <font size="1" face="Verdana">und findet weitere Infos:</font> </font>      </p>      <p align="center">        <font size="1" face="Verdana">          <a href="http://www.mahlow-eagles.de/">            <font color="#004080">FUTURE SPORT CUP 2015</font> </a>        </font>      </p>    </div></div>
+<div class="teaser"><p align="center">      <strong>_____________________________________________________________________________________</strong> </p>    <p align="center">      <img src="futuresport/prodpic/galerie/paypalteaser.jpg" width="131" height="134" />&nbsp;</p></div>
+<div class="teaser"><p align="center">      <strong>_________________________________________________________________________</strong> </p>    <p align="center">      <a href="https://gls-group.eu/DE/de/home">        <img src="futuresport/prodpic/galerie/glsteaser.jpg" width="151" height="105" />      </a> </p>    <p align="center">___________________________________________________________________________</p></div>
+<div class="teaser"><div>      <a href="http://de-de.facebook.com/pages/Futspode/160655357283440">        <img src="futuresport/prodpic/galerie/findusonfacebook1.jpg" /> </a>    </div></div>
+<div class="teaser"><div>      <a href="https://twitter.com/FutSpo">        <img src="futuresport/prodpic/galerie/follow-us-on-twitter-button.jpg" /> </a>    </div></div>
+</div>
+</div></div>
+      </div>
+      <div class="container_clear"></div>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div id="footer_content">
+    <div class="container containershop">
+      <div class="container_grid containershop_left container_first footercol footercolfirst">
+        <div class="inside">
+          <div class="caption">Informationen</div>
+          <ul>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=contact" title="Kontakt" rel="nofollow">Kontakt</a></li>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=agb" title="AGB" rel="nofollow">AGB</a></li>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=widerrufsbelehrung" title="Widerrufsrecht" rel="nofollow">Widerrufsrecht</a></li>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=shippingcosts" title="Versandkosten" rel="nofollow">Versandkosten</a></li>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=templ&amp;template=impressum" title="Impressum" rel="nofollow">Impressum</a></li>
+            <li class="level0"><a class="level0" href="e-vendo.php?SessionId=&a=datenschutz" title="Datenschutz" rel="nofollow">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container_grid container_col footercol footercolmiddle">
+        <div class="inside">
+          <div class="caption">futspo.de</div>
+          
+        </div>
+      </div>
+      <div class="container_grid container_col footercol footercolmiddle">
+        <div class="inside">
+          
+        </div>
+      </div>
+      <div class="container_grid container_left container_first footercol footercollast">
+        <div class="inside">
+          <div class="company">
+            <div class="caption">Futuresport Vertriebs GmbH</div>
+            <div><br>Schustehrusstr. 23<br>D 10585 Berlin</div>
+            <div class="mt-m">
+              <table class="show2" cellspacing="0">
+                <tr>
+                  <td class="label">Tel.:</td>
+                  <td>+49 30 301 82 44</td>
+                </tr>
+                <tr>
+                  <td class="label">Fax:</td>
+                  <td>+49 30 302 93 81</td>
+                </tr>
+                <tr>
+                  <td class="label">E-Mail:</td>
+                  <td>shop@futspo.de</td>
+                </tr>
+              </table>
+              <div class="mt-s">www.futspo.de</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container_clear"></div>
+    </div>
+    <div class="container containershop">
+  <div class="container_grid containershop_left_right container_last container_first">
+    <div class="priceinfofooter">Alle Preise verstehen sich inkl. MwSt. Alle Angebote sind freibleibend zzgl. <a href="e-vendo.php?SessionId=&a=shippingcosts">Versandkosten</a> und bei Nachnahme &Uuml;bermittlungsentgelt. Irrt&uuml;mer, Druckfehler und Preis&auml;nderungen vorbehalten.<div class="hangingindent14"><a name="oldprice">1)</a> Unser ehemaliger Preis</div></div>
+  </div>
+  <div class="container_clear"></div>
+</div>
+
+  </div>
+</div>
+<div id="switchDesktop" class="acenter"><a href="American-Football-Shop/Football-Handschuhe/leicht-gepolsterte-Handschuhe/Gamer-S60-LB-RB-Gloves-Cutters-Shockskin-Model-.htm?SessionId=&a=article&ProdNr=FBCG&p=63" onClick="setOrDeleteCookie('e-vendo_desktop', 'true')">Zur klassischen Ansicht wechseln</a></div>
+<script type="text/javascript">if(isDesktop)$("#switchDesktop > a").text("Zur mobilen Ansicht wechseln");</script>
+<div id="shopversion">Realisiert mit: e-vendo Shop</div>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof (rde_events) == 'undefined')
+  rde_events = new Array();
+var rde = new Object({
+"reid" : "c03b7ac0ed47",
+"sessionid" : "0525x3b6f2aaf12de3785d067625f3cf721f0",
+"userid" : null,
+"templatename" : "productview",
+"productid" : "pid_FBCG",
+"debug" : false,
+});
+rde_events.push(rde);
+var rde = new Object({
+  "reid" : "c03b7ac0ed47",
+  "sessionid" : "0525x3b6f2aaf12de3785d067625f3cf721f0",
+  "userid" : null,
+  "categoryid" : "cid_63",
+  "productid" : "pid_FBCG",
+  "productidlist" : "",
+  "searchterm" : "",
+  "dynamicblacklist" : new Object({
+    "box1" : "pid_FBCG",
+    "box2" : "pid_FBCG",
+    "box3" : "pid_FBCG",
+    "box4" : "pid_FBCG",
+  }),
+  "allowcookies" : true,
+  "allowsession" : true,
+  "templatename" : "productpage",
+  "debug" : false,
+});
+rde_events.push(rde);
+//]]>
+</script>
+<script src="futuresport/js/rde/e-vendo_rde.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var rdeserver = "rde-151.e-vendo.de";
+var rde_brutto_netto = 'brutto';
+var rde_evendo_sessionid = '';
+var rde_shop = 'futuresport';
+if ('okay' == 'okay')
+  rde_load_script('futuresport');
+//]]>
+</script>
+
+
+<div id="ajaxBusy"></div>
+<script type="text/javascript"><!--
+if ("" == "OFFER")
+  ChangeAktiv('Sonderangebote');
+jQuery(document).ready(function($) {
+  if ($.trim($("#box .boxi").html()) == "") $("#box").hide();
+  if ($.trim($("#productdetails-brand").html()) != "") $("#tabproductdetails-brand").show();
+  if (isPrintVersion() || isMobile) printTabs($, "#productdetails");
+});
+//--></script>
+</body>
+</html>
+
+
+<!--
+----------------------------------------
+| Shopsystem: e-vendo (www.e-vendo.de) |
+----------------------------------------
+//-->
+
+<!-- futuresport/e-vendo/cache_evendo_prod/82c4abea005f1e241a4ce9dc0d731403.htm_model, 22.02.2015 09:33 Uhr -->
