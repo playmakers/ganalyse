@@ -4,8 +4,9 @@ import (
   "./lib/ganalyse"
   "./lib/tracker"
   "./lib/vendors"
-  "sync"
+  // "sync"
   "fmt"
+  "time"
   // "os/exec"
 )
 
@@ -60,10 +61,12 @@ func main() {
 
   // TODO execute speadsheet downloader
 
-  var wg sync.WaitGroup
+  // var wg sync.WaitGroup
 
   // //*** read file/google doc
   entries := ganalyse.ParseCsv("examples/data.csv")
+
+  trackingId := time.Now().Unix()
 
   //*** get data from given urls
   for _, entry := range entries {
@@ -71,9 +74,9 @@ func main() {
     for shop, url := range entry.Shops {
 
       //*** download(targetUrl)
-      wg.Add(1)
+      // wg.Add(1)
       func(productShop string, productId int, variantId int, productName string, productUrl string){
-        defer wg.Done()
+        // defer wg.Done()
         filename := ganalyse.StoreUrl(productShop, productName, productUrl)
         data := ganalyse.LoadFile(filename)
         product := parse(productShop, data)
@@ -81,6 +84,7 @@ func main() {
           fmt.Printf(" --> %s: %v\n", productShop, product.String())
           tracker.Track(
             productShop,
+            trackingId,
             productId,
             variantId,
             product,
@@ -90,6 +94,8 @@ func main() {
       }(shop, entry.Id, entry.VariantId, entry.Name, url)
     }
   }
+
+  fmt.Println(trackingId)
 
   // wg.Wait()
 

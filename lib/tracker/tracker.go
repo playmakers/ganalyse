@@ -5,10 +5,9 @@ import (
   "net/http"
   "net/url"
   s "strings"
-  "time"
   "strconv"
   "../ganalyse"
-
+  "code.google.com/p/go-uuid/uuid"
 )
 
 const (
@@ -34,13 +33,23 @@ func send2(url string, values url.Values) {
   defer resp.Body.Close()
 }
 
-func Track(shop string, productId int, variantId int, product *ganalyse.Product, variant *ganalyse.Variant) {
+func Track(shop string, trackingId int64, productId int, variantId int, product *ganalyse.Product, variant *ganalyse.Variant) {
+  uuid := uuid.NewRandom()
+  fmt.Println(uuid)
   vals := make(url.Values, 0)
   vals.Add("v", "1")
+  vals.Add("ds", "ganalyse")
   vals.Add("tid", NUMBER)
-  vals.Add("cid", "31fe906c-2aac-4821-a1ee-d0a9a09c2e0b")
+  vals.Add("cid", uuid.String())
   vals.Add("t", "pageview")
-  vals.Add("dp", fmt.Sprintf("/%d", time.Now().Unix()))
+  vals.Add("dp", "/")
+  vals.Add("uid", shop) // opt.
+  vals.Add("ci", fmt.Sprintf("%d", trackingId))
+  vals.Add("cn", fmt.Sprintf("%d", trackingId))
+  vals.Add("cm", "auto")
+  vals.Add("cs", "direct")
+  vals.Add("ck", shop)
+
   vals.Add("cd1", shop)
   // vals.Add("cd2", productType)
   // vals.Add("cd3", product.Name)
