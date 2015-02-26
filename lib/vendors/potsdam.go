@@ -7,7 +7,7 @@ import (
 func InspectPotsdam(productPage []byte) *ganalyse.Product {
   doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find(".productName").Text(),
   }
 
@@ -49,6 +49,6 @@ func InspectPotsdam(productPage []byte) *ganalyse.Product {
     }
   }
 
-  return &product
+  return product
 }
 

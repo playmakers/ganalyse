@@ -76,7 +76,7 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
     return splitAry[len(splitAry)-1]
   }(doc.Find("meta[property='og:url']").Attr("content"))
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
   }
 
@@ -105,5 +105,5 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
     })
   })
 
-  return &product
+  return product
 }

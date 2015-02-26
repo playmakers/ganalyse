@@ -14,9 +14,9 @@ func InspectFutspo(productPage []byte) *ganalyse.Product {
     "gruen": 50,
   }
 
-  doc := ganalyse.Parse(productPage, "utf-8")
+  doc := ganalyse.Parse(productPage, "iso-8859-1")
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find("span.product").Text(),
   }
 
@@ -47,7 +47,7 @@ func InspectFutspo(productPage []byte) *ganalyse.Product {
   }
 
 
-  return &product
+  return product
 }
 
 

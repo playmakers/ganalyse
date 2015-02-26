@@ -20,7 +20,7 @@ func InspectDocA(productPage []byte) *ganalyse.Product {
 
   doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find("h1").Text(),
   }
 
@@ -28,6 +28,6 @@ func InspectDocA(productPage []byte) *ganalyse.Product {
 
   product.AddVariant(DEFAULT_SIZE, DEFAULT_COLOR, price, 0)
 
-  return &product
+  return product
 }
 

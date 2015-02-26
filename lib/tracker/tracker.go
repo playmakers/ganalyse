@@ -28,19 +28,17 @@ func send1(url string, values url.Values) {
 func send2(url string, values url.Values) {
   client := &http.Client{}
   req, _ := http.NewRequest("POST", url, s.NewReader(values.Encode()))
-  req.Header.Add("User-Agent", "myClient")
+  req.Header.Add("User-Agent", "ganalyse")
   resp, _ := client.Do(req)
   defer resp.Body.Close()
 }
 
 func Track(shop string, trackingId int64, productId int, variantId int, product *ganalyse.Product, variant *ganalyse.Variant) {
-  uuid := uuid.NewRandom()
-  fmt.Println(uuid)
   vals := make(url.Values, 0)
   vals.Add("v", "1")
   vals.Add("ds", "ganalyse")
   vals.Add("tid", NUMBER)
-  vals.Add("cid", uuid.String())
+  vals.Add("cid", uuid.NewRandom().String())
   vals.Add("t", "pageview")
   vals.Add("dp", "/")
   vals.Add("uid", shop) // opt.

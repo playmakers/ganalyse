@@ -25,7 +25,7 @@ func (v *Variant) String() string {
 type Product struct{
   id int
   Name string
-  Variants map[string]Variant
+  Variants map[string]*Variant
 }
 
 func (p *Product) String() (out string) {
@@ -55,7 +55,7 @@ type attrResolver func(*Variant) string
 func (p *Product) findOrSmallest(token string, attr attrResolver) string {
   smallest := "zz"
   for _, variant := range p.Variants {
-    found := attr(&variant)
+    found := attr(variant)
     if token == found {
       return found
     }
@@ -69,7 +69,7 @@ func (p *Product) findOrSmallest(token string, attr attrResolver) string {
 func (p *Product) findAll(attr attrResolver) (keys []string) {
   values := map[string]int{}
   for _, variant := range p.Variants {
-    values[attr(&variant)] = 0
+    values[attr(variant)] = 0
   }
 
   for key, _ := range values {
@@ -80,10 +80,10 @@ func (p *Product) findAll(attr attrResolver) (keys []string) {
 
 func (p *Product) AddVariant(size string, color string, price float64, availability int) {
   if p.Variants == nil {
-    p.Variants = make(map[string]Variant)
+    p.Variants = make(map[string]*Variant)
   }
 
-  p.Variants[p.key(size, color)] = Variant {
+  p.Variants[p.key(size, color)] = &Variant {
     Size: size,
     Color: color,
     Price: price,
@@ -94,7 +94,7 @@ func (p *Product) AddVariant(size string, color string, price float64, availabil
 func (p *Product) Get(key string) *Variant {
   if p.Variants != nil {
     if val, ok := p.Variants[key]; ok {
-      return &val
+      return val
     }
   }
   return nil

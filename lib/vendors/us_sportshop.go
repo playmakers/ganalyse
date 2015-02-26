@@ -13,7 +13,7 @@ func InspectUsSportshop(productPage []byte) *ganalyse.Product {
     return splitAry[0]
   }(doc.Find("h1").Last().Html())
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: name,
   }
 
@@ -71,6 +71,6 @@ func InspectUsSportshop(productPage []byte) *ganalyse.Product {
     }
   }
 
-  return &product
+  return product
 }
 

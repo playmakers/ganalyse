@@ -20,7 +20,7 @@ func InspectBossHogg(productPage []byte) *ganalyse.Product {
 
   doc := ganalyse.Parse(productPage, "utf-8")
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find("h1").Text(),
   }
 
@@ -47,6 +47,6 @@ func InspectBossHogg(productPage []byte) *ganalyse.Product {
   //   })
   // })
 
-  return &product
+  return product
 }
 

@@ -10,7 +10,7 @@ import (
 func InspectFirstDown(productPage []byte) *ganalyse.Product {
   doc := ganalyse.Parse(productPage, "iso-8859-1")
 
-  product := ganalyse.Product {
+  product := &ganalyse.Product {
     Name: doc.Find("h1").Text(),
   }
 
@@ -30,6 +30,6 @@ func InspectFirstDown(productPage []byte) *ganalyse.Product {
     }
   }
 
-  return &product
+  return product
 }
 

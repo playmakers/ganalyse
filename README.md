@@ -17,18 +17,29 @@ Google Analytics Rocks
 
 
 ## Execute
+To run script, execute:
 
 ```
 go run main.go
 
 ```
 
+## Test
+To run specs, execute:
+
+```
+ginkgo specs/vendors
+
+```
+
 ## Todo
 
-* udpate source to have PM column in first place
-* remember column/row and write back
-* store to DB?
-* use: http://onsi.github.io/ginkgo/
+* [x] udpate source to have PM column in first place
+* [x] use: http://onsi.github.io/ginkgo/
+* [ ] remember column/row and write back
+* [ ] store to DB?
+* [ ] add server to start job?
+
 
 ## Help
 
