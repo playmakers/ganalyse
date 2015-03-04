@@ -2,7 +2,7 @@ package main
 
 import (
   "./lib/ganalyse"
-  "./lib/tracker"
+  // "./lib/tracker"
   "./lib/vendors"
   // "sync"
   "fmt"
@@ -82,14 +82,14 @@ func main() {
         product := parse(productShop, data)
         if product != nil {
           fmt.Printf(" --> %s: %v\n", productShop, product.String())
-          tracker.Track(
-            productShop,
-            trackingId,
-            productId,
-            variantId,
-            product,
-            product.DefaultVariant(),
-          )
+          // tracker.Track(
+          //   productShop,
+          //   trackingId,
+          //   productId,
+          //   variantId,
+          //   product,
+          //   product.DefaultVariant(),
+          // )
         }
       }(shop, entry.Id, entry.VariantId, entry.Name, url)
     }

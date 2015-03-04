@@ -16,6 +16,10 @@ func InspectFutspo(productPage []byte) *ganalyse.Product {
 
   doc := ganalyse.Parse(productPage, "iso-8859-1")
 
+  if doc.Find("title").Text() == "futspo.de - Bitte beachten Sie!" {
+    return nil
+  }
+
   product := &ganalyse.Product {
     Name: doc.Find("span.product").Text(),
   }

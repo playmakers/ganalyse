@@ -7,6 +7,8 @@ import (
   "net/http"
   "io/ioutil"
   "os"
+  "log"
+  "errors"
   "encoding/csv"
   "path/filepath"
 )
@@ -29,18 +31,19 @@ func fileFor(productId string) string {
  return fmt.Sprintf("%s.html", productId)
 }
 
-func loadUrl(url string) []byte {
+func loadUrl(url string) ([]byte, error) {
   resp, err := http.Get(url)
   defer resp.Body.Close()
 
-  // TODO handle 404 / and other errors
   if err != nil {
-   // handle error
-
+    log.Fatal("Couldn't load URL")
+  }
+  if resp.StatusCode == 404 {
+    return nil, errors.New("Page not available")
   }
 
   body, _ := ioutil.ReadAll(resp.Body)
-  return body
+  return body, nil
 }
 
 func LoadFile(path string) []byte {
@@ -71,7 +74,9 @@ func StoreUrl(shop string, productId string, url string) (filename string) {
   filename = filepath.Join(pathFor(shop), fileFor(productId))
   if _, err := os.Stat(filename); os.IsNotExist(err) {
     fmt.Printf("Processing: %s, %s\n", filename, url)
-    storeFile(filename, loadUrl(url))
+    if content, err := loadUrl(url); err == nil {
+      storeFile(filename, content)
+    }
   }
   return
 }
