@@ -60,5 +60,5 @@ func Track(shop string, trackingId int64, productId int, variantId int, product 
   vals.Add("cm1", fmt.Sprintf("%.2f", variant.Price))
   vals.Add("cm2", strconv.Itoa(variant.Availability))
 
-  send2(URL, vals)
+  // send2(URL, vals)
 }
