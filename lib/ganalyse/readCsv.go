@@ -72,11 +72,12 @@ func readCsv(fileName string) (records [][]string) {
 // ------------------------------------------
 func StoreUrl(shop string, productId string, url string) (filename string) {
   filename = filepath.Join(pathFor(shop), fileFor(productId))
-  if _, err := os.Stat(filename); os.IsNotExist(err) {
-    fmt.Printf("Processing: %s, %s\n", filename, url)
-    if content, err := loadUrl(url); err == nil {
-      storeFile(filename, content)
-    }
+  if _, err := os.Stat(filename); err == nil {
+    os.Remove(filename)
+  }
+  fmt.Printf("Processing: %s, %s\n", filename, url)
+  if content, err := loadUrl(url); err == nil {
+    storeFile(filename, content)
   }
   return
 }
