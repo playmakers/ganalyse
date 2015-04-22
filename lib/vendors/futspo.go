@@ -2,25 +2,24 @@ package vendors
 
 import (
 	"encoding/csv"
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"regexp"
 	s "strings"
 )
 
-func InspectFutspo(productPage []byte) *ganalyse.Product {
+func InspectFutspo(productPage []byte) *Product {
 	availabilityMapping := map[string]int{
 		"rot":   0,
 		"gelb":  5,
 		"gruen": 50,
 	}
 
-	doc := ganalyse.Parse(productPage, "iso-8859-1")
+	doc := Parse(productPage, "iso-8859-1")
 
 	if doc.Find("title").Text() == "futspo.de - Bitte beachten Sie!" {
 		return nil
 	}
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find("span.product").Text(),
 	}
 
@@ -40,7 +39,7 @@ func InspectFutspo(productPage []byte) *ganalyse.Product {
 				return value
 			}(records[1])
 
-			price := ganalyse.NormPrice(records[4])
+			price := NormPrice(records[4])
 
 			availability := func(value string) int {
 				return availabilityMapping[value]

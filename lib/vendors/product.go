@@ -1,4 +1,4 @@
-package ganalyse
+package vendors
 
 import (
 	"fmt"

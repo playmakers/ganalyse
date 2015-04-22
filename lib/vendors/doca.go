@@ -1,12 +1,11 @@
 package vendors
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
-	// "fmt"
-	// "github.com/PuerkitoBio/goquery"
+// "fmt"
+// "github.com/PuerkitoBio/goquery"
 )
 
-func InspectDocA(productPage []byte) *ganalyse.Product {
+func InspectDocA(productPage []byte) *Product {
 	// sizeMapping := map[string]string {
 	//   // "76": "XS",
 	//   "1": "S",
@@ -18,13 +17,13 @@ func InspectDocA(productPage []byte) *ganalyse.Product {
 	//   // "39": "4XL",
 	// }
 
-	doc := ganalyse.Parse(productPage, "utf-8")
+	doc := Parse(productPage, "utf-8")
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find("h1").Text(),
 	}
 
-	price := ganalyse.NormPrice(doc.Find(".article_details_price strong").Text())
+	price := NormPrice(doc.Find(".article_details_price strong").Text())
 
 	product.AddVariant(DEFAULT_SIZE, DEFAULT_COLOR, price, 0)
 

@@ -3,7 +3,6 @@ package vendors
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"net/http"
 	"net/url"
 	s "strings"
@@ -32,7 +31,7 @@ func login(loginUrl, login string, password string) (requrl string) {
 	return
 }
 
-func InspectMeyer(productPage []byte) *ganalyse.Product {
+func InspectMeyer(productPage []byte) *Product {
 	availabilityMapping := map[string]int{
 		"inpQtyRed":    0,
 		"inpQtyYellow": 5,
@@ -69,14 +68,14 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
 		"WHI": "",
 	}
 
-	doc := ganalyse.Parse(productPage, "utf-8")
+	doc := Parse(productPage, "utf-8")
 
 	productId := func(value string, exists bool) string {
 		splitAry := s.Split(value, "=")
 		return splitAry[len(splitAry)-1]
 	}(doc.Find("meta[property='og:url']").Attr("content"))
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
 	}
 
@@ -89,7 +88,7 @@ func InspectMeyer(productPage []byte) *ganalyse.Product {
 			}
 		}(productSelection.Find("td b").Text())
 
-		price := ganalyse.NormPrice(productSelection.Next().Find("b").Text())
+		price := NormPrice(productSelection.Next().Find("b").Text())
 
 		productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
 			size := func(value string, exists bool) string {

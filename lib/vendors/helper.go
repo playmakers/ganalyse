@@ -3,7 +3,6 @@ package vendors
 import (
 	// "fmt"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"regexp"
 	s "strings"
 )
@@ -56,7 +55,7 @@ func getSizes(selection *goquery.Selection, regMatcher *regexp.Regexp) (sizes []
 		if len(r) > 0 {
 			sizes = append(sizes, sizeWithPrice{
 				size:  r[0][1],
-				price: ganalyse.NormPrice(r[0][3]),
+				price: NormPrice(r[0][3]),
 			})
 		}
 	})

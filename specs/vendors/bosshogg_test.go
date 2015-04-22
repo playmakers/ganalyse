@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/BossHogg", func() {
 	var exampleFile string
-	var subject ganalyse.Product
-	var variant ganalyse.Variant
+	var subject Product
+	var variant Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectBossHogg(load(exampleFile))
+		subject = *InspectBossHogg(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

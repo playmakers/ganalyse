@@ -10,11 +10,11 @@ import (
 
 var _ = Describe("./Vendors/Futspo", func() {
 	var exampleFile string
-	var subject ganalyse.Product
-	var variant ganalyse.Variant
+	var subject Product
+	var variant Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectFutspo(load(exampleFile))
+		subject = *InspectFutspo(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

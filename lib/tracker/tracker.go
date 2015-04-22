@@ -33,7 +33,7 @@ func send2(url string, values url.Values) {
 	defer resp.Body.Close()
 }
 
-func Track(shop string, trackingId int64, productId int, variantId int, product *ganalyse.Product, variant *ganalyse.Variant) {
+func Track(shop string, trackingId int64, productId int, variantId int, product *vendors.Product, variant *vendors.Variant) {
 	vals := make(url.Values, 0)
 	vals.Add("v", "1")
 	vals.Add("ds", "ganalyse")

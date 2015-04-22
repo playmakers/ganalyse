@@ -1,19 +1,18 @@
 package vendors
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	s "strings"
 )
 
-func InspectSportsAndCheer(productPage []byte) *ganalyse.Product {
-	doc := ganalyse.Parse(productPage, "iso-8859-1")
+func InspectSportsAndCheer(productPage []byte) *Product {
+	doc := Parse(productPage, "iso-8859-1")
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: s.TrimSpace(doc.Find("h1").Text()),
 	}
 
 	price := func(value string, exists bool) float64 {
-		return ganalyse.NormPrice(value)
+		return NormPrice(value)
 	}(doc.Find("input[name=\"vk_brutto\"]").Attr("value"))
 
 	sizes := getValues(

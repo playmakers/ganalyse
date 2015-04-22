@@ -1,17 +1,15 @@
 package vendors
 
-import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
-)
+import ()
 
-func InspectForelle(productPage []byte) *ganalyse.Product {
-	doc := ganalyse.Parse(productPage, "utf-8")
+func InspectForelle(productPage []byte) *Product {
+	doc := Parse(productPage, "utf-8")
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find("h1").First().Text(),
 	}
 
-	price := ganalyse.NormPrice(doc.Find(".art-price").Text())
+	price := NormPrice(doc.Find(".art-price").Text())
 
 	sizes := getValues(
 		doc.Find(".sizes input"),

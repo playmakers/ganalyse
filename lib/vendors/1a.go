@@ -1,18 +1,17 @@
 package vendors
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"regexp"
 )
 
-func Inspect1A(productPage []byte) *ganalyse.Product {
-	doc := ganalyse.Parse(productPage, "iso-8859-1")
+func Inspect1A(productPage []byte) *Product {
+	doc := Parse(productPage, "iso-8859-1")
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find("h1").Text(),
 	}
 
-	price := ganalyse.NormPrice(doc.Find("#price").Text())
+	price := NormPrice(doc.Find("#price").Text())
 
 	sizes := getSizes(
 		findOption(doc.Find("select"), "Größe"),

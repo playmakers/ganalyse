@@ -1,17 +1,15 @@
 package vendors
 
-import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
-)
+import ()
 
-func InspectPotsdam(productPage []byte) *ganalyse.Product {
-	doc := ganalyse.Parse(productPage, "utf-8")
+func InspectPotsdam(productPage []byte) *Product {
+	doc := Parse(productPage, "utf-8")
 
-	product := &ganalyse.Product{
+	product := &Product{
 		Name: doc.Find(".productName").Text(),
 	}
 
-	price := ganalyse.NormPrice(doc.Find(".productPrice").Text())
+	price := NormPrice(doc.Find(".productPrice").Text())
 
 	sizes := getValues(
 		doc.Find("select[name=\"id[2]\"] option"),

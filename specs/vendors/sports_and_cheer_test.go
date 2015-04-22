@@ -10,11 +10,11 @@ import (
 
 var _ = Describe("./Vendors/SportsAndCheer", func() {
 	var exampleFile string
-	var subject ganalyse.Product
-	var variant ganalyse.Variant
+	var subject Product
+	var variant Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectSportsAndCheer(load(exampleFile))
+		subject = *InspectSportsAndCheer(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

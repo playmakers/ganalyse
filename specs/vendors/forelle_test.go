@@ -10,11 +10,11 @@ import (
 
 var _ = Describe("./Vendors/Forelle", func() {
 	var exampleFile string
-	var subject ganalyse.Product
-	var variant ganalyse.Variant
+	var subject Product
+	var variant Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectForelle(load(exampleFile))
+		subject = *InspectForelle(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
