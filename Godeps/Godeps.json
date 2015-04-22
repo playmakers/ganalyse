@@ -8,11 +8,6 @@
 			"Rev": "5d796540e3cb93ea0556c897e6a3c7690f614d35"
 		},
 		{
-			"ImportPath": "code.google.com/p/go-uuid/uuid",
-			"Comment": "null-15",
-			"Rev": "35bc42037350f0078e3c974c6ea690f1926603ab"
-		},
-		{
 			"ImportPath": "github.com/PuerkitoBio/goquery",
 			"Comment": "v0.3.2-66-g12a46cd",
 			"Rev": "12a46cd4a183cabd212b37144cf4df55454cf1b8"
@@ -30,6 +25,14 @@
 			"ImportPath": "github.com/go-martini/martini",
 			"Comment": "v1.0-124-gd398859",
 			"Rev": "d39885924ac22dcafaa9fd452a3af1261107799d"
+		},
+		{
+			"ImportPath": "github.com/martini-contrib/render",
+			"Rev": "b65063311fac6cbf84d3538f5715f7847e648322"
+		},
+		{
+			"ImportPath": "github.com/oxtoacart/bpool",
+			"Rev": "754d38fccfc6e52083355014b6abc8d626445dfd"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",

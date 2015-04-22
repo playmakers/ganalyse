@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/go-martini/martini"
+	"github.com/martini-contrib/render"
 	"net/http"
 	// "log"
 	"github.com/playmakers/ganalyse/lib/ganalyse"
@@ -65,15 +66,19 @@ var port = os.Getenv("PORT")
 
 func main() {
 	m := martini.Classic()
+	m.Use(render.Renderer())
 
-	m.Get("/extract/:vendor", func(params martini.Params, req *http.Request) string {
-		url := req.URL.Query().Get("url")
+	m.Get("/extract", func(req *http.Request, r render.Render) {
+		params := req.URL.Query()
+		vendor := params.Get("vendor")
+		url := params.Get("url")
 		data, _ := ganalyse.LoadUrl(url)
-		product := parse(params["vendor"], data)
+		product := parse(vendor, data)
 		if product != nil {
-			return product.String()
+			r.JSON(200, product)
 		} else {
-			return "Couldn't parse" + params["vendor"] + " " + url
+			r.JSON(500, map[string]interface{}{"message": "error", "vendor": vendor, "url": url})
+			// return "Couldn't parse " + vendor + " " + url
 		}
 	})
 
