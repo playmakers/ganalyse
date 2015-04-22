@@ -3,9 +3,8 @@ package main
 import (
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
-	"net/http"
-	// "log"
 	"github.com/playmakers/ganalyse/lib/ganalyse"
+	"net/http"
 	"os"
 )
 

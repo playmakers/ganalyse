@@ -1,9 +1,6 @@
 package vendors
 
-import (
-// "fmt"
-// "github.com/PuerkitoBio/goquery"
-)
+import ()
 
 func InspectDocA(productPage []byte) *Product {
 	// sizeMapping := map[string]string {
@@ -20,7 +17,7 @@ func InspectDocA(productPage []byte) *Product {
 	doc := Parse(productPage, "utf-8")
 
 	product := &Product{
-		Name: doc.Find("h1").Text(),
+		Name: doc.Find(".right h1").Text(),
 	}
 
 	price := NormPrice(doc.Find(".article_details_price strong").Text())

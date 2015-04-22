@@ -1,9 +1,6 @@
 package vendors
 
-import (
-// "fmt"
-// "github.com/PuerkitoBio/goquery"
-)
+import ()
 
 func InspectBossHogg(productPage []byte) *Product {
 	// sizeMapping := map[string]string {

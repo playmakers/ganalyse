@@ -9,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/1a", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *Inspect1A(load(exampleFile))
+		subject = *vendors.Inspect1A(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
@@ -41,7 +41,7 @@ var _ = Describe("./Vendors/1a", func() {
 
 	Context("when Variants are available", func() {
 		BeforeEach(func() {
-			exampleFile = "1a/cutters60.html"
+			exampleFile = "1a/cutterss60.html"
 		})
 
 		It("Extracts vendor Size", func() {

@@ -1,8 +1,9 @@
 package vendors
 
 import (
-	// "fmt"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/djimenez/iconv-go"
+	"io"
 	"regexp"
 	s "strings"
 )
@@ -19,6 +20,16 @@ const (
 	DEFAULT_COLOR        = "Schwarz"
 	DEFAULT_AVAILABILITY = 10
 )
+
+func Parse(data []byte, charset string) (doc *goquery.Document) {
+	var reader io.Reader
+	reader = s.NewReader(string(data))
+	if charset != "utf-8" {
+		reader, _ = iconv.NewReader(reader, charset, "utf-8")
+	}
+	doc, _ = goquery.NewDocumentFromReader(reader)
+	return
+}
 
 func findOption(haystack *goquery.Selection, needle string) *goquery.Selection {
 	return haystack.FilterFunction(func(i int, selection *goquery.Selection) bool {

@@ -2,9 +2,7 @@ package vendors
 
 import (
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
-	"github.com/djimenez/iconv-go"
-	"io"
+	"log"
 	"regexp"
 	"strconv"
 	s "strings"
@@ -44,7 +42,7 @@ func (p *Product) DefaultVariant() (variant *Variant) {
 		colors := p.findAll(func(v *Variant) string { return v.Color })
 		size := p.findOrSmallest("L", func(v *Variant) string { return v.Size })
 		color := p.findOrSmallest("Schwarz", func(v *Variant) string { return v.Color })
-		fmt.Println(" No default found in:", sizes, colors, " using instead:", size, color)
+		log.Println(" No default found in:", sizes, colors, " using instead:", size, color)
 		variant = p.Get(p.key(size, color))
 	}
 	return
@@ -102,19 +100,11 @@ func (p *Product) Get(key string) *Variant {
 
 // -----------------------------
 
-func Parse(data []byte, charset string) (doc *goquery.Document) {
-	var reader io.Reader
-	reader = s.NewReader(string(data))
-	if charset != "utf-8" {
-		reader, _ = iconv.NewReader(reader, charset, "utf-8")
-	}
-	doc, _ = goquery.NewDocumentFromReader(reader)
-	return
-}
-
 func NormPrice(value string) (price float64) { //TODO move to model?
+	// log.Println(value)
 	regMatcher := regexp.MustCompile(`([\d,.]+)`)
 	r := regMatcher.FindAllStringSubmatch(value, -1)
+	// log.Println(r)
 	if len(r) > 0 {
 		value = s.Replace(r[0][1], ",", ".", -1)
 		price, _ = strconv.ParseFloat(value, 64)

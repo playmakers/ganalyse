@@ -10,7 +10,7 @@ import (
 
 func load(filename string) []byte {
 	filename = "../../examples/" + filename
-	return LoadFile(filename)
+	return ganalyse.LoadFile(filename)
 }
 
 func TestVendors(t *testing.T) {

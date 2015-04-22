@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,16 +9,16 @@ import (
 
 var _ = Describe("./Vendors/SportsAndCheer", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectSportsAndCheer(load(exampleFile))
+		subject = *vendors.InspectSportsAndCheer(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
 	BeforeEach(func() {
-		exampleFile = "sportsandcheer/cutters60.html"
+		exampleFile = "sportsandcheer/cutterss60.html"
 	})
 
 	It("Extracts title", func() {

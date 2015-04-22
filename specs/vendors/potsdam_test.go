@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/Potsdam", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectPotsdam(load(exampleFile))
+		subject = *vendors.InspectPotsdam(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
@@ -50,7 +49,7 @@ var _ = Describe("./Vendors/Potsdam", func() {
 		})
 
 		It("Extracts vendor Size", func() {
-			Expect(variant.Size).To(Equal("L"))
+			Expect(variant.Size).To(Equal("S"))
 		})
 
 		It("Extracts vendor Color", func() {

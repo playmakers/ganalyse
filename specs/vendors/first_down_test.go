@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/FirstDown", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectFirstDown(load(exampleFile))
+		subject = *vendors.InspectFirstDown(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
@@ -35,7 +34,7 @@ var _ = Describe("./Vendors/FirstDown", func() {
 	})
 
 	It("Extracts vendor Price", func() {
-		Expect(variant.Price).To(Equal(170.0))
+		Expect(variant.Price).To(Equal(180.0))
 	})
 
 })

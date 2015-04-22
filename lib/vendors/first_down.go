@@ -1,9 +1,7 @@
 package vendors
 
-// TODO
 import (
 	"regexp"
-	// "github.com/PuerkitoBio/goquery"
 )
 
 func InspectFirstDown(productPage []byte) *Product {

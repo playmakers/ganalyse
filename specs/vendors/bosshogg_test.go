@@ -9,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/BossHogg", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectBossHogg(load(exampleFile))
+		subject = *vendors.InspectBossHogg(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

@@ -9,20 +9,20 @@ import (
 
 var _ = Describe("./Vendors/DocA", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectDocA(load(exampleFile))
+		subject = *vendors.InspectDocA(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
 	BeforeEach(func() {
-		exampleFile = "doca/nikesuperbad3.0.html"
+		exampleFile = "doca/nikevaporjet3.0.html"
 	})
 
-	It("Extracts title", func() {
-		Expect(subject.Name).To(Equal("Nike Superbad 3.0 Black"))
+	FIt("Extracts title", func() {
+		Expect(subject.Name).To(Equal("Nike Vapor Jet 3.0 Black XLarge"))
 	})
 
 	It("Extracts vendor Size", func() {
@@ -34,7 +34,7 @@ var _ = Describe("./Vendors/DocA", func() {
 	})
 
 	It("Extracts vendor Price", func() {
-		Expect(variant.Price).To(Equal(59.90))
+		Expect(variant.Price).To(Equal(54.90))
 	})
 
 })

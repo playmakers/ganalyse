@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,16 +9,16 @@ import (
 
 var _ = Describe("./Vendors/Futspo", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectFutspo(load(exampleFile))
+		subject = *vendors.InspectFutspo(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
 	BeforeEach(func() {
-		exampleFile = "futspo/cutters60.html"
+		exampleFile = "futspo/cutterss60.html"
 	})
 
 	It("Extracts title", func() {
@@ -35,7 +34,7 @@ var _ = Describe("./Vendors/Futspo", func() {
 	})
 
 	It("Extracts vendor Price", func() {
-		Expect(variant.Price).To(Equal(59.95))
+		Expect(variant.Price).To(Equal(69.95))
 	})
 
 })

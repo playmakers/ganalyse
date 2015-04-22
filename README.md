@@ -1,21 +1,6 @@
 # Ganalyse
 Google Analytics Rocks
 
-## Algo
-
-### Prepare:
-
-- google sheet with product/variant id, status
-
-
-### Process
-
-- read file/google doc
-- get data from given urls
-- send to ga with custom dimensions/value
-- update google doc with values & status
-
-
 ## Execute
 To run script, execute:
 
@@ -23,6 +8,8 @@ To run script, execute:
 go run main.go
 
 ```
+
+and open browser on http://localhost:3000
 
 ## Test
 To run specs, execute:
@@ -32,28 +19,24 @@ ginkgo specs/vendors
 
 ```
 
-## Todo
+## Deploy
 
-* [x] udpate source to have PM column in first place
-* [x] use: http://onsi.github.io/ginkgo/
-* [ ] remember column/row and write back
-* [ ] store to DB?
-* [ ] add server to start job?
+Before deployment, make sure to update dependencies
 
+`godep save`
+
+more see: http://mmcgrana.github.io/2012/09/getting-started-with-go-on-heroku.html
+
+### run single spec
+Add a `F` in front of the line to focus on. See http://onsi.github.io/ginkgo/#focused-specs
+
+## TODO
+
+- [ ] Resolve Multiple URL
+- [ ] Color, Size Mapping
+- [ ] better JSON output?
 
 ## Help
 
 * https://gobyexample.com/channels
 * https://golang.org/doc/effective_go.html
-* https://github.com/go-sql-driver/mysql/wiki/Examples
-
-
-```
-  bundle install --path vendor/bundle
-```
-
-
-
-  // DEFAULT_SIZE  = "L"
-  // DEFAULT_COLOR = "Schwarz"
-  // DEFAULT_POS   = "???"

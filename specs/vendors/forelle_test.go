@@ -1,7 +1,6 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
 
 	. "github.com/onsi/ginkgo"
@@ -10,11 +9,11 @@ import (
 
 var _ = Describe("./Vendors/Forelle", func() {
 	var exampleFile string
-	var subject Product
-	var variant Variant
+	var subject vendors.Product
+	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *InspectForelle(load(exampleFile))
+		subject = *vendors.InspectForelle(load(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
