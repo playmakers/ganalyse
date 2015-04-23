@@ -3,3 +3,6 @@ test:
 
 run:
 	go run main.go
+
+dependencies:
+	godep save
