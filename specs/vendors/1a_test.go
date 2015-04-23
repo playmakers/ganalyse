@@ -13,7 +13,7 @@ var _ = Describe("./Vendors/1a", func() {
 	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.Inspect1A(load(exampleFile))
+		subject = *vendors.Inspect1A(loadExample(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

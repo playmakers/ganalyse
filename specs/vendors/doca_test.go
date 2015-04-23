@@ -13,7 +13,7 @@ var _ = Describe("./Vendors/DocA", func() {
 	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectDocA(load(exampleFile))
+		subject = *vendors.InspectDocA(loadExample(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 
@@ -21,7 +21,7 @@ var _ = Describe("./Vendors/DocA", func() {
 		exampleFile = "doca/nikevaporjet3.0.html"
 	})
 
-	FIt("Extracts title", func() {
+	It("Extracts title", func() {
 		Expect(subject.Name).To(Equal("Nike Vapor Jet 3.0 Black XLarge"))
 	})
 

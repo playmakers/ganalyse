@@ -13,7 +13,7 @@ var _ = Describe("./Vendors/BossHogg", func() {
 	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectBossHogg(load(exampleFile))
+		subject = *vendors.InspectBossHogg(loadExample(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

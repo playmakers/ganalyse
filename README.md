@@ -32,11 +32,6 @@ Add a `F` in front of the line to focus on. See http://onsi.github.io/ginkgo/#fo
 
 ## TODO
 
-- [ ] Resolve Multiple URL
+- [x] Resolve Multiple URL
 - [ ] Color, Size Mapping
 - [ ] better JSON output?
-
-## Help
-
-* https://gobyexample.com/channels
-* https://golang.org/doc/effective_go.html

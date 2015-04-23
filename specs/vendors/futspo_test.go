@@ -13,7 +13,7 @@ var _ = Describe("./Vendors/Futspo", func() {
 	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectFutspo(load(exampleFile))
+		subject = *vendors.InspectFutspo(loadExample(exampleFile))
 		variant = *subject.DefaultVariant()
 	})
 

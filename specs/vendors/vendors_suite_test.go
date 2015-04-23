@@ -1,16 +1,21 @@
 package vendors_test
 
 import (
-	"github.com/playmakers/ganalyse/lib/ganalyse"
+	"io/ioutil"
+	"log"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
 )
 
-func load(filename string) []byte {
-	filename = "../../examples/" + filename
-	return ganalyse.LoadFile(filename)
+func loadExample(path string) []byte {
+	path = "../../examples/" + path
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		log.Fatal("Couldn't load URL")
+	}
+	return data
 }
 
 func TestVendors(t *testing.T) {

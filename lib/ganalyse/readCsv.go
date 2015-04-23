@@ -2,11 +2,8 @@ package ganalyse
 
 import (
 	"encoding/csv"
-	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -31,26 +28,6 @@ func fileFor(productId string) string {
 	return fmt.Sprintf("%s.html", productId)
 }
 
-func LoadUrl(url string) ([]byte, error) {
-	resp, err := http.Get(url)
-	defer resp.Body.Close()
-
-	if err != nil {
-		log.Fatal("Couldn't load URL")
-	}
-	if resp.StatusCode == 404 {
-		return nil, errors.New("Page not available")
-	}
-
-	body, _ := ioutil.ReadAll(resp.Body)
-	return body, nil
-}
-
-func LoadFile(path string) []byte {
-	file, _ := ioutil.ReadFile(path)
-	return file
-}
-
 func storeFile(fileName string, content []byte) {
 	fmt.Printf(" --> store to: %s \n", fileName)
 	err := ioutil.WriteFile(fileName, content, 0644)
@@ -70,13 +47,13 @@ func readCsv(fileName string) (records [][]string) {
 }
 
 // ------------------------------------------
-func StoreUrl(shop string, productId string, url string) (filename string) {
+func storeUrl(shop string, productId string, url string) (filename string) {
 	filename = filepath.Join(pathFor(shop), fileFor(productId))
 	if _, err := os.Stat(filename); err == nil {
 		os.Remove(filename)
 	}
 	fmt.Printf("Processing: %s, %s\n", filename, url)
-	if content, err := LoadUrl(url); err == nil {
+	if content, err := loadUrl(url); err == nil {
 		storeFile(filename, content)
 	}
 	return
