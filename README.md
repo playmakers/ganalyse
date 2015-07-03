@@ -1,6 +1,13 @@
 # Ganalyse
 Google Analytics Rocks
 
+
+## Install
+Install dependencies:
+
+{TBD}
+
+
 ## Execute
 To run script, execute:
 

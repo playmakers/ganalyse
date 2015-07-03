@@ -39,6 +39,7 @@ func InspectMeyer(productPage []byte) *Product {
 	}
 
 	sizeMapping := map[string]string{
+		"2": "M",
 		"3": "S",
 		"4": "M",
 		"5": "L",
@@ -50,22 +51,22 @@ func InspectMeyer(productPage []byte) *Product {
 
 	colorMapping := map[string]string{
 		"BLK": "Schwarz",
-		"BOR": "",
-		"CRD": "",
-		"DGR": "",
-		"GLD": "",
-		"GRE": "",
+		"BOR": "Orange",
+		// "CRD": "",
+		// "DGR": "",
+		"GLD": "Gelb",
+		"GRE": "Grün",
 		"KEL": "",
-		"MAR": "",
-		"NAV": "",
-		"OGO": "",
-		"PUR": "",
-		"ROY": "",
-		"SBG": "",
-		"SCA": "",
-		"SIL": "",
-		"VGO": "",
-		"WHI": "",
+		// "MAR": "",
+		"NAV": "Navy-Blau",
+		"OGO": "Gold",
+		"PUR": "Lila",
+		"ROY": "Royal-Blau",
+		// "SBG": "",
+		"SCA": "Rot",
+		"SIL": "Silber",
+		// "VGO": "",
+		"WHI": "Weiß",
 	}
 
 	doc := Parse(productPage, "utf-8")
@@ -82,10 +83,11 @@ func InspectMeyer(productPage []byte) *Product {
 	doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
 		color := func(value string) string {
 			if len(value) >= 3 {
-				return colorMapping[string(value[0:3])]
-			} else {
-				return ""
+				if mapping, found := colorMapping[string(value[0:3])]; found {
+					return mapping
+				}
 			}
+			return value
 		}(productSelection.Find("td b").Text())
 
 		price := NormPrice(productSelection.Next().Find("b").Text())
@@ -93,7 +95,10 @@ func InspectMeyer(productPage []byte) *Product {
 		productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
 			size := func(value string, exists bool) string {
 				splitAry := s.Split(value, "_")
-				return sizeMapping[splitAry[len(splitAry)-1]]
+				if mapping, found := sizeMapping[splitAry[len(splitAry)-1]]; found {
+					return mapping
+				}
+				return value
 			}(variantSelection.Attr("name"))
 
 			availability := func(value string, exists bool) int {
