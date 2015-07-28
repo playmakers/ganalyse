@@ -3,10 +3,16 @@ Google Analytics Rocks
 
 
 ## Install
-Install dependencies:
+Given `$GOPATH` is set and `$GOPATH/bin` added to `$PATH`. Install dependencies:
 
-{TBD}
-
+```
+    go get github.com/djimenez/iconv-go
+    go get github.com/go-martini/martini
+    go get github.com/martini-contrib/render
+    go get github.com/onsi/ginkgo/ginkgo
+    go get github.com/onsi/gomega
+    go get github.com/tools/godep
+```
 
 ## Execute
 To run script, execute:
