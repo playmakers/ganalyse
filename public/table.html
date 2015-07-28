@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Table</title>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body>
+    <h1>Table</h1>
+
+    <form action="/extract">
+      <textarea id="url" name="url" cols="100" rows="10">http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=X2-A
+http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=EPIC
+http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=BASH72
+      </textarea>
+      <input id="sub" type="submit">
+    </form>
+
+    <div id="response">
+    </div>
+
+    <style>
+      table {
+        border: 1px;
+      }
+
+     .av0 {
+       background-color: red;
+     }
+     .av5 {
+       background-color: yellow;
+     }
+     .av50 {
+       background-color: green;
+     }
+    </style>
+    <script>
+      $( document ).ready(function() {
+          var defaultSizes = ["XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
+
+          $("#sub").on('click', function(event) {
+            event.preventDefault();
+            var url = $("#url").val();
+
+            $.ajax({
+              url: "/extract?url=" + encodeURIComponent(url),
+              success: function( repsonse ) {
+                console.log(repsonse);
+                $("#response").html("");
+                $.each(repsonse, function(url, data) {
+                  if( data != null) {
+                    var variants = {},
+                    mainNode = $('<div><h2>' + data.Name + '</h2><table border="1"></table></div>').appendTo("#response");
+
+                    node = $("<tr>").appendTo(mainNode.find("table"));
+                    node.append($("<th>"));
+                    $.each(defaultSizes, function(key, size) {
+                      node.append($("<th>" + size + "</th>"));
+                    });
+
+                    $.each(data.Variants, function(key, variant) {
+                      if (!variants[variant.Color]) {
+                        variants[variant.Color] = {}
+                      }
+                      variants[variant.Color][variant.Size] = variant
+                      // console.log(variant)
+                    });
+
+                    $.each(variants, function(color, d) {
+                      node = $("<tr>");
+                      node.append($("<td><b>" + color + "</b></td>"));
+
+                      $.each(defaultSizes, function(key, size) {
+                        var variant = d[size];
+                        if(variant) {
+                          node.append($('<td class="av'+ variant.Availability +'">' + variant.Price + '</td>'));
+                        } else {
+                          node.append($('<td>-</td>'));
+                        }
+
+                      });
+                      node.appendTo(mainNode.find("table"))
+                    });
+                  }
+
+                });
+
+              }
+            });
+
+          });
+      });
+    </script>
+  </body>
+</html>
+

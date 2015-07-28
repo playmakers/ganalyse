@@ -5,6 +5,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
 	"net/url"
+	"regexp"
 	s "strings"
 )
 
@@ -38,35 +39,24 @@ func InspectMeyer(productPage []byte) *Product {
 		"inpQtyGreen":  50,
 	}
 
-	sizeMapping := map[string]string{
-		"2": "M",
-		"3": "S",
-		"4": "M",
-		"5": "L",
-		"6": "XL",
-		"7": "XXL",
-		"8": "3XL",
-		"9": "4XL",
-	}
-
 	colorMapping := map[string]string{
 		"BLK": "Schwarz",
 		"BOR": "Orange",
-		// "CRD": "",
-		// "DGR": "",
 		"GLD": "Gelb",
 		"GRE": "Grün",
-		"KEL": "",
-		// "MAR": "",
 		"NAV": "Navy-Blau",
 		"OGO": "Gold",
 		"PUR": "Lila",
 		"ROY": "Royal-Blau",
-		// "SBG": "",
 		"SCA": "Rot",
 		"SIL": "Silber",
-		// "VGO": "",
 		"WHI": "Weiß",
+		// "KEL": "",
+		// "MAR": "",
+		// "SBG": "",
+		// "VGO": "",
+		// "CRD": "",
+		// "DGR": "",
 	}
 
 	doc := Parse(productPage, "utf-8")
@@ -82,24 +72,30 @@ func InspectMeyer(productPage []byte) *Product {
 
 	doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
 		color := func(value string) string {
-			if len(value) >= 3 {
-				if mapping, found := colorMapping[string(value[0:3])]; found {
+			regMatcher := regexp.MustCompile(`([\w-]+)`)
+	    r := regMatcher.FindAllStringSubmatch(value, -1)
+	    if len(r) > 0 {
+				if mapping, found := colorMapping[r[0][1]]; found {
 					return mapping
 				}
+			} else {
+				value = DEFAULT_COLOR
 			}
 			return value
 		}(productSelection.Find("td b").Text())
 
-		price := NormPrice(productSelection.Next().Find("b").Text())
+		price := func(node *goquery.Selection) float64 {
+			priceNode := node.Find("b b")
+			if priceNode.Text() == "" {
+				priceNode = node.Find("b")
+			}
+			return NormPrice(priceNode.Text())
+		}(productSelection.Next())
 
 		productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
-			size := func(value string, exists bool) string {
-				splitAry := s.Split(value, "_")
-				if mapping, found := sizeMapping[splitAry[len(splitAry)-1]]; found {
-					return mapping
-				}
-				return value
-			}(variantSelection.Attr("name"))
+			size := func(value string) string {
+				return s.TrimSpace(value)
+			}(variantSelection.Parent().Text())
 
 			availability := func(value string, exists bool) int {
 				return availabilityMapping[value]
