@@ -30,7 +30,7 @@ var _ = Describe("./Vendors/Forelle", func() {
 	})
 
 	It("Extracts vendor Color", func() {
-		Expect(variant.Color).To(Equal("1"))
+		Expect(variant.Color).To(Equal("Gelb"))
 	})
 
 	It("Extracts vendor Price", func() {

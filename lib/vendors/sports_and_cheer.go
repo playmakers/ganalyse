@@ -33,7 +33,7 @@ func InspectSportsAndCheer(productPage []byte) *Product {
 
 	for _, size := range sizes {
 		for _, color := range colors {
-			product.AddVariant(size, color, price, DEFAULT_AVAILABILITY)
+			product.AddVariant(size, color, price, AVAILABILE)
 		}
 	}
 

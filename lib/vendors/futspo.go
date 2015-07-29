@@ -8,9 +8,9 @@ import (
 
 func InspectFutspo(productPage []byte) *Product {
 	availabilityMapping := map[string]int{
-		"rot":   0,
-		"gelb":  5,
-		"gruen": 50,
+		"rot":   OUTOFSTOCK,
+		"gelb":  LOWSTOCK,
+		"gruen": AVAILABILE,
 	}
 
 	doc := Parse(productPage, "iso-8859-1")

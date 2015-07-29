@@ -34,9 +34,9 @@ func login(loginUrl, login string, password string) (requrl string) {
 
 func InspectMeyer(productPage []byte) *Product {
 	availabilityMapping := map[string]int{
-		"inpQtyRed":    0,
-		"inpQtyYellow": 5,
-		"inpQtyGreen":  50,
+		"inpQtyRed":    OUTOFSTOCK,
+		"inpQtyYellow": LOWSTOCK,
+		"inpQtyGreen":  AVAILABILE,
 	}
 
 	colorMapping := map[string]string{

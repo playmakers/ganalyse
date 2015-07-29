@@ -16,9 +16,12 @@ type sizeWithPrice struct {
 type mapping func(string) string
 
 const (
-	DEFAULT_SIZE         = "L"
-	DEFAULT_COLOR        = "Schwarz"
-	DEFAULT_AVAILABILITY = 10
+	DEFAULT_SIZE  = "L"
+	UNKNOWN_SIZE  = "NA"
+	DEFAULT_COLOR = "Schwarz"
+	OUTOFSTOCK = 0
+	LOWSTOCK   = 5
+	AVAILABILE = 10
 )
 
 func Parse(data []byte, charset string) (doc *goquery.Document) {

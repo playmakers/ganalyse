@@ -23,7 +23,7 @@ func InspectFirstDown(productPage []byte) *Product {
 
 	for _, sizeAndPrice := range sizes {
 		for _, color := range colors {
-			product.AddVariant(sizeAndPrice.size, color, price+sizeAndPrice.price, DEFAULT_AVAILABILITY)
+			product.AddVariant(sizeAndPrice.size, color, price+sizeAndPrice.price, AVAILABILE)
 		}
 	}
 
