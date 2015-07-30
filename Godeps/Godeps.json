@@ -9,8 +9,13 @@
 		},
 		{
 			"ImportPath": "github.com/PuerkitoBio/goquery",
-			"Comment": "v0.3.2-66-g12a46cd",
-			"Rev": "12a46cd4a183cabd212b37144cf4df55454cf1b8"
+			"Comment": "v0.3.2-69-g4cf64c5",
+			"Rev": "4cf64c51f7e80d56d9ae2ffe7d684d3dd5dbd5d0"
+		},
+		{
+			"ImportPath": "github.com/bitly/go-simplejson",
+			"Comment": "v0.4.3-30-g18db6e6",
+			"Rev": "18db6e68d8fd9cbf2e8ebe4c81a78b96fd9bf05a"
 		},
 		{
 			"ImportPath": "github.com/codegangsta/inject",
@@ -23,20 +28,33 @@
 		},
 		{
 			"ImportPath": "github.com/go-martini/martini",
-			"Comment": "v1.0-124-gd398859",
-			"Rev": "d39885924ac22dcafaa9fd452a3af1261107799d"
+			"Comment": "v1.0-130-g17752b2",
+			"Rev": "17752b20aa29c599c7b6c22f1901d63983c5c25b"
 		},
 		{
 			"ImportPath": "github.com/martini-contrib/render",
-			"Rev": "b65063311fac6cbf84d3538f5715f7847e648322"
+			"Rev": "ec18f8345a1181146728238980606fb1d6f40e8c"
 		},
 		{
 			"ImportPath": "github.com/oxtoacart/bpool",
-			"Rev": "754d38fccfc6e52083355014b6abc8d626445dfd"
+			"Rev": "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
+		},
+		{
+			"ImportPath": "github.com/parnurzeal/gorequest",
+			"Comment": "v0.2.7",
+			"Rev": "3ac223894abdc1d3f4fb6b196df15c18b0ed4a18"
+		},
+		{
+			"ImportPath": "github.com/rapito/go-shopify/shopify",
+			"Rev": "7975333a51795b40bc33714564f15975a3d86dd8"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",
-			"Rev": "9dd48c277bcb2bb2cc3eb6a6368a486a567d3562"
+			"Rev": "614fbbebc9fd409185656c66a2d860ad01907316"
+		},
+		{
+			"ImportPath": "golang.org/x/net/publicsuffix",
+			"Rev": "614fbbebc9fd409185656c66a2d860ad01907316"
 		}
 	]
 }

@@ -20,11 +20,4 @@ _cgo_export.*
 _testmain.go
 
 *.exe
-*.test
-
-/.godeps
-/.envrc
-
-# Godeps
-Godeps/_workspace
-Godeps/Readme
+tags
