@@ -46,5 +46,6 @@ Add a `F` in front of the line to focus on. See http://onsi.github.io/ginkgo/#fo
 ## TODO
 
 - [x] Resolve Multiple URL
+- [x] Forelle, fix when not color
 - [ ] Color, Size Mapping
 - [ ] better JSON output?

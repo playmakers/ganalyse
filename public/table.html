@@ -1,21 +1,7 @@
 <html>
   <head>
-    <title>Table</title>
+    <title>GAnalyse - Availability Check</title>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-  </head>
-  <body>
-    <h1>Table</h1>
-
-    <form action="/extract">
-      <textarea id="url" name="url" cols="100" rows="10">http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=X2-A
-http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=EPIC
-http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=BASH72
-      </textarea>
-      <input id="sub" type="submit">
-    </form>
-
-    <div id="response">
-    </div>
 
     <style>
       table {
@@ -32,6 +18,21 @@ http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6
        background-color: green;
      }
     </style>
+
+  </head>
+  <body>
+    <h1>Availability Check</h1>
+
+    <form action="/extract">
+      <textarea id="url" name="url" cols="100" rows="10">http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=X2-A
+http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=EPIC
+http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6&monum=BASH72
+      </textarea>
+      <input id="sub" type="submit">
+    </form>
+
+    <div id="result"></div>
+
     <script>
       $( document ).ready(function() {
           var defaultSizes = ["XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL", "NA"];
@@ -44,11 +45,11 @@ http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6
               url: "/extract?url=" + encodeURIComponent(url),
               success: function( repsonse ) {
                 console.log(repsonse);
-                $("#response").html("");
+                $("#result").html("");
                 $.each(repsonse, function(url, data) {
                   if( data != null) {
                     var variants = {},
-                    mainNode = $('<div><h2>' + data.Name + '</h2><table border="1"></table></div>').appendTo("#response");
+                    mainNode = $('<div><h2>' + data.Name + '</h2><table border="1"></table></div>').appendTo("#result");
 
                     node = $("<tr>").appendTo(mainNode.find("table"));
                     node.append($("<th>"));

@@ -42,9 +42,30 @@ func main() {
 		params := req.URL.Query()
 
 		store := sync.Store(params.Get("store"), params.Get("key"), params.Get("pass"))
-		productUrls := sync.GetProductUrls(store, params.Get("namespace"))
+		products := sync.GetProductWithUrls(store, params.Get("namespace"))
 
-		r.JSON(200, productUrls)
+		channelBufferLength := 0
+		for _, product := range products {
+			channelBufferLength = channelBufferLength + len(product.Urls)
+		}
+
+		sem := make(chan bool, channelBufferLength)
+
+	 	for _, product := range products {
+	 		for _, url := range product.Urls {
+	 			go func(product *sync.ShopifyProduct, url string) {
+					vendorProduct := ganalyse.InspectUrl(url)
+    			product.VendorProducts = append(product.VendorProducts, vendorProduct)
+					sem <- true
+				}(product, url)
+			}
+	  }
+
+		for i := 0; i < channelBufferLength; i++ {
+		   <-sem
+		}
+
+		r.JSON(200, products)
 	})
 
 	if port == "" {

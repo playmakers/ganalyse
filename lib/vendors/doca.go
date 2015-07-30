@@ -2,7 +2,7 @@ package vendors
 
 import ()
 
-func InspectDocA(productPage []byte) *Product {
+func InspectDocA(productPage []byte, origin string) *Product {
 	// sizeMapping := map[string]string {
 	//   // "76": "XS",
 	//   "1": "S",
@@ -18,6 +18,7 @@ func InspectDocA(productPage []byte) *Product {
 
 	product := &Product{
 		Name: doc.Find(".right h1").Text(),
+		Origin: origin,
 	}
 
 	price := NormPrice(doc.Find(".article_details_price strong").Text())

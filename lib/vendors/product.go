@@ -9,7 +9,6 @@ import (
 )
 
 type Variant struct {
-	id                    int
 	Color, Size, Position string
 	Price                 float64
 	Availability          int
@@ -21,19 +20,29 @@ func (v *Variant) String() string {
 }
 
 type Product struct {
-	id       int
 	Name     string
+	Origin  string
 	Variants map[string]*Variant
 }
 
 func (p *Product) String() (out string) {
-	out = fmt.Sprintf("%s\t variant: %v", p.Name, p.DefaultVariant().String())
-	return
+	return fmt.Sprintf("%s\t variant: %v", p.Name, p.DefaultVariant().String())
 }
 
 func (p *Product) key(size string, color string) string {
 	return fmt.Sprintf("%s-%s", s.ToLower(size), s.ToLower(color))
 }
+
+// func (p *Product) UpdateVariant(color string, size string, position string, availability int) {
+//   for _, variant := range p.Variants {
+//     // fmt.Printf("test: %s %s || %s %s\n", color, variant.Color, size, variant.Size)
+//     if color == variant.Color && size == variant.Size {
+//       variant.Availability = availability
+//       fmt.Printf(" --> match: %s %s || %s %s\n", color, variant.Color, size, variant.Size)
+//       // fmt.Printf("match: %d\n", variant)
+//     }
+//   }
+// }
 
 func (p *Product) DefaultVariant() (variant *Variant) {
 	variant = p.Get(p.key("L", "Schwarz"))

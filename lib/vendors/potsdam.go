@@ -2,11 +2,12 @@ package vendors
 
 import ()
 
-func InspectPotsdam(productPage []byte) *Product {
+func InspectPotsdam(productPage []byte, origin string) *Product {
 	doc := Parse(productPage, "utf-8")
 
 	product := &Product{
 		Name: doc.Find(".productName").Text(),
+		Origin: origin,
 	}
 
 	price := NormPrice(doc.Find(".productPrice").Text())

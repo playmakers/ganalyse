@@ -4,11 +4,12 @@ import (
 	s "strings"
 )
 
-func InspectSportsAndCheer(productPage []byte) *Product {
+func InspectSportsAndCheer(productPage []byte, origin string) *Product {
 	doc := Parse(productPage, "iso-8859-1")
 
 	product := &Product{
 		Name: s.TrimSpace(doc.Find("h1").Text()),
+		Origin: origin,
 	}
 
 	price := func(value string, exists bool) float64 {

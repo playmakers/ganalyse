@@ -6,7 +6,7 @@ import (
 	s "strings"
 )
 
-func InspectFutspo(productPage []byte) *Product {
+func InspectFutspo(productPage []byte, origin string) *Product {
 	availabilityMapping := map[string]int{
 		"rot":   OUTOFSTOCK,
 		"gelb":  LOWSTOCK,
@@ -21,6 +21,7 @@ func InspectFutspo(productPage []byte) *Product {
 
 	product := &Product{
 		Name: doc.Find("span.product").Text(),
+		Origin: origin,
 	}
 
 	variants := doc.Find(".var-ebene script").Last().Text()

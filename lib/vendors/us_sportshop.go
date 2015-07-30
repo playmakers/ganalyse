@@ -4,7 +4,7 @@ import (
 	s "strings"
 )
 
-func InspectUsSportshop(productPage []byte) *Product {
+func InspectUsSportshop(productPage []byte, origin string) *Product {
 	doc := Parse(productPage, "iso-8859-1")
 
 	name := func(value string, e error) string {
@@ -14,6 +14,7 @@ func InspectUsSportshop(productPage []byte) *Product {
 
 	product := &Product{
 		Name: name,
+		Origin: origin,
 	}
 
 	price := func(value string, e error) float64 {

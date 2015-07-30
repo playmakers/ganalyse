@@ -2,7 +2,7 @@ package vendors
 
 import ()
 
-func InspectBossHogg(productPage []byte) *Product {
+func InspectBossHogg(productPage []byte, origin string) *Product {
 	// sizeMapping := map[string]string {
 	//   // "76": "XS",
 	//   "1": "S",
@@ -18,6 +18,7 @@ func InspectBossHogg(productPage []byte) *Product {
 
 	product := &Product{
 		Name: doc.Find("h1").Text(),
+		Origin: origin,
 	}
 
 	price := NormPrice(doc.Find(".PricesalesPrice").Text())

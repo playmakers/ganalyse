@@ -4,11 +4,12 @@ import (
 	"regexp"
 )
 
-func Inspect1A(productPage []byte) *Product {
+func Inspect1A(productPage []byte, origin string) *Product {
 	doc := Parse(productPage, "iso-8859-1")
 
 	product := &Product{
 		Name: doc.Find("h1").Text(),
+		Origin: origin,
 	}
 
 	price := NormPrice(doc.Find("#price").Text())

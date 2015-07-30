@@ -32,7 +32,7 @@ func login(loginUrl, login string, password string) (requrl string) {
 	return
 }
 
-func InspectMeyer(productPage []byte) *Product {
+func InspectMeyer(productPage []byte, origin string) *Product {
 	availabilityMapping := map[string]int{
 		"inpQtyRed":    OUTOFSTOCK,
 		"inpQtyYellow": LOWSTOCK,
@@ -59,6 +59,16 @@ func InspectMeyer(productPage []byte) *Product {
 		// "DGR": "",
 	}
 
+	sizeMapping  := map[string]string{
+		"S": "S",
+		"M": "M",
+		"L": "L",
+		"XL": "XL",
+		"XXL": "XXL",
+		"XXXL": "XXXL",
+		"XXXXL": "XXXXL",
+	}
+
 	doc := Parse(productPage, "utf-8")
 
 	productId := func(value string, exists bool) string {
@@ -68,6 +78,7 @@ func InspectMeyer(productPage []byte) *Product {
 
 	product := &Product{
 		Name: doc.Find(fmt.Sprintf("#styledesc%s b", productId)).Text(),
+		Origin: origin,
 	}
 
 	doc.Find(".tblTrArtRow").Each(func(i int, productSelection *goquery.Selection) {
@@ -94,7 +105,7 @@ func InspectMeyer(productPage []byte) *Product {
 
 		productSelection.Next().Find("input[type=text]").Each(func(i2 int, variantSelection *goquery.Selection) {
 			size := func(value string) string {
-				return s.TrimSpace(value)
+				return sizeMapping[s.TrimSpace(value)]
 			}(variantSelection.Parent().Text())
 
 			availability := func(value string, exists bool) int {
