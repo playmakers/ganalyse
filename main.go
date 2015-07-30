@@ -5,6 +5,7 @@ import (
 	"github.com/martini-contrib/render"
 	"github.com/playmakers/ganalyse/lib/ganalyse"
 	"github.com/playmakers/ganalyse/lib/vendors"
+	"github.com/playmakers/ganalyse/lib/sync"
 	"net/http"
 	"os"
 	"strings"
@@ -35,6 +36,15 @@ func main() {
 		}
 
 		r.JSON(200, products)
+	})
+
+	m.Get("/urls", func(req *http.Request, r render.Render) {
+		params := req.URL.Query()
+
+		store := sync.Store(params.Get("store"), params.Get("key"), params.Get("pass"))
+		productUrls := sync.GetProductUrls(store, params.Get("namespace"))
+
+		r.JSON(200, productUrls)
 	})
 
 	if port == "" {
