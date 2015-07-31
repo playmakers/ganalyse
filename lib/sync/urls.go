@@ -15,6 +15,7 @@ type ShopifyProduct struct {
   Urls []string
   Variants []*ShopifyVariant
   VendorProducts []*vendors.Product
+  VendorProduct *vendors.Product
 }
 
 // func (p *ShopifyProduct) UpdateVariant(color string, size string, position string, availability int) {
@@ -45,9 +46,9 @@ func Store(store string, apiKey string, pass string) shopify.Shopify {
   return shopify.New(store, apiKey, pass)
 }
 
-func GetProductWithUrls(shopify shopify.Shopify, namespace string) []*ShopifyProduct {
+func GetProductWithUrls(shopify shopify.Shopify, namespace string, limit string, since_id string) []*ShopifyProduct {
   collection_id := fetchCollectionId(shopify, namespace)
-  products := fetchProducts(shopify, collection_id)
+  products := fetchProducts(shopify, collection_id, limit, since_id)
 
   sem := make(chan bool, len(products))
 
@@ -71,10 +72,10 @@ func fetchCollectionId(shopify shopify.Shopify, namespace string) int {
   return jsonData.Get("smart_collections").GetIndex(0).Get("id").MustInt()
 }
 
-func fetchProducts(shopify shopify.Shopify, collection_id int) []*ShopifyProduct {
+func fetchProducts(shopify shopify.Shopify, collection_id int, limit string, since_id string) []*ShopifyProduct {
   products := []*ShopifyProduct{}
 
-  result, _ := shopify.Get(fmt.Sprintf("products.json?collection_id=%d&fields=id,vendor,title,variants,options&limit=20#", collection_id))
+  result, _ := shopify.Get(fmt.Sprintf("products.json?collection_id=%d&fields=id,vendor,title,variants,options&limit=%s&since_id=%s#", collection_id, limit, since_id))
   jsonData, _ := simplejson.NewJson(result)
 
   rawProducts := jsonData.Get("products")

@@ -42,7 +42,7 @@ func main() {
 		params := req.URL.Query()
 
 		store := sync.Store(params.Get("store"), params.Get("key"), params.Get("pass"))
-		products := sync.GetProductWithUrls(store, params.Get("namespace"))
+		products := sync.GetProductWithUrls(store, params.Get("namespace"), params.Get("limit"), params.Get("since_id"))
 
 		channelBufferLength := 0
 		for _, product := range products {
@@ -52,12 +52,20 @@ func main() {
 		sem := make(chan bool, channelBufferLength)
 
 	 	for _, product := range products {
+	 		product.VendorProduct = &vendors.Product{
+			}
+			product.VendorProduct.Variants = make(map[string]*vendors.Variant)
 	 		for _, url := range product.Urls {
+
 	 			go func(product *sync.ShopifyProduct, url string) {
 					vendorProduct := ganalyse.InspectUrl(url)
-    			product.VendorProducts = append(product.VendorProducts, vendorProduct)
+    			// product.VendorProducts = append(product.VendorProducts, vendorProduct)
+					for key, variant := range vendorProduct.Variants {
+						product.VendorProduct.Variants[key] = variant
+				  }
 					sem <- true
 				}(product, url)
+
 			}
 	  }
 

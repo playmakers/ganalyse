@@ -1,0 +1,30 @@
+table {
+  display: inline;
+  margin-right: 10px;
+}
+
+div {
+  margin-bottom: 30px;
+}
+
+.av0 {
+ background-color: red;
+}
+.av5 {
+ background-color: yellow;
+}
+.av10 {
+ background-color: green;
+}
+
+.pcontinue {
+  background: green;
+}
+
+.pdeny {
+  background: yellow;
+}
+
+.pdeny.outofstock {
+  background: red;
+}

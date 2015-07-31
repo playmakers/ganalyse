@@ -2,23 +2,8 @@
   <head>
     <title>GAnalyse - Availability Check</title>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-    <style>
-      table {
-        border: 1px;
-      }
-
-     .av0 {
-       background-color: red;
-     }
-     .av5 {
-       background-color: yellow;
-     }
-     .av10 {
-       background-color: green;
-     }
-    </style>
-
+    <script src="/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css" media="all" />
   </head>
   <body>
     <h1>Availability Check</h1>
@@ -33,7 +18,7 @@ http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6
 
     <div id="result"></div>
 
-    <script>
+    <script type="text/javascript">
       $( document ).ready(function() {
           var defaultSizes = ["XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL", "NA"];
 
@@ -46,42 +31,11 @@ http://www.dfshop.com/dfshop/wsDfShop.wsc/pDfHome.p?href=dqbg4p735uvb12kccosjqb6
               success: function( repsonse ) {
                 console.log(repsonse);
                 $("#result").html("");
-                $.each(repsonse, function(url, data) {
-                  if( data != null) {
-                    var variants = {},
-                    mainNode = $('<div><h2>' + data.Name + '</h2><table border="1"></table></div>').appendTo("#result");
-
-                    node = $("<tr>").appendTo(mainNode.find("table"));
-                    node.append($("<th>"));
-                    $.each(defaultSizes, function(key, size) {
-                      node.append($("<th>" + size + "</th>"));
-                    });
-
-                    $.each(data.Variants, function(key, variant) {
-                      if (!variants[variant.Color]) {
-                        variants[variant.Color] = {}
-                      }
-                      variants[variant.Color][variant.Size] = variant
-                      // console.log(variant)
-                    });
-
-                    $.each(variants, function(color, d) {
-                      node = $("<tr>");
-                      node.append($("<td><b>" + color + "</b></td>"));
-
-                      $.each(defaultSizes, function(key, size) {
-                        var variant = d[size];
-                        if(variant) {
-                          node.append($('<td class="av'+ variant.Availability +'">' + variant.Price + '</td>'));
-                        } else {
-                          node.append($('<td>-</td>'));
-                        }
-
-                      });
-                      node.appendTo(mainNode.find("table"))
-                    });
+                $.each(repsonse, function(url, product) {
+                  if( product != null) {
+                    var node = $('<div><h3>' + product.Name + '</h3></div>').appendTo("#result");
+                    node.append(renderProduct(product));
                   }
-
                 });
 
               }

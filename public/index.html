@@ -1,40 +1,10 @@
 <html>
   <head>
     <title>GAnalyse - Syncro Check</title>
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="/js.cookie.js"></script>
-    <style>
-      table {
-        display: inline;
-        margin-right: 10px;
-      }
-
-      div {
-        margin-bottom: 30px;
-      }
-
-      .av0 {
-       background-color: red;
-      }
-      .av5 {
-       background-color: yellow;
-      }
-      .av10 {
-       background-color: green;
-      }
-
-      .pcontinue {
-        background: green;
-      }
-
-      .pdeny {
-        background: yellow;
-      }
-
-      .pdeny.outofstock {
-        background: red;
-      }
-    </style>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js.cookie.js"></script>
+    <script src="/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css" media="all" />
   </head>
   <body>
     <h1>Syncro Check</h1>
@@ -42,6 +12,8 @@
     <form action="/extract">
       <input name="store" value="playmaker">
       <input name="namespace" value="playmakers-sync">
+      <input name="limit" value="10">
+      <input name="since_id" value="0">
       <input id="key" name="key">
       <input id="pass" name="pass">
       <input id="sub" type="submit">
@@ -49,61 +21,7 @@
 
     <div id="result"></div>
 
-    <script>
-      function renderProduct(product) {
-        var variants = {},
-        mainNode = $('<table border="1"></table>');
-        header = $("<tr>").appendTo(mainNode)
-        sizes = {},
-        defaultSizes = [];
-
-        $.each(product.Variants, function(key, variant) {
-          key1 = (variant.Color != "") ? variant.Color : variant.Position;
-          key2 = (variant.Size != "") ? variant.Size : variant.Position;
-
-          if (!variants[key1]) {
-            variants[key1] = {};
-          }
-          variants[key1][key2] = variant;
-          sizes[key2] = true;
-        });
-
-        defaultSizes = Object.keys(sizes);
-
-        header.append($('<th><a target="_blank" href="' + product.Origin + '">origin</a></th>'));
-        $.each(defaultSizes, function(key, size) {
-          header.append($("<th>" + size + "</th>"));
-        });
-
-        $.each(variants, function(color, d) {
-          node = $("<tr>");
-          node.append($("<td><b>" + color + "</b></td>"));
-
-          $.each(defaultSizes, function(key, size) {
-            var variant = d[size],
-            value, className;
-
-            if(variant) {
-              outofstock = (variant.Quantity < 1) ? " outofstock" : "";
-              if (variant.Quantity || variant.Quantity == 0) {
-                value = variant.Quantity;
-                className = 'p'+ variant.Policy + outofstock;
-              } else {
-                value = variant.Availability;
-                className = 'av'+ variant.Availability;
-              }
-              node.append($('<td class="' + className + '">' + value + '</td>'));
-            } else {
-              node.append($('<td>-</td>'));
-            }
-
-          });
-          node.appendTo(mainNode)
-        });
-
-        return mainNode;
-      }
-
+    <script type="text/javascript">
       $( document ).ready(function() {
         var key = Cookies.get('key'),
         pass = Cookies.get('pass');
@@ -127,9 +45,11 @@
                   product.Origin = 'https://playmaker.myshopify.com/admin/products/' + product.Id;
 
                   node.append(renderProduct(product));
-                  $.each(product.VendorProducts, function(key, product) {
-                    node.append(renderProduct(product));
-                  });
+                  node.append(renderProduct(product.VendorProduct));
+
+                  // $.each(product.VendorProducts, function(key, product) {
+                  //   node.append(renderProduct(product));
+                  // });
                 }
               });
             }
