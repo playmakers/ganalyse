@@ -1,21 +1,21 @@
 {
 	"ImportPath": "github.com/playmakers/ganalyse",
-	"GoVersion": "go1.4.1",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v74",
 	"Deps": [
 		{
-			"ImportPath": "code.google.com/p/cascadia",
-			"Comment": "null-31",
-			"Rev": "5d796540e3cb93ea0556c897e6a3c7690f614d35"
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v1.0.1-2-g152b1a2",
+			"Rev": "152b1a2c8f5d0340f658bb656032a39b94e52958"
 		},
 		{
-			"ImportPath": "github.com/PuerkitoBio/goquery",
-			"Comment": "v0.3.2-69-g4cf64c5",
-			"Rev": "4cf64c51f7e80d56d9ae2ffe7d684d3dd5dbd5d0"
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "65919c611220063037b1db8eb334acaf17a6d8ea"
 		},
 		{
 			"ImportPath": "github.com/bitly/go-simplejson",
-			"Comment": "v0.4.3-30-g18db6e6",
-			"Rev": "18db6e68d8fd9cbf2e8ebe4c81a78b96fd9bf05a"
+			"Comment": "v0.5.0",
+			"Rev": "aabad6e819789e569bd6aabf444c935aa9ba1e44"
 		},
 		{
 			"ImportPath": "github.com/codegangsta/inject",
@@ -24,16 +24,20 @@
 		},
 		{
 			"ImportPath": "github.com/djimenez/iconv-go",
-			"Rev": "5f6a5a4f0011195c0147545149ad54f4adb54757"
+			"Rev": "8960e66bd3dacbc8773962b40eb82fc18c63c127"
 		},
 		{
 			"ImportPath": "github.com/go-martini/martini",
-			"Comment": "v1.0-130-g17752b2",
-			"Rev": "17752b20aa29c599c7b6c22f1901d63983c5c25b"
+			"Comment": "v1.0-186-gfe605b5",
+			"Rev": "fe605b5cd210047ae3bb73d2b69a5b912a9b423d"
 		},
 		{
 			"ImportPath": "github.com/martini-contrib/render",
 			"Rev": "ec18f8345a1181146728238980606fb1d6f40e8c"
+		},
+		{
+			"ImportPath": "github.com/moul/http2curl",
+			"Rev": "c984a4ec331f8ef0e5cd782975a97c92bd8ab40c"
 		},
 		{
 			"ImportPath": "github.com/oxtoacart/bpool",
@@ -41,8 +45,8 @@
 		},
 		{
 			"ImportPath": "github.com/parnurzeal/gorequest",
-			"Comment": "v0.2.7",
-			"Rev": "3ac223894abdc1d3f4fb6b196df15c18b0ed4a18"
+			"Comment": "v0.2.14-15-ge30af16",
+			"Rev": "e30af16d4e485943aab0b0885ad6bdbb8c0d3dc7"
 		},
 		{
 			"ImportPath": "github.com/rapito/go-shopify/shopify",
@@ -50,11 +54,15 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",
-			"Rev": "614fbbebc9fd409185656c66a2d860ad01907316"
+			"Rev": "3fe3024eef808ba2798cc1855690f49e2b860573"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "3fe3024eef808ba2798cc1855690f49e2b860573"
 		},
 		{
 			"ImportPath": "golang.org/x/net/publicsuffix",
-			"Rev": "614fbbebc9fd409185656c66a2d860ad01907316"
+			"Rev": "3fe3024eef808ba2798cc1855690f49e2b860573"
 		}
 	]
 }
