@@ -6,12 +6,12 @@ Google Analytics Rocks
 Given `$GOPATH` is set and `$GOPATH/bin` added to `$PATH`. Install dependencies:
 
 ```
-    go get github.com/djimenez/iconv-go
-    go get github.com/go-martini/martini
-    go get github.com/martini-contrib/render
-    go get github.com/onsi/ginkgo/ginkgo
-    go get github.com/onsi/gomega
-    go get github.com/tools/godep
+    go get -u github.com/djimenez/iconv-go
+    go get -u github.com/go-martini/martini
+    go get -u github.com/martini-contrib/render
+    go get -u github.com/onsi/ginkgo/ginkgo
+    go get -u github.com/onsi/gomega
+    go get -u github.com/tools/godep
 ```
 
 ## Execute

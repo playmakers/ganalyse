@@ -13,7 +13,7 @@ var _ = Describe("./Vendors/SportsAndCheer", func() {
 	var variant vendors.Variant
 
 	JustBeforeEach(func() {
-		subject = *vendors.InspectSportsAndCheer(loadExample(exampleFile))
+		subject = *vendors.InspectSportsAndCheer(loadExample(exampleFile), "")
 		variant = *subject.DefaultVariant()
 	})
 
