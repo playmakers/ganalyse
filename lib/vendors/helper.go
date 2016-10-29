@@ -2,11 +2,13 @@ package vendors
 
 import (
 	"github.com/PuerkitoBio/goquery"
-	"github.com/djimenez/iconv-go"
+	"github.com/paulrosania/go-charset/charset"
 	"io"
 	"regexp"
 	s "strings"
 )
+
+import _ "github.com/paulrosania/go-charset/data"
 
 type sizeWithPrice struct {
 	size  string
@@ -24,11 +26,11 @@ const (
 	AVAILABILE = 10
 )
 
-func Parse(data []byte, charset string) (doc *goquery.Document) {
+func Parse(data []byte, charset_str string) (doc *goquery.Document) {
 	var reader io.Reader
 	reader = s.NewReader(string(data))
-	if charset != "utf-8" {
-		reader, _ = iconv.NewReader(reader, charset, "utf-8")
+	if charset_str != "utf-8" {
+		reader, _ = charset.NewReader(charset_str, reader)
 	}
 	doc, _ = goquery.NewDocumentFromReader(reader)
 	return

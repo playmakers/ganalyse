@@ -7,6 +7,7 @@ Given `$GOPATH` is set and `$GOPATH/bin` added to `$PATH`. Install dependencies:
 
 ```
     go get -u github.com/djimenez/iconv-go
+    go get github.com/paulrosania/go-charset/charset
     go get -u github.com/go-martini/martini
     go get -u github.com/martini-contrib/render
     go get -u github.com/onsi/ginkgo/ginkgo
@@ -18,7 +19,7 @@ Given `$GOPATH` is set and `$GOPATH/bin` added to `$PATH`. Install dependencies:
 To run script, execute:
 
 ```
-go run main.go
+make run
 
 ```
 
@@ -28,7 +29,7 @@ and open browser on http://localhost:3000
 To run specs, execute:
 
 ```
-ginkgo specs/vendors
+make test
 
 ```
 
@@ -36,7 +37,7 @@ ginkgo specs/vendors
 
 Before deployment, make sure to update dependencies
 
-`godep save`
+`make dependencies`
 
 more see: http://mmcgrana.github.io/2012/09/getting-started-with-go-on-heroku.html
 
